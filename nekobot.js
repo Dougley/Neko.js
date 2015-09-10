@@ -1,55 +1,79 @@
-/*
-	initial NekoBot test
-*/
-
 var Discord		= require("discord.js");
+var Redis		= require("redis");
+var Logger		= require("winston");
+
 var Config		= require("./config.json");
 var Commands	= require('./nekobot/commands').Commands;
+var Permissions	= require('./nekobot/permissions');
 
 var NekoBot = new Discord.Client();
 
-function init() { // init nekobot
-	console.log("Initializing...");
+// ========================================================================
+// Init / Ready
+// ========================================================================
+
+function init() {
+	Logger.log("info", "Initializing...");
 	NekoBot.joinServer(Config.server);
 }
 
-function error(err){
-	console.log("Error! Reason:", err);
-	process.exit(1);
-}
-
 NekoBot.on("ready", function() {
-	console.log("Ready!");
+	Logger.log("info", "Ready!");
 });
+
+// ========================================================================
+// Command Reciever
+// ========================================================================
 
 NekoBot.on("message", function(msg) {
 
+	// prevent NekoBot from gaining sentience
 	if(msg.author === NekoBot.user) { return }
 
+	// check for command prefix so we know it's a command
 	if(msg.content.charAt(0) === Config.commands.prefix) {
 
-		// Remove the command symbol
+		// remove the command prefix from the message
 		msg.content = msg.content.substr(1);
 
-		// Split commands and params
+		// split message into command and params
 		var chunks = msg.content.split(" ");
 		var command = chunks[0];
 		var params = chunks.slice(1);
 
-		// Parse commands
+		// search for a matching command
 		if (Commands[command]) {
-			//var user = msg.author;
-			//if (Permissions.canUseCommand(user, command)) {
-				Commands[command].fn(NekoBot, msg, params);
-			//} else {
-			//	NekoBot.reply(msg, "You don't have access to " + command);
-			//}
+
+			// make sure the user has permission
+			Permissions.getUserLevel(msg.author, function(err, level) {
+
+				if (err) { error(err); } // error handle
+				if (level >= Commands[command].authLevel) {
+					Commands[command].fn(NekoBot, msg, params, error);
+				} else {
+					NekoBot.reply(msg, "You don't have access to " + Config.commands.prefix + command);
+				}
+			});
+
+		// no matching command
+		} else {
+			NekoBot.reply(msg, "There is no " + Config.commands.prefix + command + " command.");
 		}
 	}
 });
+
+// ========================================================================
+// Error / Disconnect Handle
+// ========================================================================
+
+function error(err){
+	Logger.log("error", err);
+	process.exit(1);
+}
 
 NekoBot.on("disconnected", function() {
 	error("Disconnected! :(");
 });
 
+// After all funcs, do Bot login! (This is the program entry point)
 NekoBot.login(Config.email, Config.password).then(init).catch(error);
