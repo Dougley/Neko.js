@@ -24,6 +24,8 @@ NekoBot.on("ready", function() {
 
 NekoBot.on("message", function(msg) {
 
+	if(msg.author === NekoBot.user) { return }
+
 	if(msg.content.charAt(0) === Config.commands.prefix) {
 
 		// Remove the command symbol
