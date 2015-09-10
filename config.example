@@ -3,6 +3,11 @@
 	"password" : "password",
 	"server" : "InviteCode",
 	"commands" : {
-		"prefix" : "!"
+		"prefix" : "!",
+		"masterUser" : "MasterUserID"
+	},
+	"redis" : {
+		"host" : "localhost",
+		"port" : 6379
 	}
 }

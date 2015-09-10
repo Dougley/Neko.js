@@ -3,10 +3,15 @@
 */
 
 var Discord		= require("discord.js");
+var Redis		= require("redis");
+var Logger		= require("winston");
+
 var Config		= require("./config.json");
 var Commands	= require('./nekobot/commands').Commands;
+var Permissions	= require('./nekobot/permissions');
 
 var NekoBot = new Discord.Client();
+var rclient = Redis.createClient(Config.redis.port, Config.redis.host);
 
 function init() { // init nekobot
 	console.log("Initializing...");
@@ -14,7 +19,7 @@ function init() { // init nekobot
 }
 
 function error(err){
-	console.log("Error! Reason:", err);
+	Logger.log("error", err);
 	process.exit(1);
 }
 
@@ -25,6 +30,7 @@ NekoBot.on("ready", function() {
 NekoBot.on("message", function(msg) {
 
 	if(msg.author === NekoBot.user) { return }
+	//console.log(msg.author);
 
 	if(msg.content.charAt(0) === Config.commands.prefix) {
 
@@ -38,12 +44,12 @@ NekoBot.on("message", function(msg) {
 
 		// Parse commands
 		if (Commands[command]) {
-			//var user = msg.author;
-			//if (Permissions.canUseCommand(user, command)) {
-				Commands[command].fn(NekoBot, msg, params);
-			//} else {
-			//	NekoBot.reply(msg, "You don't have access to " + command);
-			//}
+			var user = msg.author;
+			if (Permissions.canUseCommand(msg, user, command)) {
+				Commands[command].fn(NekoBot, msg, params, error);
+			} else {
+				NekoBot.reply(msg, "You don't have access to " + command);
+			}
 		}
 	}
 });
