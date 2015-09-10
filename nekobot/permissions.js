@@ -1,31 +1,40 @@
 var Redis		= require("redis");
-var Logger		= require("winston");
-
 var Config		= require("../config.json");
 
 var rclient = Redis.createClient(Config.redis.port, Config.redis.host);
 
-exports.canUseCommand = function(message, user, command) {
-	if (this.getUserLevel(message, user) >= Commands[command].authLevel) { return true; }
-	return false;
-}
+// ========================================================================
+// GETTER
+// ========================================================================
+exports.getUserLevel = function(user, callback) {
 
-exports.getUserLevel = function(message, user) {
-//	Logger.log("info", message);
-//	if (user.id === Config.commands.masterUser) { return 10; }
+	// return an obsurd value (aka: 10) if Master User
+	if (user.id === Config.commands.masterUser) { return callback(null, 10); }
 
-	rclient.get("auth_level:" + user.id, function(error, reply) {
-		if (error) { Logger.log("error", error); }
-		if (reply) { return +reply; }
+	// otherwise, connect to redis and find the stored user level
+	rclient.get("auth_level:" + user.id, function(err, reply) {
+
+		if (err) { return callback(err, -1); } // error handle
+		if (reply) {
+			return callback(null, reply); // return reply
+		} else {
+			callback(null, 0); // return 0 if no reply without error
+		}
 	});
-
-	return 0;
 }
 
-exports.setUserLevel = function(message, user, level) {
-//	Logger.log("info", message);
+// ========================================================================
+// SETTER
+// ========================================================================
+exports.setUserLevel = function(user, level, callback) {
 
-	rclient.set("auth_level:" + user.id, level, function(error, reply) {
-		if (error) { Logger.log("error", error); }
+	// connect to redis and set user level
+	rclient.set("auth_level:" + user.id, parseInt(level), function(err, reply) {
+		if (err) { callback(err, -1); } // error handle
+		if (reply) {
+			callback(null, parseInt(level)); // return new level if sucessful
+		} else {
+			return callback(null, 0); // return 0 if fail without error
+		}
 	});
 }
