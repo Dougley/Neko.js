@@ -3,6 +3,6 @@
 	"password" : "password",
 	"server" : "InviteCode",
 	"commands" : {
-		"prefix" : "$"
+		"prefix" : "!"
 	}
 }
