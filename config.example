@@ -1,5 +1,8 @@
 {
 	"email" : "bot@email.com",
 	"password" : "password",
-	"server" : "InviteCode"
+	"server" : "InviteCode",
+	"commands" : {
+		"prefix" : "$"
+	}
 }

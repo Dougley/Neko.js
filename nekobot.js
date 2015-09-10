@@ -24,7 +24,7 @@ NekoBot.on("ready", function() {
 
 NekoBot.on("message", function(msg) {
 
-	if(msg.content.charAt(0) === "!") {
+	if(msg.content.charAt(0) === Config.commands.prefix) {
 
 		// Remove the command symbol
 		msg.content = msg.content.substr(1);
