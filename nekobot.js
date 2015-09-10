@@ -4,6 +4,7 @@
 
 var Discord		= require("discord.js");
 var Config		= require("./config.json");
+var Commands	= require('./nekobot/commands').Commands;
 
 var NekoBot = new Discord.Client();
 
@@ -22,11 +23,26 @@ NekoBot.on("ready", function() {
 });
 
 NekoBot.on("message", function(msg) {
-	if(msg.content === "!ping") {
-		NekoBot.sendMessage(msg.channel, "Pong!").catch(error);
-	}
-	if(msg.content === "!trash") {
-		NekoBot.sendFile(msg.channel, "./test/test.png").catch(error);
+
+	if(msg.content.charAt(0) === "!") {
+
+		// Remove the command symbol
+		msg.content = msg.content.substr(1);
+
+		// Split commands and params
+		var chunks = msg.content.split(" ");
+		var command = chunks[0];
+		var params = chunks.slice(1);
+
+		// Parse commands
+		if (Commands[command]) {
+			//var user = msg.author;
+			//if (Permissions.canUseCommand(user, command)) {
+				Commands[command].fn(NekoBot, msg, params);
+			//} else {
+			//	NekoBot.reply(msg, "You don't have access to " + command);
+			//}
+		}
 	}
 });
 

@@ -7,7 +7,7 @@ Version: 0.0.1
 Installing the bot is simple, just `npm install` to install the dependencies. That's it.
 
 ### Configuration
-You'll find a `config.example` file in the project root. Inside that file are all the expected configs: Email, Password, Servers, etc. Edit the settings with your bot's information and rename the file to `config.json`. The only thing worth noting here is the `server` value is the string of characters at the end of an invite link.
+You'll find a `config.example` file in the project root. Inside that file are all the expected configs: Email, Password, Servers, etc. Edit the settings with your bot's information and rename it to `config.json`. The only thing worth note here is the `server` value is the string of characters at the end of an invite link.
 
 For example, the `server` for https://discord.gg/0Lv5NLFEoz3P07Aq would be `0Lv5NLFEoz3P07Aq`.
 
@@ -17,7 +17,7 @@ Using the bot is just as simple as the installation, just `node nekobot.js`.
 ### License
 The MIT License (MIT)
 
-Copyright (c) 2015 Seph D. Warwick
+Copyright (c) 2015
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
