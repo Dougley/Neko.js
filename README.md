@@ -4,7 +4,7 @@ Port of [NekoBot](https://github.com/Kusoneko/Nekobot) by [Kusoneko](https://git
 Version: 0.0.1
 
 ### Installation
-Installing the bot is simple, just `npm install` to install the dependencies. That's it.
+Installing the bot is simple, you'll just need to have [Node](https://nodejs.org/) installed and do `npm install` to install the dependencies. Also the bot requires [Redis](http://redis.io/) to run, so you'll need to install that to.
 
 ### Configuration
 You'll find a `config.example` file in the project root. Inside that file are all the expected configs: Email, Password, Servers, etc. Edit the settings with your bot's information and rename it to `config.json`. The only thing worth note here is the `server` value is the string of characters at the end of an invite link.
@@ -12,7 +12,7 @@ You'll find a `config.example` file in the project root. Inside that file are al
 For example, the `server` for https://discord.gg/0Lv5NLFEoz3P07Aq would be `0Lv5NLFEoz3P07Aq`.
 
 ### Usage
-Using the bot is just as simple as the installation, just `node nekobot.js`.
+Using the bot is just as simple as the installation, just `node nekobot.js`. You'll need to have Redis running before you run it though.
 
 ### License
 The MIT License (MIT)
