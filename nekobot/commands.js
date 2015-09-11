@@ -108,8 +108,10 @@ Commands["getperms"] = {
 	}
 }
 
+Commands["canlewd"] =
 Commands["nsfw"] = {
 	usage: Config.commands.prefix + "nsfw (on/off)",
+	aliases: ['canlewd'],
 	description: "Sets the NSFW flag for the channel this command was issued in. (Leave params empty for status.)",
 	authLevel: 1,
 	fn: function(bot, message, params, errorCallback) {
