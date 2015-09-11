@@ -108,6 +108,42 @@ Commands["getperms"] = {
 	}
 }
 
+Commands["nsfw"] = {
+	usage: Config.commands.prefix + "nsfw (on/off)",
+	description: "Sets the NSFW flag for the channel this command was issued in. (Leave params empty for status.)",
+	authLevel: 1,
+	fn: function(bot, message, params, errorCallback) {
+		if (typeof message.channel.server === "undefined") { // PMs don't have servers, they have PMChannel
+			bot.reply(message, Config.commands.prefix + "nsfw can't be used from a PM.").catch(errorCallback);
+			return;
+		}
+		if (params[0] === "on" || params[0] === "off") {
+			Permissions.setAllowNSFW(message.channel, params[0], function(err, allow){
+				if (err) { errorCallback(err); }
+				if (allow === "on") {
+					bot.reply(message, "NSFW set to **ALLOWED** for " + message.channel).catch(errorCallback);
+				}
+				else if (allow === "off") {
+					bot.reply(message, "NSFW set to **DISABLED** for " + message.channel).catch(errorCallback);
+				}
+				else {
+					bot.reply(message, "Failed to set NSFW flag! (report to Bot Owner!)").catch(errorCallback);
+				}
+			});
+		}
+		else {
+			Permissions.getAllowNSFW(message.channel, function(err, allow){
+				if (err) { errorCallback(err); }
+				if (allow === "on") {
+					bot.reply(message, "NSFW is **ALLOWED** in " + message.channel).catch(errorCallback);
+				} else {
+					bot.reply(message, "NSFW is **DISABLED** in " + message.channel).catch(errorCallback);
+				}
+			});
+		}
+	}
+}
+
 // ========================================================================
 // Admin Commands
 // ========================================================================
