@@ -9,7 +9,7 @@ Commands = [];
 
 Commands["ping"] = {
 	usage: Config.commands.prefix + "ping",
-	description: "Responds with 'Pong!' if NekoBot is alive.",
+	description: "I'll say 'Pong!'",
 	authLevel: 0,
 	fn: function(bot, message, params, errorCallback) {
 		bot.reply(message, "Pong!").catch(errorCallback);
@@ -18,7 +18,7 @@ Commands["ping"] = {
 
 Commands["nya"] = {
 	usage: Config.commands.prefix + "nya",
-	description: "Responds with 'Nyaa~' if NekoBot is alive.",
+	description: "I'll say 'Nyaa~'",
 	authLevel: 0,
 	fn: function(bot, message, params, errorCallback) {
 		bot.reply(message, "Nyaa~").catch(errorCallback);
@@ -27,7 +27,7 @@ Commands["nya"] = {
 
 Commands["poi"] = {
 	usage: Config.commands.prefix + "poi",
-	description: "Responds with 'Poi!' if NekoBot is alive.",
+	description: "I'll say 'Poi!'",
 	authLevel: 0,
 	fn: function(bot, message, params, errorCallback) {
 		bot.reply(message, "Poi!").catch(errorCallback);
@@ -87,11 +87,11 @@ Commands["getauth"] =
 Commands["getperms"] = {
 	usage: Config.commands.prefix + "getperms [@USER ...]",
 	aliases: ['getauth'],
-	description: "Responds with the permissions level of each @USER.",
+	description: "I'll tell you the permissions level of each *@USER*.",
 	authLevel: 1,
 	fn: function(bot, message, params, errorCallback) {
 		if (typeof message.channel.server === "undefined") { // PMs don't have servers, they have PMChannel
-			bot.reply(message, Config.commands.prefix + "getperms can't be used from a PM.").catch(errorCallback);
+			bot.reply(message, "I can't do that in a PM! (I'm sorry ;w;)").catch(errorCallback);
 			return;
 		}
 		if (message.mentions.length === 0) {
@@ -112,24 +112,24 @@ Commands["canlewd"] =
 Commands["nsfw"] = {
 	usage: Config.commands.prefix + "nsfw (on/off)",
 	aliases: ['canlewd'],
-	description: "Sets the NSFW flag for the channel this command was issued in. (Leave params empty for status.)",
+	description: "I'll set the NSFW flag for the channel this command was issued in. (Leave params empty for status.)",
 	authLevel: 1,
 	fn: function(bot, message, params, errorCallback) {
 		if (typeof message.channel.server === "undefined") { // PMs don't have servers, they have PMChannel
-			bot.reply(message, Config.commands.prefix + "nsfw can't be used from a PM.").catch(errorCallback);
+			bot.reply(message, "I can't do that in a PM! (l-lewd)").catch(errorCallback);
 			return;
 		}
 		if (params[0] === "on" || params[0] === "off") {
 			Permissions.setAllowNSFW(message.channel, params[0], function(err, allow){
 				if (err) { errorCallback(err); }
 				if (allow === "on") {
-					bot.reply(message, "NSFW set to **ALLOWED** for " + message.channel).catch(errorCallback);
+					bot.reply(message, "I've set NSFW to **ALLOWED** for " + message.channel).catch(errorCallback);
 				}
 				else if (allow === "off") {
-					bot.reply(message, "NSFW set to **DISABLED** for " + message.channel).catch(errorCallback);
+					bot.reply(message, "I've set NSFW to **DISABLED** for " + message.channel).catch(errorCallback);
 				}
 				else {
-					bot.reply(message, "Failed to set NSFW flag! (report to Bot Owner!)").catch(errorCallback);
+					bot.reply(message, "Oops! I've failed to set NSFW flag! ;w; (Please tell my master.)").catch(errorCallback);
 				}
 			});
 		}
@@ -155,7 +155,7 @@ Commands["worstgirl"] =
 Commands["trash"] = {
 	usage: Config.commands.prefix + "trash",
 	aliases: ['onodera', 'worstgirl'],
-	description: "Responds with an image of worst girl. WARNING: May cause nausea!",
+	description: "I'll upload an image of 'worst girl'. (WARNING: May cause nausea!)",
 	authLevel: 2,
 	fn: function(bot, message, params, errorCallback) {
 		bot.sendFile(message, "./test/test.png").catch(errorCallback);
@@ -170,7 +170,7 @@ Commands["setauth"] =
 Commands["setperms"] = {
 	usage: Config.commands.prefix + "setperms [LEVEL] [@USER ...]",
 	aliases: ['setauth'],
-	description: "Sets the permissions level of each @USER to LEVEL.",
+	description: "I'll set the permissions level of each *@USER* to *LEVEL*.",
 	authLevel: 3,
 	fn: function(bot, message, params, errorCallback) {
 		if (typeof message.channel.server === "undefined") { // PMs don't have servers, they have PMChannel
@@ -192,7 +192,7 @@ Commands["setperms"] = {
 			});
 		});
 
-		bot.reply(message, "Permissions levels set.").catch(errorCallback);
+		bot.reply(message, "Okay! I'll remember the new permissions levels. :)").catch(errorCallback);
 	}
 }
 
