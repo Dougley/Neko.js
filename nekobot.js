@@ -83,13 +83,13 @@ NekoBot.on("message", function(msg) {
 				if (level >= Commands[command].authLevel) {
 					Commands[command].fn(NekoBot, msg, params, error);
 				} else {
-					NekoBot.reply(msg, "You don't have access to " + Config.commands.prefix + command);
+					NekoBot.reply(msg, "You don't have access to " + Config.commands.prefix + command).catch(error);
 				}
 			});
 
 		// no matching command
 		} else {
-			NekoBot.reply(msg, "There is no " + Config.commands.prefix + command + " command.");
+			NekoBot.reply(msg, "There is no " + Config.commands.prefix + command + " command.").catch(error);
 		}
 	}
 });
