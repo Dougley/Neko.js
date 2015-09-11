@@ -16,12 +16,77 @@ Commands["ping"] = {
 	}
 }
 
+Commands["nya"] = {
+	usage: Config.commands.prefix + "nya",
+	description: "Responds with 'Nyaa~' if NekoBot is alive.",
+	authLevel: 0,
+	fn: function(bot, message, params, errorCallback) {
+		bot.reply(message, "Nyaa~").catch(errorCallback);
+	}
+}
+
+Commands["poi"] = {
+	usage: Config.commands.prefix + "poi",
+	description: "Responds with 'Poi!' if NekoBot is alive.",
+	authLevel: 0,
+	fn: function(bot, message, params, errorCallback) {
+		bot.reply(message, "Poi!").catch(errorCallback);
+	}
+}
+
+Commands["icri"] =
+Commands["sadhorn"] =
+Commands["aicraievritaim"] =
+Commands["aicraievritiem"] =
+Commands["aicrai"] = {
+	usage: Config.commands.prefix + "aicrai",
+	aliases: ['icri', 'sadhorn', 'aicraievritaim', 'aicraievritiem'],
+	description: "When sad things happen...",
+	authLevel: 0,
+	fn: function(bot, message, params, errorCallback) {
+		bot.reply(message, "https://www.youtube.com/watch?v=0JAn8eShOo8").catch(errorCallback);
+	}
+}
+
+Commands["rinpls"] =
+Commands["notnow"] = {
+	usage: Config.commands.prefix + "notnow",
+	aliases: ['rinpls'],
+	description: "How to Rekt: Rin 101",
+	authLevel: 0,
+	fn: function(bot, message, params, errorCallback) {
+		bot.reply(message, "https://www.youtube.com/watch?v=2BZUzJfKFwM").catch(errorCallback);
+	}
+}
+
+Commands["uninstall"] = {
+	usage: Config.commands.prefix + "uninstall",
+	description: "A great advice in any situation.",
+	authLevel: 0,
+	fn: function(bot, message, params, errorCallback) {
+		bot.reply(message, "https://www.youtube.com/watch?v=iNCXiMt1bR4").catch(errorCallback);
+	}
+}
+
+Commands["kys"] =
+Commands["killyourself"] = {
+	usage: Config.commands.prefix + "killyourself",
+	aliases: ['kys'],
+	description: "Another good advice.",
+	authLevel: 0,
+	fn: function(bot, message, params, errorCallback) {
+		bot.reply(message, "https://www.youtube.com/watch?v=2dbR2JZmlWo").catch(errorCallback);
+	}
+}
+
 // ========================================================================
 // Moderator Commands
 // ========================================================================
 
+Commands["getauth"] =
 Commands["getperms"] = {
 	usage: Config.commands.prefix + "getperms [@USER ...]",
+	aliases: ['getauth'],
 	description: "Responds with the permissions level of each @USER.",
 	authLevel: 1,
 	fn: function(bot, message, params, errorCallback) {
@@ -47,8 +112,11 @@ Commands["getperms"] = {
 // Admin Commands
 // ========================================================================
 
+Commands["onodera"] =
+Commands["worstgirl"] =
 Commands["trash"] = {
 	usage: Config.commands.prefix + "trash",
+	aliases: ['onodera', 'worstgirl'],
 	description: "Responds with an image of worst girl. WARNING: May cause nausea!",
 	authLevel: 2,
 	fn: function(bot, message, params, errorCallback) {
@@ -60,8 +128,10 @@ Commands["trash"] = {
 // Owner Commands
 // ========================================================================
 
+Commands["setauth"] =
 Commands["setperms"] = {
 	usage: Config.commands.prefix + "setperms [LEVEL] [@USER ...]",
+	aliases: ['setauth'],
 	description: "Sets the permissions level of each @USER to LEVEL.",
 	authLevel: 3,
 	fn: function(bot, message, params, errorCallback) {
