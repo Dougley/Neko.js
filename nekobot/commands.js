@@ -52,7 +52,7 @@ Commands["trash"] = {
 	description: "Responds with an image of worst girl. WARNING: May cause nausea!",
 	authLevel: 2,
 	fn: function(bot, message, params, errorCallback) {
-		bot.sendFile(message.channel, "./test/test.png").catch(errorCallback);
+		bot.sendFile(message, "./test/test.png").catch(errorCallback);
 	}
 }
 
