@@ -1,6 +1,6 @@
 var Discord		= require("discord.js");
 var Redis		= require("redis");
-var Logger		= require("winston");
+var Winston		= require("winston");
 
 var Config		= require("./config.json");
 var Commands	= require('./nekobot/commands').Commands;
@@ -9,16 +9,48 @@ var Permissions	= require('./nekobot/permissions');
 var NekoBot = new Discord.Client();
 
 // ========================================================================
+// Logger
+// ========================================================================
+
+var Logger = new Winston.Logger({
+	colors: {
+		verbose: 'cyan',
+		debug: 'blue',
+		info: 'green',
+		warn: 'yellow',
+		error: 'red'
+	},
+	transports: [
+		new Winston.transports.File({
+			humanReadableUnhandledException: true,
+			handleExceptions: true,
+			name: 'file-logger',
+			filename: './logs/console-log.json',
+			level: 'info',
+			json: true
+		}),
+		new Winston.transports.Console({
+			handleExceptions: false,
+			name: 'console-logger',
+			level: 'verbose',
+			colorize: true,
+			json: false
+		})
+	],
+	exitOnError: false
+});
+
+// ========================================================================
 // Init / Ready
 // ========================================================================
 
 function init() {
-	Logger.log("info", "Initializing...");
+	Logger.info("Initializing...");
 	NekoBot.joinServer(Config.server);
 }
 
 NekoBot.on("ready", function() {
-	Logger.log("info", "Ready!");
+	Logger.info("Ready!");
 });
 
 // ========================================================================
@@ -67,7 +99,7 @@ NekoBot.on("message", function(msg) {
 // ========================================================================
 
 function error(err){
-	Logger.log("error", err);
+	Logger.error(err);
 	process.exit(1);
 }
 

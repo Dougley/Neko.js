@@ -11,11 +11,12 @@ Desktop.ini
 config.json
 
 # Image Folders
-pitur/
-cosplay/
+/pitur
+/cosplay
 
 # Music Folder
-music/
+/music
 
 # Logs
+/logs
 *.log
