@@ -8,17 +8,15 @@ You'll need the following programs to use Neko.js:
 - [Node](https://nodejs.org/) and [npm](https://www.npmjs.com/) (Node's installer will install both)
 - [Redis](http://redis.io/) (for storing user permissions & nsfw flags)
 
-Installing the bot is simple. Open terminal/cmd in the Neko.js folder and `npm install` to install the dependencies.
+Installing the bot is simple. Open terminal/cmd in the Neko.js folder and `npm install` to install.
 
 ### Configuration
-You'll find a `config.example` file in the Neko.js root. Edit the file with your own setting and rename it to `config.json`. Most of the values are self-explanatory. The only value worth note here is the `server` value, which is the string of characters at the end of an invite link.
+You'll find a `config.example` file in the Neko.js root. Edit the file with your own setting and rename the file to `config.json`. Most of the config values are self-explanatory. The only value worth making a note of is the `server` value, which is the string of characters found at the end of an invite link.
 
 For example, the `server` value for https://discord.gg/0Lv5NLFEoz3P07Aq would be `0Lv5NLFEoz3P07Aq`
 
 ### Usage
-Using the bot is just as simple as the installation. Open terminal/cmd in the Neko.js folder and `node nekobot.js`.
-
-(Make sure your Redis server is running before you start the bot.)
+Using the bot is just as simple as the installation. Make sure your Redis server is running ([Redis Quick Start](http://redis.io/topics/quickstart)), then open terminal/cmd in the Neko.js folder and `node nekobot.js`.
 
 ### License
 The MIT License (MIT)
