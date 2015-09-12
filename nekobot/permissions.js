@@ -17,7 +17,7 @@ exports.getUserLevel = function(user, callback) {
 
 		if (err) { return callback(err, -1); } // error handle
 		if (reply) {
-			return callback(null, reply); // return reply
+			return callback(null, parseInt(reply)); // return reply
 		} else {
 			callback(null, 0); // return 0 if no reply without error
 		}
