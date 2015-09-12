@@ -1,7 +1,7 @@
 # Neko.js
 Port of [Nekobot](https://github.com/Kusoneko/Nekobot) (by [Kusoneko](https://github.com/Kusoneko)) to [Node](https://nodejs.org/), using [discord.js](https://github.com/hydrabolt/discord.js) (by [hydrabolt](https://github.com/hydrabolt)).
 
-Version: 0.0.1
+Version: 0.1.0
 
 ### Installation
 You'll need the following programs to use Neko.js:
