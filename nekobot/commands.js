@@ -1,4 +1,5 @@
 var Permissions	= require('./permissions');
+var Help		= require('./help');
 
 Commands = [];
 
@@ -12,6 +13,24 @@ Commands["ping"] = {
 	authLevel: 0,
 	fn: function(bot, message, params, errorCallback) {
 		bot.reply(message, "Pong!").catch(errorCallback);
+	}
+}
+
+Commands["commands"] =
+Commands["help"] = {
+	name: "help",
+	params: "[command]",
+	aliases: ['commands'],
+	description: "I can tell you about any *command*. (Leave params empty for a list of all commands.)",
+	authLevel: 0,
+	fn: function(bot, message, params, errorCallback) {
+		// check for a param and only send info for that command
+		if (params[0]) {
+			Help.getCommandInfo(bot, message, params[0], errorCallback);
+		// no param given, send a PM with all commands
+		} else {
+			Help.getAllCommands(bot, message, errorCallback);
+		}
 	}
 }
 
