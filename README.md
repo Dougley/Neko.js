@@ -1,18 +1,24 @@
 # Neko.js
-Port of [NekoBot](https://github.com/Kusoneko/Nekobot) by [Kusoneko](https://github.com/Kusoneko), using [discord.js](https://github.com/hydrabolt/discord.js) by [hydrabolt](https://github.com/hydrabolt).
+Port of [Nekobot](https://github.com/Kusoneko/Nekobot) (by [Kusoneko](https://github.com/Kusoneko)) to [Node](https://nodejs.org/), using [discord.js](https://github.com/hydrabolt/discord.js) (by [hydrabolt](https://github.com/hydrabolt)).
 
 Version: 0.0.1
 
 ### Installation
-Installing the bot is simple, you'll just need to have [Node](https://nodejs.org/) installed and do `npm install` to install the dependencies. Also the bot requires [Redis](http://redis.io/) to run, so you'll need to install that to.
+You'll need the following programs to use Neko.js:
+- [Node](https://nodejs.org/) and [npm](https://www.npmjs.com/) (Node's installer will install both)
+- [Redis](http://redis.io/) (for storing user permissions & nsfw flags)
+
+Installing the bot is simple. Open terminal/cmd in the Neko.js folder and `npm install` to install the dependencies.
 
 ### Configuration
-You'll find a `config.example` file in the project root. Inside that file are all the expected configs: Email, Password, Servers, etc. Edit the settings with your bot's information and rename it to `config.json`. The only thing worth note here is the `server` value is the string of characters at the end of an invite link.
+You'll find a `config.example` file in the Neko.js root. Edit the file with your own setting and rename it to `config.json`. Most of the values are self-explanatory. The only value worth note here is the `server` value, which is the string of characters at the end of an invite link.
 
-For example, the `server` for https://discord.gg/0Lv5NLFEoz3P07Aq would be `0Lv5NLFEoz3P07Aq`.
+For example, the `server` value for https://discord.gg/0Lv5NLFEoz3P07Aq would be `0Lv5NLFEoz3P07Aq`
 
 ### Usage
-Using the bot is just as simple as the installation, just `node nekobot.js`. You'll need to have Redis running before you run it though.
+Using the bot is just as simple as the installation. Open terminal/cmd in the Neko.js folder and `node nekobot.js`.
+
+(Make sure your Redis server is running before you start the bot.)
 
 ### License
 The MIT License (MIT)
