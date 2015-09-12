@@ -1,5 +1,5 @@
 var Discord		= require("discord.js");
-var Redis		= require("redis");
+//var Redis		= require("redis");
 var Winston		= require("winston");
 
 var Config		= require("./config.json");
@@ -83,13 +83,13 @@ NekoBot.on("message", function(msg) {
 				if (level >= Commands[command].authLevel) {
 					Commands[command].fn(NekoBot, msg, params, error);
 				} else {
-					NekoBot.reply(msg, "You don't have access to " + Config.commands.prefix + command).catch(error);
+					NekoBot.reply(msg, "you don't have access to the **" + Config.commands.prefix + command + "** command.").catch(error);
 				}
 			});
 
 		// no matching command
 		} else {
-			NekoBot.reply(msg, "There is no " + Config.commands.prefix + command + " command.").catch(error);
+			NekoBot.reply(msg, "there is no **" + Config.commands.prefix + command + "** command.").catch(error);
 		}
 	}
 });

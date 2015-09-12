@@ -1,5 +1,4 @@
 var Permissions	= require('./permissions');
-var Config		= require("../config.json");
 
 Commands = [];
 
@@ -8,7 +7,7 @@ Commands = [];
 // ========================================================================
 
 Commands["ping"] = {
-	usage: Config.commands.prefix + "ping",
+	name: "ping",
 	description: "I'll say 'Pong!'",
 	authLevel: 0,
 	fn: function(bot, message, params, errorCallback) {
@@ -17,20 +16,20 @@ Commands["ping"] = {
 }
 
 Commands["nya"] = {
-	usage: Config.commands.prefix + "nya",
+	name: "nya",
 	description: "I'll say 'Nyaa~'",
 	authLevel: 0,
 	fn: function(bot, message, params, errorCallback) {
-		bot.reply(message, "Nyaa~").catch(errorCallback);
+		bot.sendMessage(message, "Nyaa~").catch(errorCallback);
 	}
 }
 
 Commands["poi"] = {
-	usage: Config.commands.prefix + "poi",
+	name: "poi",
 	description: "I'll say 'Poi!'",
 	authLevel: 0,
 	fn: function(bot, message, params, errorCallback) {
-		bot.reply(message, "Poi!").catch(errorCallback);
+		bot.sendMessage(message, "Poi!").catch(errorCallback);
 	}
 }
 
@@ -39,43 +38,43 @@ Commands["sadhorn"] =
 Commands["aicraievritaim"] =
 Commands["aicraievritiem"] =
 Commands["aicrai"] = {
-	usage: Config.commands.prefix + "aicrai",
+	name: "aicrai",
 	aliases: ['icri', 'sadhorn', 'aicraievritaim', 'aicraievritiem'],
 	description: "When sad things happen...",
 	authLevel: 0,
 	fn: function(bot, message, params, errorCallback) {
-		bot.reply(message, "https://www.youtube.com/watch?v=0JAn8eShOo8").catch(errorCallback);
+		bot.sendMessage(message, "https://www.youtube.com/watch?v=0JAn8eShOo8").catch(errorCallback);
 	}
 }
 
 Commands["rinpls"] =
 Commands["notnow"] = {
-	usage: Config.commands.prefix + "notnow",
+	name: "notnow",
 	aliases: ['rinpls'],
 	description: "How to Rekt: Rin 101",
 	authLevel: 0,
 	fn: function(bot, message, params, errorCallback) {
-		bot.reply(message, "https://www.youtube.com/watch?v=2BZUzJfKFwM").catch(errorCallback);
+		bot.sendMessage(message, "https://www.youtube.com/watch?v=2BZUzJfKFwM").catch(errorCallback);
 	}
 }
 
 Commands["uninstall"] = {
-	usage: Config.commands.prefix + "uninstall",
+	name: "uninstall",
 	description: "A great advice in any situation.",
 	authLevel: 0,
 	fn: function(bot, message, params, errorCallback) {
-		bot.reply(message, "https://www.youtube.com/watch?v=iNCXiMt1bR4").catch(errorCallback);
+		bot.sendMessage(message, "https://www.youtube.com/watch?v=iNCXiMt1bR4").catch(errorCallback);
 	}
 }
 
 Commands["kys"] =
 Commands["killyourself"] = {
-	usage: Config.commands.prefix + "killyourself",
+	name: "killyourself",
 	aliases: ['kys'],
 	description: "Another good advice.",
 	authLevel: 0,
 	fn: function(bot, message, params, errorCallback) {
-		bot.reply(message, "https://www.youtube.com/watch?v=2dbR2JZmlWo").catch(errorCallback);
+		bot.sendMessage(message, "https://www.youtube.com/watch?v=2dbR2JZmlWo").catch(errorCallback);
 	}
 }
 
@@ -85,24 +84,25 @@ Commands["killyourself"] = {
 
 Commands["getauth"] =
 Commands["getperms"] = {
-	usage: Config.commands.prefix + "getperms [@USER ...]",
+	name: "getperms",
+	params: "[@user ...]",
 	aliases: ['getauth'],
-	description: "I'll tell you the permissions level of each *@USER*.",
+	description: "I'll tell you the permissions level of each *@user*.",
 	authLevel: 1,
 	fn: function(bot, message, params, errorCallback) {
 		if (typeof message.channel.server === "undefined") { // PMs don't have servers, they have PMChannel
-			bot.reply(message, "I can't do that in a PM! (I'm sorry ;w;)").catch(errorCallback);
+			bot.sendMessage(message, "I can't do that in a PM! (I'm sorry ;w;)").catch(errorCallback);
 			return;
 		}
 		if (message.mentions.length === 0) {
-			bot.reply(message, "Please mention the user you want to get the permission level of.").catch(errorCallback);
+			bot.reply(message, "please mention the user(s) you want to get the permission level of.").catch(errorCallback);
 			return;
 		}
 
 		message.mentions.forEach(function(user) {
 			Permissions.getUserLevel(user, function(err, level){
 				if (err) { errorCallback(err); }
-				bot.reply(message, user.username + "'s Permissions level is: " + level).catch(errorCallback);
+				bot.sendMessage(message, user.username + "'s Permissions level is: " + level).catch(errorCallback);
 			});
 		});
 	}
@@ -110,26 +110,27 @@ Commands["getperms"] = {
 
 Commands["canlewd"] =
 Commands["nsfw"] = {
-	usage: Config.commands.prefix + "nsfw (on/off)",
+	name: "nsfw",
+	params: "[on/off]",
 	aliases: ['canlewd'],
 	description: "I'll set the NSFW flag for the channel this command was issued in. (Leave params empty for status.)",
 	authLevel: 1,
 	fn: function(bot, message, params, errorCallback) {
 		if (typeof message.channel.server === "undefined") { // PMs don't have servers, they have PMChannel
-			bot.reply(message, "I can't do that in a PM! (l-lewd)").catch(errorCallback);
+			bot.sendMessage(message, "I can't do that in a PM! (l-lewd)").catch(errorCallback);
 			return;
 		}
 		if (params[0] === "on" || params[0] === "off") {
 			Permissions.setAllowNSFW(message.channel, params[0], function(err, allow){
 				if (err) { errorCallback(err); }
 				if (allow === "on") {
-					bot.reply(message, "I've set NSFW to **ALLOWED** for " + message.channel).catch(errorCallback);
+					bot.sendMessage(message, "I've set NSFW to **ALLOWED** for " + message.channel).catch(errorCallback);
 				}
 				else if (allow === "off") {
-					bot.reply(message, "I've set NSFW to **DISABLED** for " + message.channel).catch(errorCallback);
+					bot.sendMessage(message, "I've set NSFW to **DISABLED** for " + message.channel).catch(errorCallback);
 				}
 				else {
-					bot.reply(message, "Oops! I've failed to set NSFW flag! ;w; (Please tell my master.)").catch(errorCallback);
+					bot.reply(message, "I've failed to set NSFW flag! ;w; (Please tell my master.)").catch(errorCallback);
 				}
 			});
 		}
@@ -137,9 +138,9 @@ Commands["nsfw"] = {
 			Permissions.getAllowNSFW(message.channel, function(err, allow){
 				if (err) { errorCallback(err); }
 				if (allow === "on") {
-					bot.reply(message, "NSFW is **ALLOWED** in " + message.channel).catch(errorCallback);
+					bot.sendMessage(message, "NSFW is **ALLOWED** in " + message.channel).catch(errorCallback);
 				} else {
-					bot.reply(message, "NSFW is **DISABLED** in " + message.channel).catch(errorCallback);
+					bot.sendMessage(message, "NSFW is **DISABLED** in " + message.channel).catch(errorCallback);
 				}
 			});
 		}
@@ -153,7 +154,7 @@ Commands["nsfw"] = {
 Commands["onodera"] =
 Commands["worstgirl"] =
 Commands["trash"] = {
-	usage: Config.commands.prefix + "trash",
+	name: "trash",
 	aliases: ['onodera', 'worstgirl'],
 	description: "I'll upload an image of 'worst girl'. (WARNING: May cause nausea!)",
 	authLevel: 2,
@@ -168,21 +169,22 @@ Commands["trash"] = {
 
 Commands["setauth"] =
 Commands["setperms"] = {
-	usage: Config.commands.prefix + "setperms [LEVEL] [@USER ...]",
+	name: "setperms",
+	params: "[level] [@user ...]",
 	aliases: ['setauth'],
-	description: "I'll set the permissions level of each *@USER* to *LEVEL*.",
+	description: "I'll set the permissions level of each *@user* to *level*.",
 	authLevel: 3,
 	fn: function(bot, message, params, errorCallback) {
 		if (typeof message.channel.server === "undefined") { // PMs don't have servers, they have PMChannel
-			bot.reply(message, Config.commands.prefix + "setperms can't be used from a PM.").catch(errorCallback);
+			bot.sendMessage(message, "I can't do that in a PM! (I'm sorry ;w;)").catch(errorCallback);
 			return;
 		}
 		if (isNaN(params[0])) {
-			bot.reply(message, "First param is not a number!").catch(errorCallback);
+			bot.reply(message, "your first param is not a number!").catch(errorCallback);
 			return;
 		}
 		if (message.mentions.length === 0) {
-			bot.reply(message, "Please mention the user you want to set the permission level of.").catch(errorCallback);
+			bot.reply(message, "please mention the user(s) you want to set the permission level of.").catch(errorCallback);
 			return;
 		}
 
@@ -192,7 +194,7 @@ Commands["setperms"] = {
 			});
 		});
 
-		bot.reply(message, "Okay! I'll remember the new permissions levels. :)").catch(errorCallback);
+		bot.sendMessage(message, "Okay! I'll remember the new permissions levels. :)").catch(errorCallback);
 	}
 }
 
