@@ -1,5 +1,6 @@
 var Permissions	= require('./permissions');
 var Help		= require('./help');
+var ImageChan	= require('./imagechan');
 
 Commands = [];
 
@@ -94,6 +95,128 @@ Commands["killyourself"] = {
 	authLevel: 0,
 	fn: function(bot, message, params, errorCallback) {
 		bot.sendMessage(message, "https://www.youtube.com/watch?v=2dbR2JZmlWo").catch(errorCallback);
+	}
+}
+
+Commands["safebooru"] = {
+	name: "safebooru",
+	params: "[tag ...]",
+	description: "I'll find a random image from Safebooru with the tag(s) you request.",
+	authLevel: 0,
+	fn: function(bot, message, params, errorCallback) {
+
+		// if we're not in a PM, then check NSFW flag before executing the command!
+		if (typeof message.channel.server !== "undefined") { // PMs don't have servers, they have PMChannel
+
+			Permissions.getAllowNSFW(message.channel, function(err, allow) {
+				if (err) { return errorCallback(err); } // error handle
+				if (allow === "off") {
+					bot.sendMessage(message, "NSFW commands are **DISABLED** in " + message.channel).catch(errorCallback);
+					return;
+				}
+			});
+		}
+
+		// we're in a PM, or the channel allows NSFW... let's get lewd
+		ImageChan.getImageByTags(bot, message, "safebooru", params, errorCallback);
+	}
+}
+
+Commands["gelbooru"] = {
+	name: "gelbooru",
+	params: "[tag ...]",
+	description: "I'll find a random image from Gelbooru with the tag(s) you request.",
+	authLevel: 0,
+	fn: function(bot, message, params, errorCallback) {
+
+		// if we're not in a PM, then check NSFW flag before executing the command!
+		if (typeof message.channel.server !== "undefined") { // PMs don't have servers, they have PMChannel
+
+			Permissions.getAllowNSFW(message.channel, function(err, allow) {
+				if (err) { return errorCallback(err); } // error handle
+				if (allow === "off") {
+					bot.sendMessage(message, "NSFW commands are **DISABLED** in " + message.channel).catch(errorCallback);
+					return;
+				}
+			});
+		}
+
+		// we're in a PM, or the channel allows NSFW... let's get lewd
+		ImageChan.getImageByTags(bot, message, "gelbooru", params, errorCallback);
+	}
+}
+
+Commands["rule34"] = {
+	name: "rule34",
+	params: "[tag ...]",
+	description: "I'll find a random image from Rule34 with the tag(s) you request.",
+	authLevel: 0,
+	fn: function(bot, message, params, errorCallback) {
+
+		// if we're not in a PM, then check NSFW flag before executing the command!
+		if (typeof message.channel.server !== "undefined") { // PMs don't have servers, they have PMChannel
+
+			Permissions.getAllowNSFW(message.channel, function(err, allow) {
+				if (err) { return errorCallback(err); } // error handle
+				if (allow === "off") {
+					bot.sendMessage(message, "NSFW commands are **DISABLED** in " + message.channel).catch(errorCallback);
+					return;
+				}
+			});
+		}
+
+		// we're in a PM, or the channel allows NSFW... let's get lewd
+		ImageChan.getImageByTags(bot, message, "rule34", params, errorCallback);
+	}
+}
+
+Commands["konachan"] =
+Commands["kona"] = {
+	name: "kona",
+	params: "[tag ...]",
+	aliases: ['konachan'],
+	description: "I'll find a random image from Konachan with the tag(s) you request.",
+	authLevel: 0,
+	fn: function(bot, message, params, errorCallback) {
+
+		// if we're not in a PM, then check NSFW flag before executing the command!
+		if (typeof message.channel.server !== "undefined") { // PMs don't have servers, they have PMChannel
+
+			Permissions.getAllowNSFW(message.channel, function(err, allow) {
+				if (err) { return errorCallback(err); } // error handle
+				if (allow === "off") {
+					bot.sendMessage(message, "NSFW commands are **DISABLED** in " + message.channel).catch(errorCallback);
+					return;
+				}
+			});
+		}
+
+		// we're in a PM, or the channel allows NSFW... let's get lewd
+		ImageChan.getImageByTags(bot, message, "konachan", params, errorCallback);
+	}
+}
+
+Commands["yandere"] = {
+	name: "yandere",
+	params: "[tag ...]",
+	description: "I'll find a random image from Yandere with the tag(s) you request.",
+	authLevel: 0,
+	fn: function(bot, message, params, errorCallback) {
+
+		// if we're not in a PM, then check NSFW flag before executing the command!
+		if (typeof message.channel.server !== "undefined") { // PMs don't have servers, they have PMChannel
+
+			Permissions.getAllowNSFW(message.channel, function(err, allow) {
+				if (err) { return errorCallback(err); } // error handle
+				if (allow === "off") {
+					bot.sendMessage(message, "NSFW commands are **DISABLED** in " + message.channel).catch(errorCallback);
+					return;
+				}
+			});
+		}
+
+		// we're in a PM, or the channel allows NSFW... let's get lewd
+		ImageChan.getImageByTags(bot, message, "yandere", params, errorCallback);
 	}
 }
 
