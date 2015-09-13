@@ -1,6 +1,9 @@
+var Request		= require('request');
+
 var Permissions	= require('./permissions');
 var Help		= require('./help');
 var ImageChan	= require('./imagechan');
+var Lewdsx		= require('./lewdsx');
 
 Commands = [];
 
@@ -217,6 +220,140 @@ Commands["yandere"] = {
 
 		// we're in a PM, or the channel allows NSFW... let's get lewd
 		ImageChan.getImageByTags(bot, message, "yandere", params, errorCallback);
+	}
+}
+
+Commands["quote"] = {
+	name: "quote",
+	description: "I'll give you a random inspirational quote.",
+	authLevel: 0,
+	fn: function(bot, message, params, errorCallback) {
+
+		// make an Http request to recieve quote
+		Request("https://julxzs.website/api/quote", function (error, response, body) {
+
+			if (error) { return errorCallback(error); } // error handle
+
+			if (response.statusCode == 200) {
+
+				// parse response body as JSON
+				var quote = JSON.parse(body);
+
+				// build a nicely formated string
+				var quoteString = "\"" + quote.quote.quote + "\" - " + quote.quote.author + " " + quote.quote.date;
+
+				// reply with an inspirational quote :)
+				bot.sendMessage(message, quoteString).catch(errorCallback);
+
+			} else { // some other response code... #blamejulxzs
+				return errorCallback(["inspirational quote failed:", { response: response.statusCode }]);
+			}
+		});
+
+	}
+}
+
+Commands["neko"] = {
+	name: "neko",
+	description: "I'll find a random Nekomimi from lewd.sx",
+	authLevel: 0,
+	fn: function(bot, message, params, errorCallback) {
+
+		// if we're not in a PM, then check NSFW flag before executing the command!
+		if (typeof message.channel.server !== "undefined") { // PMs don't have servers, they have PMChannel
+
+			Permissions.getAllowNSFW(message.channel, function(err, allow) {
+				if (err) { return errorCallback(err); } // error handle
+				if (allow === "off") {
+					bot.sendMessage(message, "NSFW commands are **DISABLED** in " + message.channel).catch(errorCallback);
+					return;
+				}
+			});
+		}
+
+		// we're in a PM, or the channel allows NSFW... let's get lewd
+		Lewdsx.getImage("neko", function(err, image) {
+			if (err) { return errorCallback(err); } // error handle
+			if (image) { bot.sendMessage(message, image).catch(errorCallback); }
+		});
+	}
+}
+
+Commands["kitsune"] = {
+	name: "kitsune",
+	description: "I'll find a random Kitsunemimi from lewd.sx",
+	authLevel: 0,
+	fn: function(bot, message, params, errorCallback) {
+
+		// if we're not in a PM, then check NSFW flag before executing the command!
+		if (typeof message.channel.server !== "undefined") { // PMs don't have servers, they have PMChannel
+
+			Permissions.getAllowNSFW(message.channel, function(err, allow) {
+				if (err) { return errorCallback(err); } // error handle
+				if (allow === "off") {
+					bot.sendMessage(message, "NSFW commands are **DISABLED** in " + message.channel).catch(errorCallback);
+					return;
+				}
+			});
+		}
+
+		// we're in a PM, or the channel allows NSFW... let's get lewd
+		Lewdsx.getImage("kitsune", function(err, image) {
+			if (err) { return errorCallback(err); } // error handle
+			if (image) { bot.sendMessage(message, image).catch(errorCallback); }
+		});
+	}
+}
+
+Commands["lewd"] = {
+	name: "lewd",
+	description: "I'll find a random Lewd image from lewd.sx",
+	authLevel: 0,
+	fn: function(bot, message, params, errorCallback) {
+
+		// if we're not in a PM, then check NSFW flag before executing the command!
+		if (typeof message.channel.server !== "undefined") { // PMs don't have servers, they have PMChannel
+
+			Permissions.getAllowNSFW(message.channel, function(err, allow) {
+				if (err) { return errorCallback(err); } // error handle
+				if (allow === "off") {
+					bot.sendMessage(message, "NSFW commands are **DISABLED** in " + message.channel).catch(errorCallback);
+					return;
+				}
+			});
+		}
+
+		// we're in a PM, or the channel allows NSFW... let's get lewd
+		Lewdsx.getImage("lewd", function(err, image) {
+			if (err) { return errorCallback(err); } // error handle
+			if (image) { bot.sendMessage(message, image).catch(errorCallback); }
+		});
+	}
+}
+
+Commands["qt"] = {
+	name: "qt",
+	description: "I'll find a random 2Dqt from lewd.sx",
+	authLevel: 0,
+	fn: function(bot, message, params, errorCallback) {
+
+		// if we're not in a PM, then check NSFW flag before executing the command!
+		if (typeof message.channel.server !== "undefined") { // PMs don't have servers, they have PMChannel
+
+			Permissions.getAllowNSFW(message.channel, function(err, allow) {
+				if (err) { return errorCallback(err); } // error handle
+				if (allow === "off") {
+					bot.sendMessage(message, "NSFW commands are **DISABLED** in " + message.channel).catch(errorCallback);
+					return;
+				}
+			});
+		}
+
+		// we're in a PM, or the channel allows NSFW... let's get lewd
+		Lewdsx.getImage("qt", function(err, image) {
+			if (err) { return errorCallback(err); } // error handle
+			if (image) { bot.sendMessage(message, image).catch(errorCallback); }
+		});
 	}
 }
 
