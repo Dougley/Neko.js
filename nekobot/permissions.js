@@ -50,7 +50,7 @@ exports.getAllowNSFW = function(channel, callback) {
 		if (reply) {
 			return callback(null, reply); // return reply
 		} else {
-			callback(null, 0); // return 0 (false) if no reply without error
+			callback(null, "off"); // return "off" if no reply without error
 		}
 	});
 }
