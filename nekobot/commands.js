@@ -1,5 +1,6 @@
 var Permissions	= require('./permissions');
 var Help		= require('./help');
+var ImageChan	= require('./imagechan');
 
 Commands = [];
 
@@ -120,7 +121,7 @@ Commands["getperms"] = {
 
 		message.mentions.forEach(function(user) {
 			Permissions.getUserLevel(user, function(err, level){
-				if (err) { errorCallback(err); }
+				if (err) { return errorCallback(err); }
 				bot.sendMessage(message, user.username + "'s Permissions level is: " + level).catch(errorCallback);
 			});
 		});
@@ -141,7 +142,7 @@ Commands["nsfw"] = {
 		}
 		if (params[0] === "on" || params[0] === "off") {
 			Permissions.setAllowNSFW(message.channel, params[0], function(err, allow){
-				if (err) { errorCallback(err); }
+				if (err) { return errorCallback(err); }
 				if (allow === "on") {
 					bot.sendMessage(message, "I've set NSFW to **ALLOWED** for " + message.channel).catch(errorCallback);
 				}
@@ -155,7 +156,7 @@ Commands["nsfw"] = {
 		}
 		else {
 			Permissions.getAllowNSFW(message.channel, function(err, allow){
-				if (err) { errorCallback(err); }
+				if (err) { return errorCallback(err); }
 				if (allow === "on") {
 					bot.sendMessage(message, "NSFW is **ALLOWED** in " + message.channel).catch(errorCallback);
 				} else {
@@ -209,11 +210,24 @@ Commands["setperms"] = {
 
 		message.mentions.forEach(function(user) {
 			Permissions.setUserLevel(user, params[0], function(err, level){
-				if (err) { errorCallback(err); }
+				if (err) { return errorCallback(err); }
 			});
 		});
 
 		bot.sendMessage(message, "Okay! I'll remember the new permissions levels. :)").catch(errorCallback);
+	}
+}
+
+Commands["test"] = {
+	name: "test",
+	description: "Test Command",
+	authLevel: 3,
+	fn: function(bot, message, params, errorCallback) {
+
+		// TEST CODE HERE
+
+		// TEST FUNCTION
+		bot.sendMessage(message, "Test complete. Check console.").catch(errorCallback);
 	}
 }
 

@@ -16,7 +16,7 @@ exports.getCommandInfo = function(bot, message, command, errorCallback) {
 		// make sure the user has permission
 		Permissions.getUserLevel(message.author, function(err, level) {
 
-			if (err) { error(err); } // error handle
+			if (err) { return errorCallback(err); } // error handle
 			if (level >= cmd.authLevel) {
 
 				// build an array so all messages get sent at once
