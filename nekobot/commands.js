@@ -109,21 +109,32 @@ Commands["getperms"] = {
 	description: "I'll tell you the permissions level of each *@user*.",
 	authLevel: 1,
 	fn: function(bot, message, params, errorCallback) {
+
+		// @mention doesn't work in PMs, so neither can this command
 		if (typeof message.channel.server === "undefined") { // PMs don't have servers, they have PMChannel
 			bot.sendMessage(message, "I can't do that in a PM! (I'm sorry ;w;)").catch(errorCallback);
 			return;
 		}
+
+		// can't get the perm level of nobody!
 		if (message.mentions.length === 0) {
 			bot.reply(message, "please mention the user(s) you want to get the permission level of.").catch(errorCallback);
 			return;
 		}
 
+		// build an array so all messages get sent at once
+		var msgArray = [];
+
+		// cycle mentions and add a message with the level of each user
 		message.mentions.forEach(function(user) {
-			Permissions.getUserLevel(user, function(err, level){
-				if (err) { return errorCallback(err); }
-				bot.sendMessage(message, user.username + "'s Permissions level is: " + level).catch(errorCallback);
+			Permissions.getUserLevel(user, function(err, level) {
+				if (err) { return errorCallback(err); } // error handle
+				msgArray.push(user.username + "'s Permissions level is: " + level);
 			});
 		});
+
+		// send messages
+		bot.sendMessage(message, msgArray).catch(errorCallback);
 	}
 }
 
@@ -135,13 +146,17 @@ Commands["nsfw"] = {
 	description: "I'll set the NSFW flag for the channel this command was issued in. (Leave params empty for status.)",
 	authLevel: 1,
 	fn: function(bot, message, params, errorCallback) {
+
+		// PMs are always NSFW enabled
 		if (typeof message.channel.server === "undefined") { // PMs don't have servers, they have PMChannel
 			bot.sendMessage(message, "I can't do that in a PM! (l-lewd)").catch(errorCallback);
 			return;
 		}
+
+		// check for (on/off) param to set
 		if (params[0] === "on" || params[0] === "off") {
-			Permissions.setAllowNSFW(message.channel, params[0], function(err, allow){
-				if (err) { return errorCallback(err); }
+			Permissions.setAllowNSFW(message.channel, params[0], function(err, allow) {
+				if (err) { return errorCallback(err); } // error handle
 				if (allow === "on") {
 					bot.sendMessage(message, "I've set NSFW to **ALLOWED** for " + message.channel).catch(errorCallback);
 				}
@@ -153,9 +168,11 @@ Commands["nsfw"] = {
 				}
 			});
 		}
+
+		// no (on/off) param was found, return the NSFW status instead
 		else {
-			Permissions.getAllowNSFW(message.channel, function(err, allow){
-				if (err) { return errorCallback(err); }
+			Permissions.getAllowNSFW(message.channel, function(err, allow) {
+				if (err) { return errorCallback(err); } // error handle
 				if (allow === "on") {
 					bot.sendMessage(message, "NSFW is **ALLOWED** in " + message.channel).catch(errorCallback);
 				} else {
@@ -194,33 +211,45 @@ Commands["setperms"] = {
 	description: "I'll set the permissions level of each *@user* to *level*.",
 	authLevel: 3,
 	fn: function(bot, message, params, errorCallback) {
+
+		// @mention doesn't work in PMs, so neither can this command
 		if (typeof message.channel.server === "undefined") { // PMs don't have servers, they have PMChannel
 			bot.sendMessage(message, "I can't do that in a PM! (I'm sorry ;w;)").catch(errorCallback);
 			return;
 		}
+
+		// make sure first param is a level
 		if (isNaN(params[0])) {
 			bot.reply(message, "your first param is not a number!").catch(errorCallback);
 			return;
 		}
+
+		// can't set the perm level of nobody!
 		if (message.mentions.length === 0) {
 			bot.reply(message, "please mention the user(s) you want to set the permission level of.").catch(errorCallback);
 			return;
 		}
 
+		// cycle mentions and set the perm level of each user
 		message.mentions.forEach(function(user) {
-			Permissions.setUserLevel(user, params[0], function(err, level){
+			Permissions.setUserLevel(user, params[0], function(err, level) {
 				if (err) { return errorCallback(err); }
 			});
 		});
 
+		// let the user know we've set the levels
 		bot.sendMessage(message, "Okay! I'll remember the new permissions levels. :)").catch(errorCallback);
 	}
 }
 
+// ========================================================================
+// Testing Command (Master only. Does nothing... mostly)
+// ========================================================================
+
 Commands["test"] = {
 	name: "test",
 	description: "Test Command",
-	authLevel: 3,
+	authLevel: 10,
 	fn: function(bot, message, params, errorCallback) {
 
 		// TEST CODE HERE

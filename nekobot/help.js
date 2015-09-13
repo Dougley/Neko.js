@@ -27,6 +27,7 @@ exports.getCommandInfo = function(bot, message, command, errorCallback) {
 				if (cmd.aliases) { msgArray.push("**Aliases:** " + cmd.aliases.join(", ")); }
 				msgArray.push(cmd.description);
 
+				// send messages
 				bot.sendMessage(message, msgArray).catch(errorCallback);
 
 			// user doesn't have permission
@@ -61,5 +62,6 @@ exports.getAllCommands = function(bot, message, errorCallback) {
 	msgArray.push(commands);
 	msgArray.push("Type **" + Config.commands.prefix + "help [command]** for detailed information.");
 
+	// send messages
 	bot.sendMessage(message.author, msgArray).catch(errorCallback);
 }
