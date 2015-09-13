@@ -230,6 +230,15 @@ Commands["setperms"] = {
 			return;
 		}
 
+		// prevent users from setting a user's perms higher than their own (or hacking their level up)
+		Permissions.getUserLevel(user, function(err, level) {
+			if (err) { return errorCallback(err); }
+			if (params[0] > level) {
+				bot.reply(message, "you can't set a user's permissions higher than your own!").catch(errorCallback);
+				return;
+			}
+		});
+
 		// cycle mentions and set the perm level of each user
 		message.mentions.forEach(function(user) {
 			Permissions.setUserLevel(user, params[0], function(err, level) {
