@@ -1,6 +1,5 @@
 var Permissions	= require('./permissions');
 var Help		= require('./help');
-var ImageChan	= require('./imagechan');
 
 Commands = [];
 
