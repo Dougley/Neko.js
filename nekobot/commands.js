@@ -101,6 +101,42 @@ Commands["killyourself"] = {
 	}
 }
 
+Commands["say"] = {
+	name: "say",
+	description: "I'll repeat what you said.",
+	authLevel: 0,
+	fn: function(bot, message, params, errorCallback) {
+		bot.sendMessage(message, params.join(" ")).catch(errorCallback);
+	}
+}
+
+Commands["reverse"] = {
+	name: "reverse",
+	description: "I'll repeat what you said, in reverse!",
+	authLevel: 0,
+	fn: function(bot, message, params, errorCallback) {
+
+		// build a RegEx for mentions
+		var mentionRegEx = (/<@(\d{17})>/);
+
+		// cycle params for mentions
+		for (var i = 0; i < params.length; ++i) {
+			if (params[i].match(mentionRegEx)) {
+
+				// grab username and convert param into a string
+				var userId = mentionRegEx.exec(params[i])[1];
+				params[i] = "@" + (bot.getUser("id", userId)).username;
+			}
+		}
+
+		// build a string to reverse
+		params = params.join(" ");
+
+		// reverse it and send it.
+		bot.sendMessage(message, params.split("").reverse().join("")).catch(errorCallback);
+	}
+}
+
 Commands["safebooru"] = {
 	name: "safebooru",
 	params: "[tag ...]",
