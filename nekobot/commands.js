@@ -120,7 +120,7 @@ Commands["reverse"] = {
 		var mentionRegEx = (/<@(\d{17})>/);
 
 		// cycle params for mentions
-		for (var i = 0; i < params.length; ++i) {
+		for (var i = 0; i < params.length; i++) {
 			if (params[i].match(mentionRegEx)) {
 
 				// grab username and convert param into a string
