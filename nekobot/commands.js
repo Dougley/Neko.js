@@ -116,8 +116,9 @@ Commands["reverse"] = {
 	authLevel: 0,
 	fn: function(bot, message, params, errorCallback) {
 
-		// build a RegEx for mentions
+		// build a RegEx for mentions and channels
 		var mentionRegEx = (/<@(\d{17})>/);
+		var channelRegEx = (/<#(\d{17})>/);
 
 		// cycle params for mentions
 		for (var i = 0; i < params.length; i++) {
@@ -126,6 +127,16 @@ Commands["reverse"] = {
 				// grab username and convert param into a string
 				var userId = mentionRegEx.exec(params[i])[1];
 				params[i] = "@" + (bot.getUser("id", userId)).username;
+			}
+		}
+
+		// cycle params for channels
+		for (var i = 0; i < params.length; i++) {
+			if (params[i].match(channelRegEx)) {
+
+				// grab channel name and convert param into a string
+				var channelId = channelRegEx.exec(params[i])[1];
+				params[i] = "#" + (bot.getChannel("id", channelId)).name;
 			}
 		}
 
