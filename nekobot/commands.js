@@ -418,6 +418,36 @@ Commands["whereami"] = {
 	}
 }
 
+Commands["avatar"] = {
+	name: "avatar",
+	params: "[@user ...]",
+	description: "I'll give you a link to the avatar of each *@user*, so you can see a larger version of the images.",
+	authLevel: 0,
+	fn: function(bot, message, params, errorCallback){
+		// @mention doesn't work in PMs, so neither can this command
+		if(message.channel.server === undefined){ // PMs don't have servers, they have PMChannel
+			bot.sendMessage(message, "I can't do that in a PM! (I'm sorry ;w;)").catch(errorCallback);
+			return;
+		}
+
+		// can't get the avatar of nobody!
+		if (message.mentions.length === 0) {
+			bot.reply(message, "please mention the user(s) you want to get the avatar of.").catch(errorCallback);
+			return;
+		}
+
+		// cycle mentions and send a message with the avatar of each user
+		message.mentions.forEach(function(user) {
+			if(user.avatar == null){
+				bot.sendMessage(message, user.username + " has no avatar.").catch(errorCallback);
+			}
+			else{
+				bot.sendMessage(message, "https://discordapp.com/api/users/" + user.id + "/avatars/" + user.avatar + ".jpg").catch(errorCallback);
+			}
+		});
+	}
+}
+
 // ========================================================================
 // Moderator Commands
 // ========================================================================
@@ -433,10 +463,17 @@ Commands["whois"] = {
 			bot.sendMessage(message, "I can't do that in a PM! (I'm sorry ;w;)").catch(errorCallback);
 			return;
 		}
+
+		// can't get the id of nobody!
+		if (message.mentions.length === 0) {
+			bot.reply(message, "please mention the user(s) you want to get the id of.").catch(errorCallback);
+			return;
+		}
+
 		// build an array so all messages get sent at once
 		var msgArray = [];
 
-		// cycle mentions and add a message with the level of each user
+		// cycle mentions and add a message with the id of each user
 		message.mentions.forEach(function(user) {
 			msgArray.push(user.username + "'s id is " + user.id + ".");
 		});
