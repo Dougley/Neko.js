@@ -410,11 +410,35 @@ Commands["whereami"] = {
 	authLevel: 0,
 	fn: function(bot, message, params, errorCallback) {
 		if(message.channel.server != undefined){
-			bot.sendMessage(message, "You are currently in *" + message.channel.name + "*(" + message.channel.id + ") on server **" + message.channel.server.name + "**(" + message.channel.server.id + ") owned by <@" + message.channel.server.ownerID + ">." );
+			bot.sendMessage(message, "You are currently in *" + message.channel.name + "*(" + message.channel.id + ") on server **" + message.channel.server.name + "**(" + message.channel.server.id + ") owned by <@" + message.channel.server.ownerID + ">." ).catch(errorCallback);
 		}
 		else{
-			bot.sendMessage(message, "You're in a private message with me, baka.");
+			bot.sendMessage(message, "You're in a private message with me, baka.").catch(errorCallback);
 		}
+	}
+}
+
+Commands["whois"] = {
+	name: "whois",
+	params: "[@user ...]",
+	description: "I'll tell you information about each *@user*.",
+	authLevel: 0,
+	fn: function(bot, message, params, errorCallback){
+		// @mention doesn't work in PMs, so neither can this command
+		if(message.channel.server === undefined){ // PMs don't have servers, they have PMChannel
+			bot.sendMessage(message, "I can't do that in a PM! (I'm sorry ;w;)").catch(errorCallback);
+			return;
+		}
+		// build an array so all messages get sent at once
+		var msgArray = [];
+
+		// cycle mentions and add a message with the level of each user
+		message.mentions.forEach(function(user) {
+			msgArray.push(user.username + "'s id is " + user.id + ".");
+		});
+
+		// send messages
+		bot.sendMessage(message, msgArray).catch(errorCallback);
 	}
 }
 
