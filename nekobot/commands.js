@@ -432,15 +432,21 @@ Commands["avatar"] = {
 			return;
 		}
 
-		// cycle mentions and send a message with the avatar of each user
+		// build an array so all messages get sent at once
+		var msgArray = [];
+
+		// cycle mentions and add a message with the avatar of each user
 		message.mentions.forEach(function(user) {
 			if(user.avatar == null){
-				bot.sendMessage(message, user.username + " has no avatar.").catch(errorCallback);
+				msgArray.push(user.username + " has no avatar.");
 			}
 			else{
-				bot.sendMessage(message, "https://discordapp.com/api/users/" + user.id + "/avatars/" + user.avatar + ".jpg").catch(errorCallback);
+				msgArray.push(user.username + "'s avatar is: https://discordapp.com/api/users/" + user.id + "/avatars/" + user.avatar + ".jpg");
 			}
 		});
+
+		// send messages
+		bot.sendMessage(message, msgArray).catch(errorCallback);
 	}
 }
 
