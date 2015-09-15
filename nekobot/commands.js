@@ -418,11 +418,15 @@ Commands["whereami"] = {
 	}
 }
 
+// ========================================================================
+// Moderator Commands
+// ========================================================================
+
 Commands["whois"] = {
 	name: "whois",
 	params: "[@user ...]",
 	description: "I'll tell you information about each *@user*.",
-	authLevel: 0,
+	authLevel: 1,
 	fn: function(bot, message, params, errorCallback){
 		// @mention doesn't work in PMs, so neither can this command
 		if(message.channel.server === undefined){ // PMs don't have servers, they have PMChannel
@@ -441,10 +445,6 @@ Commands["whois"] = {
 		bot.sendMessage(message, msgArray).catch(errorCallback);
 	}
 }
-
-// ========================================================================
-// Moderator Commands
-// ========================================================================
 
 Commands["getauth"] =
 Commands["getperms"] = {
