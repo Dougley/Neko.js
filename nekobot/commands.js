@@ -120,7 +120,7 @@ Commands["reverse"] = {
 		var mentionRegEx = (/<@(\d{17})>/);
 		var channelRegEx = (/<#(\d{17})>/);
 
-		// cycle params for mentions
+		// cycle params for mentions and channels
 		for (var i = 0; i < params.length; i++) {
 			if (params[i].match(mentionRegEx)) {
 
@@ -128,10 +128,6 @@ Commands["reverse"] = {
 				var userId = mentionRegEx.exec(params[i])[1];
 				params[i] = "@" + (bot.getUser("id", userId)).username;
 			}
-		}
-
-		// cycle params for channels
-		for (var i = 0; i < params.length; i++) {
 			if (params[i].match(channelRegEx)) {
 
 				// grab channel name and convert param into a string
