@@ -404,6 +404,20 @@ Commands["qt"] = {
 	}
 }
 
+Commands["whereami"] = {
+	name: "whereami",
+	description: "I'll tell you information about the channel and server you're asking me this.",
+	authLevel: 0,
+	fn: function(bot, message, params, errorCallback) {
+		if(message.channel.server != undefined){
+			bot.sendMessage(message, "You are currently in *" + message.channel.name + "*(" + message.channel.id + ") on server **" + message.channel.server.name + "**(" + message.channel.server.id + ") owned by <@" + message.channel.server.ownerID + ">." );
+		}
+		else{
+			bot.sendMessage(message, "You're in a private message with me, baka.");
+		}
+	}
+}
+
 // ========================================================================
 // Moderator Commands
 // ========================================================================
