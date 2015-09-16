@@ -152,7 +152,7 @@ Commands["safebooru"] = {
 	fn: function(bot, message, params, errorCallback) {
 
 		// if we're not in a PM, then check NSFW flag before executing the command!
-		if (typeof message.channel.server !== "undefined") { // PMs don't have servers, they have PMChannel
+		if (message.channel.server !== undefined) { // PMs don't have servers, they have PMChannel
 
 			Permissions.getAllowNSFW(message.channel, function(err, allow) {
 				if (err) { return errorCallback(err); } // error handle
@@ -176,7 +176,7 @@ Commands["gelbooru"] = {
 	fn: function(bot, message, params, errorCallback) {
 
 		// if we're not in a PM, then check NSFW flag before executing the command!
-		if (typeof message.channel.server !== "undefined") { // PMs don't have servers, they have PMChannel
+		if (message.channel.server !== undefined) { // PMs don't have servers, they have PMChannel
 
 			Permissions.getAllowNSFW(message.channel, function(err, allow) {
 				if (err) { return errorCallback(err); } // error handle
@@ -200,7 +200,7 @@ Commands["rule34"] = {
 	fn: function(bot, message, params, errorCallback) {
 
 		// if we're not in a PM, then check NSFW flag before executing the command!
-		if (typeof message.channel.server !== "undefined") { // PMs don't have servers, they have PMChannel
+		if (message.channel.server !== undefined) { // PMs don't have servers, they have PMChannel
 
 			Permissions.getAllowNSFW(message.channel, function(err, allow) {
 				if (err) { return errorCallback(err); } // error handle
@@ -226,7 +226,7 @@ Commands["kona"] = {
 	fn: function(bot, message, params, errorCallback) {
 
 		// if we're not in a PM, then check NSFW flag before executing the command!
-		if (typeof message.channel.server !== "undefined") { // PMs don't have servers, they have PMChannel
+		if (message.channel.server !== undefined) { // PMs don't have servers, they have PMChannel
 
 			Permissions.getAllowNSFW(message.channel, function(err, allow) {
 				if (err) { return errorCallback(err); } // error handle
@@ -250,7 +250,7 @@ Commands["yandere"] = {
 	fn: function(bot, message, params, errorCallback) {
 
 		// if we're not in a PM, then check NSFW flag before executing the command!
-		if (typeof message.channel.server !== "undefined") { // PMs don't have servers, they have PMChannel
+		if (message.channel.server !== undefined) { // PMs don't have servers, they have PMChannel
 
 			Permissions.getAllowNSFW(message.channel, function(err, allow) {
 				if (err) { return errorCallback(err); } // error handle
@@ -303,7 +303,7 @@ Commands["neko"] = {
 	fn: function(bot, message, params, errorCallback) {
 
 		// if we're not in a PM, then check NSFW flag before executing the command!
-		if (typeof message.channel.server !== "undefined") { // PMs don't have servers, they have PMChannel
+		if (message.channel.server !== undefined) { // PMs don't have servers, they have PMChannel
 
 			Permissions.getAllowNSFW(message.channel, function(err, allow) {
 				if (err) { return errorCallback(err); } // error handle
@@ -329,7 +329,7 @@ Commands["kitsune"] = {
 	fn: function(bot, message, params, errorCallback) {
 
 		// if we're not in a PM, then check NSFW flag before executing the command!
-		if (typeof message.channel.server !== "undefined") { // PMs don't have servers, they have PMChannel
+		if (message.channel.server !== undefined) { // PMs don't have servers, they have PMChannel
 
 			Permissions.getAllowNSFW(message.channel, function(err, allow) {
 				if (err) { return errorCallback(err); } // error handle
@@ -355,7 +355,7 @@ Commands["lewd"] = {
 	fn: function(bot, message, params, errorCallback) {
 
 		// if we're not in a PM, then check NSFW flag before executing the command!
-		if (typeof message.channel.server !== "undefined") { // PMs don't have servers, they have PMChannel
+		if (message.channel.server !== undefined) { // PMs don't have servers, they have PMChannel
 
 			Permissions.getAllowNSFW(message.channel, function(err, allow) {
 				if (err) { return errorCallback(err); } // error handle
@@ -381,7 +381,7 @@ Commands["qt"] = {
 	fn: function(bot, message, params, errorCallback) {
 
 		// if we're not in a PM, then check NSFW flag before executing the command!
-		if (typeof message.channel.server !== "undefined") { // PMs don't have servers, they have PMChannel
+		if (message.channel.server !== undefined) { // PMs don't have servers, they have PMChannel
 
 			Permissions.getAllowNSFW(message.channel, function(err, allow) {
 				if (err) { return errorCallback(err); } // error handle
@@ -405,7 +405,7 @@ Commands["whereami"] = {
 	description: "I'll tell you information about the channel and server you're asking me this.",
 	authLevel: 0,
 	fn: function(bot, message, params, errorCallback) {
-		if(message.channel.server != undefined){
+		if(message.channel.server !== undefined) {
 			bot.sendMessage(message, "You are currently in *" + message.channel.name + "*(" + message.channel.id + ") on server **" + message.channel.server.name + "**(" + message.channel.server.id + ") owned by <@" + message.channel.server.ownerID + ">." ).catch(errorCallback);
 		}
 		else{
@@ -419,9 +419,9 @@ Commands["avatar"] = {
 	params: "[@user ...]",
 	description: "I'll give you a link to the avatar of each *@user*, so you can see a larger version of the images.",
 	authLevel: 0,
-	fn: function(bot, message, params, errorCallback){
+	fn: function(bot, message, params, errorCallback) {
 		// @mention doesn't work in PMs, so neither can this command
-		if(message.channel.server === undefined){ // PMs don't have servers, they have PMChannel
+		if(message.channel.server === undefined) { // PMs don't have servers, they have PMChannel
 			bot.sendMessage(message, "I can't do that in a PM! (I'm sorry ;w;)").catch(errorCallback);
 			return;
 		}
@@ -459,9 +459,9 @@ Commands["whois"] = {
 	params: "[@user ...]",
 	description: "I'll tell you information about each *@user*.",
 	authLevel: 1,
-	fn: function(bot, message, params, errorCallback){
+	fn: function(bot, message, params, errorCallback) {
 		// @mention doesn't work in PMs, so neither can this command
-		if(message.channel.server === undefined){ // PMs don't have servers, they have PMChannel
+		if(message.channel.server === undefined) { // PMs don't have servers, they have PMChannel
 			bot.sendMessage(message, "I can't do that in a PM! (I'm sorry ;w;)").catch(errorCallback);
 			return;
 		}
@@ -495,7 +495,7 @@ Commands["getperms"] = {
 	fn: function(bot, message, params, errorCallback) {
 
 		// @mention doesn't work in PMs, so neither can this command
-		if (typeof message.channel.server === "undefined") { // PMs don't have servers, they have PMChannel
+		if (message.channel.server === undefined) { // PMs don't have servers, they have PMChannel
 			bot.sendMessage(message, "I can't do that in a PM! (I'm sorry ;w;)").catch(errorCallback);
 			return;
 		}
@@ -532,7 +532,7 @@ Commands["nsfw"] = {
 	fn: function(bot, message, params, errorCallback) {
 
 		// PMs are always NSFW enabled
-		if (typeof message.channel.server === "undefined") { // PMs don't have servers, they have PMChannel
+		if (message.channel.server === undefined) { // PMs don't have servers, they have PMChannel
 			bot.sendMessage(message, "I can't do that in a PM! (l-lewd)").catch(errorCallback);
 			return;
 		}
@@ -597,7 +597,7 @@ Commands["setperms"] = {
 	fn: function(bot, message, params, errorCallback) {
 
 		// @mention doesn't work in PMs, so neither can this command
-		if (typeof message.channel.server === "undefined") { // PMs don't have servers, they have PMChannel
+		if (message.channel.server === undefined) { // PMs don't have servers, they have PMChannel
 			bot.sendMessage(message, "I can't do that in a PM! (I'm sorry ;w;)").catch(errorCallback);
 			return;
 		}
