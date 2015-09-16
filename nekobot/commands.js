@@ -1,4 +1,5 @@
 var Request		= require('request');
+var NodeDir		= require('node-dir');
 
 var Permissions	= require('./permissions');
 var Help		= require('./help');
@@ -447,6 +448,93 @@ Commands["avatar"] = {
 
 		// send messages
 		bot.sendMessage(message, msgArray).catch(errorCallback);
+	}
+}
+
+Commands["cosplay"] = {
+	name: "cosplay",
+	description: "I'll upload a random Cosplay, provided by Salvy.",
+	authLevel: 0,
+	fn: function(bot, message, params, errorCallback) {
+
+		// if we're not in a PM, then check NSFW flag before executing the command!
+		if (message.channel.server !== undefined) { // PMs don't have servers, they have PMChannel
+
+			Permissions.getAllowNSFW(message.channel, function(err, allow) {
+				if (err) { return errorCallback(err); } // error handle
+				if (allow === "off") {
+					bot.sendMessage(message, "NSFW commands are **DISABLED** in " + message.channel).catch(errorCallback);
+					return;
+				}
+			});
+		}
+
+		// create a list of all files (including sub-directories), then send a random file
+		NodeDir.files(__dirname + "/../cosplay", function(err, files) {
+
+			if (err) { return errorCallback(err); } // error handle
+			if (files) {
+				bot.sendFile(message, files[Math.floor(Math.random() * files.length)]).catch(errorCallback);
+			}
+		});
+	}
+}
+
+Commands["pitur"] = {
+	name: "pitur",
+	description: "I'll upload a random Lewd, provided by Pitur.",
+	authLevel: 0,
+	fn: function(bot, message, params, errorCallback) {
+
+		// if we're not in a PM, then check NSFW flag before executing the command!
+		if (message.channel.server !== undefined) { // PMs don't have servers, they have PMChannel
+
+			Permissions.getAllowNSFW(message.channel, function(err, allow) {
+				if (err) { return errorCallback(err); } // error handle
+				if (allow === "off") {
+					bot.sendMessage(message, "NSFW commands are **DISABLED** in " + message.channel).catch(errorCallback);
+					return;
+				}
+			});
+		}
+
+		// create a list of all files (including sub-directories), then send a random file
+		NodeDir.files(__dirname + "/../pitur", function(err, files) {
+
+			if (err) { return errorCallback(err); } // error handle
+			if (files) {
+				bot.sendFile(message, files[Math.floor(Math.random() * files.length)]).catch(errorCallback);
+			}
+		});
+	}
+}
+
+Commands["gold"] = {
+	name: "gold",
+	description: "I'll upload a random Boat, provided by Au-chan.",
+	authLevel: 0,
+	fn: function(bot, message, params, errorCallback) {
+
+		// if we're not in a PM, then check NSFW flag before executing the command!
+		if (message.channel.server !== undefined) { // PMs don't have servers, they have PMChannel
+
+			Permissions.getAllowNSFW(message.channel, function(err, allow) {
+				if (err) { return errorCallback(err); } // error handle
+				if (allow === "off") {
+					bot.sendMessage(message, "NSFW commands are **DISABLED** in " + message.channel).catch(errorCallback);
+					return;
+				}
+			});
+		}
+
+		// create a list of all files (including sub-directories), then send a random file
+		NodeDir.files(__dirname + "/../gold", function(err, files) {
+
+			if (err) { return errorCallback(err); } // error handle
+			if (files) {
+				bot.sendFile(message, files[Math.floor(Math.random() * files.length)]).catch(errorCallback);
+			}
+		});
 	}
 }
 

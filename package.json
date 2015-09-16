@@ -6,6 +6,7 @@
   "author": "TehSeph, Kusoneko",
   "dependencies": {
     "discord.js": "^3.3.3",
+    "node-dir": "^0.1.9",
     "redis": "^1.0.0",
     "request": "^2.61.0",
     "winston": "^1.0.1",

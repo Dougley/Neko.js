@@ -16,6 +16,7 @@ config.json
 # Image Folders
 /pitur
 /cosplay
+/gold
 
 # Music Folder
 /music
