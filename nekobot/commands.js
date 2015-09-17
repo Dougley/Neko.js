@@ -102,8 +102,11 @@ Commands["killyourself"] = {
 	}
 }
 
+Commands["forward"] =
 Commands["say"] = {
 	name: "say",
+	params: "[text ...]",
+	aliases: ['forward'],
 	description: "I'll repeat what you said.",
 	authLevel: 0,
 	fn: function(bot, message, params, errorCallback) {
@@ -113,6 +116,7 @@ Commands["say"] = {
 
 Commands["reverse"] = {
 	name: "reverse",
+	params: "[text ...]",
 	description: "I'll repeat what you said, in reverse!",
 	authLevel: 0,
 	fn: function(bot, message, params, errorCallback) {
