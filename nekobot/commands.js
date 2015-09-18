@@ -820,7 +820,7 @@ Commands["setperms"] = {
 		}
 
 		// prevent users from setting a user's perms higher than their own (or hacking their level up)
-		Permissions.getUserLevel(user, function(err, level) {
+		Permissions.getUserLevel(message.author, function(err, level) {
 			if (err) { return errorCallback(err); }
 			if (params[0] > level) {
 				bot.reply(message, "you can't set a user's permissions higher than your own!").catch(errorCallback);
