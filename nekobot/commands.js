@@ -411,8 +411,19 @@ Commands["whereami"] = {
 	description: "I'll tell you information about the channel and server you're asking me this.",
 	authLevel: 0,
 	fn: function(bot, message, params, errorCallback) {
+
+		// if we're not in a PM, return some info about the channel
 		if(message.channel.server !== undefined) {
-			bot.sendMessage(message, "You are currently in *" + message.channel.name + "*(" + message.channel.id + ") on server **" + message.channel.server.name + "**(" + message.channel.server.id + ") owned by <@" + message.channel.server.ownerID + ">." ).catch(errorCallback);
+
+			// build an array so all messages get sent at once
+			var msgArray = [];
+
+			msgArray.push("You are currently in " + message.channel + " (id: " + message.channel.id + ")");
+			msgArray.push("on server **" + message.channel.server.name + "** (id: " + message.channel.server.id + ")");
+			msgArray.push("owned by " + message.channel.server.owner + " (id: " + message.channel.server.owner.id + ")");
+
+			// send messages
+			bot.sendMessage(message, msgArray).catch(errorCallback);
 		}
 		else{
 			bot.sendMessage(message, "You're in a private message with me, baka.").catch(errorCallback);
@@ -680,9 +691,11 @@ Commands["fortune"] = {
 // Moderator Commands
 // ========================================================================
 
+Commands["getinfo"] =
 Commands["whois"] = {
 	name: "whois",
 	params: "[@user ...]",
+	aliases: ['getinfo'],
 	description: "I'll tell you information about each *@user*.",
 	authLevel: 1,
 	fn: function(bot, message, params, errorCallback) {
@@ -694,52 +707,18 @@ Commands["whois"] = {
 
 		// can't get the id of nobody!
 		if (message.mentions.length === 0) {
-			bot.reply(message, "please mention the user(s) you want to get the id of.").catch(errorCallback);
+			bot.reply(message, "please mention the user(s) you want to get the information of.").catch(errorCallback);
 			return;
 		}
 
 		// build an array so all messages get sent at once
 		var msgArray = [];
 
-		// cycle mentions and add a message with the id of each user
+		// cycle mentions and add a message with the id and permissions of each user
 		message.mentions.forEach(function(user) {
-			msgArray.push(user.username + "'s id is " + user.id + ".");
-		});
-
-		// send messages
-		bot.sendMessage(message, msgArray).catch(errorCallback);
-	}
-}
-
-Commands["getauth"] =
-Commands["getperms"] = {
-	name: "getperms",
-	params: "[@user ...]",
-	aliases: ['getauth'],
-	description: "I'll tell you the permissions level of each *@user*.",
-	authLevel: 1,
-	fn: function(bot, message, params, errorCallback) {
-
-		// @mention doesn't work in PMs, so neither can this command
-		if (message.channel.server === undefined) { // PMs don't have servers, they have PMChannel
-			bot.sendMessage(message, "I can't do that in a PM! (I'm sorry ;w;)").catch(errorCallback);
-			return;
-		}
-
-		// can't get the perm level of nobody!
-		if (message.mentions.length === 0) {
-			bot.reply(message, "please mention the user(s) you want to get the permission level of.").catch(errorCallback);
-			return;
-		}
-
-		// build an array so all messages get sent at once
-		var msgArray = [];
-
-		// cycle mentions and add a message with the level of each user
-		message.mentions.forEach(function(user) {
-			Permissions.getUserLevel(user, function(err, level) {
-				if (err) { return errorCallback(err); } // error handle
-				msgArray.push(user.username + "'s Permissions level is: " + level);
+			Permissions.getUserLevel(user, function(err, level){
+				if (err) { return errorCallback(err); }
+				if (level) { msgArray.push(user + "'s id is **" + user.id + "** and their permissions level is **" + level + "**."); }
 			});
 		});
 
@@ -748,13 +727,17 @@ Commands["getperms"] = {
 	}
 }
 
+// ========================================================================
+// Admin Commands
+// ========================================================================
+
 Commands["canlewd"] =
 Commands["nsfw"] = {
 	name: "nsfw",
 	params: "[on/off]",
 	aliases: ['canlewd'],
 	description: "I'll set the NSFW flag for the channel this command was issued in. (Leave params empty for status.)",
-	authLevel: 1,
+	authLevel: 2,
 	fn: function(bot, message, params, errorCallback) {
 
 		// PMs are always NSFW enabled
@@ -792,10 +775,6 @@ Commands["nsfw"] = {
 		}
 	}
 }
-
-// ========================================================================
-// Admin Commands
-// ========================================================================
 
 Commands["onodera"] =
 Commands["worstgirl"] =
