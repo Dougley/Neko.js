@@ -5,6 +5,7 @@ var Permissions	= require('./permissions');
 var Help		= require('./help');
 var ImageChan	= require('./imagechan');
 var Lewdsx		= require('./lewdsx');
+var Fortunes	= require('./fortunes').Fortunes;
 
 Commands = [];
 
@@ -539,6 +540,139 @@ Commands["gold"] = {
 				bot.sendFile(message, files[Math.floor(Math.random() * files.length)]).catch(errorCallback);
 			}
 		});
+	}
+}
+
+Commands["rand"] = {
+	name: "rand",
+	params: "[min] [max]",
+	description: "I'll give you a random number between *min* and *max*. Both params are optional. If only one number is given, it is the *max*. (defaults: 0-100)",
+	authLevel: 0,
+	fn: function(bot, message, params, errorCallback) {
+		// default min and max
+		var min = 0;
+		var max = 100;
+
+		// make sure params are numbers
+		for (param in params) {
+			if (isNaN(params[param])) {
+				bot.reply(message, "'" + params[param] + "' is not a number!").catch(errorCallback);
+				return;
+			}
+		}
+
+		// check for both min and max params
+		if (params[0] && params[1]) {
+
+			// some smaratass made both numbers the same
+			if (params[0] === params[1]) {
+				bot.reply(message, "you're joking right? It's " + params[0]).catch(errorCallback);
+				return;
+			}
+
+			// make sure they're in the right order
+			if (parseInt(params[0]) < parseInt(params[1])) {
+				min = parseInt(params[0]);
+				max = parseInt(params[1]);
+			} else {
+				min = parseInt(params[1]);
+				max = parseInt(params[0]);
+			}
+		}
+
+		// only one param, set max
+		else if(params[0]) { max = parseInt(params[0]); }
+
+		// get random [min to max]
+		var rand = Math.floor(Math.random() * ((max - min) + 1) + min);
+
+		// give the user their random number
+		bot.reply(message, "your number is **" + rand + "**").catch(errorCallback);
+	}
+}
+
+Commands["roll"] = {
+	name: "roll",
+	params: "[dice] [sides] [times]",
+	description: "I'll roll a few sided dice for a given number of times. All params are optional. (defaults: 1 *dice*, 6 *sides*, 1 *times*)",
+	authLevel: 0,
+	fn: function(bot, message, params, errorCallback) {
+		// default dice, sides, and times
+		var dice	= 1;
+		var sides	= 6;
+		var times	= 1;
+
+		// make sure params are numbers... or "rick" :P
+		for (param in params) {
+			if (params[param] === "rick") {
+				bot.sendMessage(message, "https://www.youtube.com/watch?v=dQw4w9WgXcQ").catch(errorCallback);
+				return;
+			}
+			if (isNaN(params[param])) {
+				bot.reply(message, "'" + params[param] + "' is not a number!").catch(errorCallback);
+				return;
+			}
+		}
+
+		// make sure params are greater than 0
+		if (parseInt(params[0]) <= 0 || parseInt(params[1]) <= 0 || parseInt(params[2]) <= 0) {
+			bot.reply(message, "all params must be greater than 0!").catch(errorCallback);
+			return;
+		}
+
+		// set dice, sides, and times
+		if (params[0]) { dice	= parseInt(params[0]); }
+		if (params[1]) { sides	= parseInt(params[1]); }
+		if (params[2]) { times	= parseInt(params[2]); }
+
+		// roll'em
+		var roll = 0;
+		for (i = times; i > 0; i--) {
+			for (j = dice; j > 0; j--) {
+				roll += Math.floor(Math.random() * (sides + 1));
+			}
+		}
+
+		// tell'em
+		bot.reply(message, "you rolled " + dice + " different " + sides + "-sided dice " + times + " times... Result: **" + roll + "**").catch(errorCallback);
+	}
+}
+
+Commands["lotto"] = {
+	name: "lotto",
+	description: "I'll give you a set of 6 lucky numbers!",
+	authLevel: 0,
+	fn: function(bot, message, params, errorCallback) {
+		// create an array to store lucky numbers
+		var lotto = [];
+
+		// generate lucky numbers
+		while (lotto.length < 6) {
+
+			// generate a number [1 to 59]
+			var number = Math.floor((Math.random() * 59) + 1);
+
+			// make sure the number doesn't already exist (and remove it if it does)
+			for (index in lotto) {
+				if (lotto[index] === number) { lotto.splice(index, 1); }
+			}
+
+			// add number to lucky numbers
+			lotto.push(number);
+		}
+
+		// give the user their lucky numbers
+		bot.reply(message, "your lucky numbers are **" + lotto.join("**, **") + "**").catch(errorCallback);
+	}
+}
+
+Commands["fortune"] = {
+	name: "fortune",
+	description: "Wise words, from wise neko.",
+	authLevel: 0,
+	fn: function(bot, message, params, errorCallback) {
+		var rand = Math.floor(Math.random() * Fortunes.length);
+		bot.sendMessage(message, "*" + Fortunes[rand] + "*").catch(errorCallback);
 	}
 }
 
