@@ -13,15 +13,6 @@ Commands = [];
 // C# Bot Commands -- Suppress the "No command" message for the C# bot's unported commands
 // ========================================================================
 
-Commands["status"] = {
-	name: "status",
-	description: "This command is worthless since the **ping** command already exists. Tell Kusoneko to remove it.",
-	authLevel: 0,
-	fn: function(bot, message, params, errorCallback) {
-		return;
-	}
-}
-
 Commands["leave"] = {
 	name: "leave",
 	description: "I'll leave the server, as requested. ;w;",
