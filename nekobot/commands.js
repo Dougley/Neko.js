@@ -10,6 +10,136 @@ var Fortunes	= require('./fortunes').Fortunes;
 Commands = [];
 
 // ========================================================================
+// C# Bot Commands -- Suppress the "No command" message for the C# bot's unported commands
+// ========================================================================
+
+Commands["status"] = {
+	authLevel: 0,
+	fn: function(bot, message, params, errorCallback) {
+		return;
+	}
+}
+
+Commands["leave"] = {
+	authLevel: 0,
+	fn: function(bot, message, params, errorCallback) {
+		return;
+	}
+}
+
+Commands["die"] = {
+	authLevel: 0,
+	fn: function(bot, message, params, errorCallback) {
+		return;
+	}
+}
+
+Commands["pet"] = {
+	authLevel: 0,
+	fn: function(bot, message, params, errorCallback) {
+		return;
+	}
+}
+
+Commands["playerpost"] = {
+	authLevel: 0,
+	fn: function(bot, message, params, errorCallback) {
+		return;
+	}
+}
+
+Commands["playercomment"] = {
+	authLevel: 0,
+	fn: function(bot, message, params, errorCallback) {
+		return;
+	}
+}
+
+Commands["playerbio"] = {
+	authLevel: 0,
+	fn: function(bot, message, params, errorCallback) {
+		return;
+	}
+}
+
+Commands["playerlongbio"] = {
+	authLevel: 0,
+	fn: function(bot, message, params, errorCallback) {
+		return;
+	}
+}
+
+Commands["playeravatar"] = {
+	authLevel: 0,
+	fn: function(bot, message, params, errorCallback) {
+		return;
+	}
+}
+
+Commands["invite"] = {
+	authLevel: 0,
+	fn: function(bot, message, params, errorCallback) {
+		return;
+	}
+}
+
+Commands["waifu"] = {
+	authLevel: 0,
+	fn: function(bot, message, params, errorCallback) {
+		return;
+	}
+}
+
+Commands["music"] = {
+	authLevel: 0,
+	fn: function(bot, message, params, errorCallback) {
+		return;
+	}
+}
+
+Commands["cid"] = {
+	authLevel: 0,
+	fn: function(bot, message, params, errorCallback) {
+		return;
+	}
+}
+
+Commands["skip"] = {
+	authLevel: 0,
+	fn: function(bot, message, params, errorCallback) {
+		return;
+	}
+}
+
+Commands["forceskip"] = {
+	authLevel: 0,
+	fn: function(bot, message, params, errorCallback) {
+		return;
+	}
+}
+
+Commands["song"] = {
+	authLevel: 0,
+	fn: function(bot, message, params, errorCallback) {
+		return;
+	}
+}
+
+Commands["replay"] = {
+	authLevel: 0,
+	fn: function(bot, message, params, errorCallback) {
+		return;
+	}
+}
+
+Commands["request"] = {
+	authLevel: 0,
+	fn: function(bot, message, params, errorCallback) {
+		return;
+	}
+}
+
+// ========================================================================
 // User Commands
 // ========================================================================
 
