@@ -14,6 +14,8 @@ Commands = [];
 // ========================================================================
 
 Commands["status"] = {
+	name: "status",
+	description: "This command is worthless since the **ping** command already exists. Tell Kusoneko to remove it.",
 	authLevel: 0,
 	fn: function(bot, message, params, errorCallback) {
 		return;
@@ -21,20 +23,27 @@ Commands["status"] = {
 }
 
 Commands["leave"] = {
-	authLevel: 0,
+	name: "leave",
+	description: "I'll leave the server, as requested. ;w;",
+	authLevel: 2,
 	fn: function(bot, message, params, errorCallback) {
 		return;
 	}
 }
 
 Commands["die"] = {
-	authLevel: 0,
+	name: "die",
+	description: "I'll leave all servers and stop my program. ;w;'",
+	authLevel: 3,
 	fn: function(bot, message, params, errorCallback) {
 		return;
 	}
 }
 
 Commands["pet"] = {
+	name: "pet",
+	params: "[@user ...]",
+	description: "Everyone loves pets, right!?! I'll pet each *@user*. Leave emtpy (or mention me too) to pet me!",
 	authLevel: 0,
 	fn: function(bot, message, params, errorCallback) {
 		return;
@@ -42,6 +51,9 @@ Commands["pet"] = {
 }
 
 Commands["playerpost"] = {
+	name: "playerpost",
+	params: "[postid]",
+	description: "I'll tell you the contents of the post with the given *postid*.",
 	authLevel: 0,
 	fn: function(bot, message, params, errorCallback) {
 		return;
@@ -49,6 +61,9 @@ Commands["playerpost"] = {
 }
 
 Commands["playercomment"] = {
+	name: "playercomment",
+	params: "[postid] [commentid]",
+	description: "I'll tell you the contents of the comment with the given *postid* and *commentid*.'",
 	authLevel: 0,
 	fn: function(bot, message, params, errorCallback) {
 		return;
@@ -56,6 +71,9 @@ Commands["playercomment"] = {
 }
 
 Commands["playerbio"] = {
+	name: "playerbio",
+	params: "[username]",
+	description: "I'll tell you the short bio of the player with the given *username*.'",
 	authLevel: 0,
 	fn: function(bot, message, params, errorCallback) {
 		return;
@@ -63,6 +81,9 @@ Commands["playerbio"] = {
 }
 
 Commands["playerlongbio"] = {
+	name: "playerlongbio",
+	params: "[username]",
+	description: "I'll tell you the long bio of the player with the given *username*.'",
 	authLevel: 0,
 	fn: function(bot, message, params, errorCallback) {
 		return;
@@ -70,6 +91,9 @@ Commands["playerlongbio"] = {
 }
 
 Commands["playeravatar"] = {
+	name: "playeravatar",
+	params: "[username]",
+	description: "I'll link the avatar of the player with the given *username*.'",
 	authLevel: 0,
 	fn: function(bot, message, params, errorCallback) {
 		return;
@@ -77,6 +101,9 @@ Commands["playeravatar"] = {
 }
 
 Commands["invite"] = {
+	name: "invite",
+	params: "[invitecode]",
+	description: "Invites me to join a server via *invitecode*! (links not supported yet)",
 	authLevel: 0,
 	fn: function(bot, message, params, errorCallback) {
 		return;
@@ -84,6 +111,8 @@ Commands["invite"] = {
 }
 
 Commands["waifu"] = {
+	name: "waifu",
+	description: "I'll give you a random Waifu.",
 	authLevel: 0,
 	fn: function(bot, message, params, errorCallback) {
 		return;
@@ -91,13 +120,19 @@ Commands["waifu"] = {
 }
 
 Commands["music"] = {
-	authLevel: 0,
+	name: "music",
+	params: "[on/off] [channelid]",
+	description: "Enables/Disables music streaming in the voice channel with the given *channelid*.",
+	authLevel: 3,
 	fn: function(bot, message, params, errorCallback) {
 		return;
 	}
 }
 
 Commands["cid"] = {
+	name: "cid",
+	params: "[channelname]",
+	description: "I'll tell you the ID of the channel with the given *channelname*.",
 	authLevel: 0,
 	fn: function(bot, message, params, errorCallback) {
 		return;
@@ -105,6 +140,8 @@ Commands["cid"] = {
 }
 
 Commands["skip"] = {
+	name: "skip",
+	description: "Vote to skip the current song. Skipping requires > 50% of the users in the channel to vote.",
 	authLevel: 0,
 	fn: function(bot, message, params, errorCallback) {
 		return;
@@ -112,20 +149,29 @@ Commands["skip"] = {
 }
 
 Commands["forceskip"] = {
-	authLevel: 0,
+	name: "forceskip",
+	description: "Moderator level skip for the current song. Forces skip, reguardless of votes.",
+	authLevel: 1,
 	fn: function(bot, message, params, errorCallback) {
 		return;
 	}
 }
 
 Commands["song"] = {
+	name: "song",
+	description: "I'll read you the ID3 tags of the current song. If I can't find them, I'll tell you the filename instead.",
 	authLevel: 0,
 	fn: function(bot, message, params, errorCallback) {
 		return;
 	}
 }
 
+Commands["encore"] =
+Commands["ankouru"] =
 Commands["replay"] = {
+	name: "replay",
+	aliases: ['encore', 'ankouru'],
+	description: "Vote to replay the current song. Replay requires > 50% of the users in the channel to vote.",
 	authLevel: 0,
 	fn: function(bot, message, params, errorCallback) {
 		return;
@@ -133,6 +179,9 @@ Commands["replay"] = {
 }
 
 Commands["request"] = {
+	name: "request",
+	params: "[filename]",
+	description: "Request a song to be added to the queue. Only one request may be made per user (a second request will overwrite the first.)",
 	authLevel: 0,
 	fn: function(bot, message, params, errorCallback) {
 		return;
