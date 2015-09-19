@@ -16,7 +16,6 @@ exports.getUserLevel = function(user, callback) {
 	rclient.get("auth_level:" + user.id, function(err, reply) {
 
 		if (err) { return callback(err, -1); } // error handle
-		//return callback({err, reply}, -1);
 		if (reply) {
 			return callback(null, parseInt(reply)); // return reply
 		} else {
