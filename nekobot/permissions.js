@@ -15,7 +15,7 @@ exports.getUserLevel = function(user, callback) {
 	// otherwise, connect to redis and find the stored user level
 	rclient.get("auth_level:" + user.id, function(err, reply) {
 
-		if (err) { return callback({err,reply}, -1); } // error handle
+		if (err) { return callback(err, -1); } // error handle
 		//return callback({err, reply}, -1);
 		if (reply) {
 			return callback(null, parseInt(reply)); // return reply
