@@ -25,7 +25,7 @@ var Logger = new Winston.Logger({
 			humanReadableUnhandledException: true,
 			handleExceptions: true,
 			name: 'file-logger',
-			filename: './logs/console-log.json',
+			filename: './logs/nekobot-winston.json',
 			level: 'info',
 			json: true
 		}),

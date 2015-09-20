@@ -3,6 +3,9 @@ Thumbs.db
 Desktop.ini
 .DS_Store
 
+# Vagrant Shit
+.vagrant
+
 # Sublime Shit
 *.sublime-*
 
