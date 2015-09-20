@@ -656,10 +656,17 @@ Commands["cosplay"] = {
 		}
 
 		// create a list of all files (including sub-directories), then send a random file
-		NodeDir.files(__dirname + "/../cosplay", function(err, files) {
+		NodeDir.files(__dirname + "/../images/cosplay", function(err, files) {
 
 			if (err) { return errorCallback(err); } // error handle
 			if (files) {
+
+				// remove .gitignore from files list
+				for (file in files) {
+					if (files[file].slice(-10) === ".gitignore") { files.splice(file, 1); }
+				}
+
+				// send a random file
 				bot.sendFile(message, files[Math.floor(Math.random() * files.length)]).catch(errorCallback);
 			}
 		});
@@ -685,10 +692,17 @@ Commands["pitur"] = {
 		}
 
 		// create a list of all files (including sub-directories), then send a random file
-		NodeDir.files(__dirname + "/../pitur", function(err, files) {
+		NodeDir.files(__dirname + "/../images/pitur", function(err, files) {
 
 			if (err) { return errorCallback(err); } // error handle
 			if (files) {
+
+				// remove .gitignore from files list
+				for (file in files) {
+					if (files[file].slice(-10) === ".gitignore") { files.splice(file, 1); }
+				}
+
+				// send a random file
 				bot.sendFile(message, files[Math.floor(Math.random() * files.length)]).catch(errorCallback);
 			}
 		});
@@ -714,10 +728,17 @@ Commands["gold"] = {
 		}
 
 		// create a list of all files (including sub-directories), then send a random file
-		NodeDir.files(__dirname + "/../gold", function(err, files) {
+		NodeDir.files(__dirname + "/../images/gold", function(err, files) {
 
 			if (err) { return errorCallback(err); } // error handle
 			if (files) {
+
+				// remove .gitignore from files list
+				for (file in files) {
+					if (files[file].slice(-10) === ".gitignore") { files.splice(file, 1); }
+				}
+
+				// send a random file
 				bot.sendFile(message, files[Math.floor(Math.random() * files.length)]).catch(errorCallback);
 			}
 		});
@@ -954,7 +975,7 @@ Commands["trash"] = {
 	description: "I'll upload an image of 'worst girl'. (WARNING: May cause nausea!)",
 	authLevel: 2,
 	fn: function(bot, message, params, errorCallback) {
-		bot.sendFile(message, "./test/test.png").catch(errorCallback);
+		bot.sendFile(message, __dirname + "/../images/trash.png").catch(errorCallback);
 	}
 }
 
