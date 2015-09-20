@@ -667,7 +667,11 @@ Commands["cosplay"] = {
 				}
 
 				// send a random file
-				bot.sendFile(message, files[Math.floor(Math.random() * files.length)]).catch(errorCallback);
+				if (files.length > 0) {
+					bot.sendFile(message, files[Math.floor(Math.random() * files.length)]).catch(errorCallback);
+				} else {
+					bot.sendMessage(message, "The **cosplay** folder is emtpy! ;w; (Please tell my master.)").catch(errorCallback);
+				}
 			}
 		});
 	}
@@ -703,7 +707,11 @@ Commands["pitur"] = {
 				}
 
 				// send a random file
-				bot.sendFile(message, files[Math.floor(Math.random() * files.length)]).catch(errorCallback);
+				if (files.length > 0) {
+					bot.sendFile(message, files[Math.floor(Math.random() * files.length)]).catch(errorCallback);
+				} else {
+					bot.sendMessage(message, "The **pitur** folder is emtpy! ;w; (Please tell my master.)").catch(errorCallback);
+				}
 			}
 		});
 	}
@@ -739,7 +747,11 @@ Commands["gold"] = {
 				}
 
 				// send a random file
-				bot.sendFile(message, files[Math.floor(Math.random() * files.length)]).catch(errorCallback);
+				if (files.length > 0) {
+					bot.sendFile(message, files[Math.floor(Math.random() * files.length)]).catch(errorCallback);
+				} else {
+					bot.sendMessage(message, "The **gold** folder is emtpy! ;w; (Please tell my master.)").catch(errorCallback);
+				}
 			}
 		});
 	}
