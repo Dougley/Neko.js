@@ -28,7 +28,7 @@
   npm: path=/srv/nekobot
 
 - name: Run NekoBot via Forever
-  command: forever start -l /srv/nekobot/logs/nekobot-forever.log -e /srv/nekobot/logs/nekobot-error.log /srv/nekobot/neko.js
+  command: forever start -a -l /srv/nekobot/logs/nekobot-forever.log -e /srv/nekobot/logs/nekobot-error.log /srv/nekobot/neko.js
 
 - name: Add NekoBot to Startup
-  cron: name="nekobot" special_time=reboot job="forever start -l /srv/nekobot/logs/nekobot-forever.log -e /srv/nekobot/logs/nekobot-error.log /srv/nekobot/neko.js"
+  cron: name="nekobot" user="vagrant" special_time=reboot job="forever start -a -l /srv/nekobot/logs/nekobot-forever.log -e /srv/nekobot/logs/nekobot-error.log /srv/nekobot/neko.js"

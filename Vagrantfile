@@ -16,7 +16,7 @@ end
 
 Vagrant.configure("2") do |config|
 
-  config.vm.hostname = "NekoBot"
+  config.vm.hostname = "nekobot"
 
   config.vm.box = "ubuntu/trusty64"
   config.vm.box_url = "https://vagrantcloud.com/ubuntu/boxes/trusty64/versions/14.04/providers/virtualbox.box"
