@@ -1,10 +1,10 @@
 var Request		= require('request');
-var NodeDir		= require('node-dir');
 
 var Permissions	= require('./permissions');
 var Help		= require('./help');
 var ImageChan	= require('./imagechan');
 var Lewdsx		= require('./lewdsx');
+var ImageFolder	= require('./imagefolder');
 var Fortunes	= require('./fortunes').Fortunes;
 
 Commands = [];
@@ -332,15 +332,17 @@ Commands["safebooru"] = {
 
 			Permissions.getAllowNSFW(message.channel, function(err, allow) {
 				if (err) { return errorCallback(err); } // error handle
-				if (allow === "off") {
+				if (allow === "on") {
+					ImageChan.getImageByTags(bot, message, "safebooru", params, errorCallback);
+				} else {
 					bot.sendMessage(message, "NSFW commands are **DISABLED** in " + message.channel).catch(errorCallback);
-					return;
 				}
 			});
 		}
 
-		// we're in a PM, or the channel allows NSFW... let's get lewd
-		ImageChan.getImageByTags(bot, message, "safebooru", params, errorCallback);
+		else { // we're in a PM, or the channel allows NSFW... let's get lewd
+			ImageChan.getImageByTags(bot, message, "safebooru", params, errorCallback);
+		}
 	}
 }
 
@@ -356,15 +358,17 @@ Commands["gelbooru"] = {
 
 			Permissions.getAllowNSFW(message.channel, function(err, allow) {
 				if (err) { return errorCallback(err); } // error handle
-				if (allow === "off") {
+				if (allow === "on") {
+					ImageChan.getImageByTags(bot, message, "gelbooru", params, errorCallback);
+				} else {
 					bot.sendMessage(message, "NSFW commands are **DISABLED** in " + message.channel).catch(errorCallback);
-					return;
 				}
 			});
 		}
 
-		// we're in a PM, or the channel allows NSFW... let's get lewd
-		ImageChan.getImageByTags(bot, message, "gelbooru", params, errorCallback);
+		else { // we're in a PM, or the channel allows NSFW... let's get lewd
+			ImageChan.getImageByTags(bot, message, "gelbooru", params, errorCallback);
+		}
 	}
 }
 
@@ -380,15 +384,17 @@ Commands["rule34"] = {
 
 			Permissions.getAllowNSFW(message.channel, function(err, allow) {
 				if (err) { return errorCallback(err); } // error handle
-				if (allow === "off") {
+				if (allow === "on") {
+					ImageChan.getImageByTags(bot, message, "rule34", params, errorCallback);
+				} else {
 					bot.sendMessage(message, "NSFW commands are **DISABLED** in " + message.channel).catch(errorCallback);
-					return;
 				}
 			});
 		}
 
-		// we're in a PM, or the channel allows NSFW... let's get lewd
-		ImageChan.getImageByTags(bot, message, "rule34", params, errorCallback);
+		else { // we're in a PM, or the channel allows NSFW... let's get lewd
+			ImageChan.getImageByTags(bot, message, "rule34", params, errorCallback);
+		}
 	}
 }
 
@@ -406,15 +412,17 @@ Commands["kona"] = {
 
 			Permissions.getAllowNSFW(message.channel, function(err, allow) {
 				if (err) { return errorCallback(err); } // error handle
-				if (allow === "off") {
+				if (allow === "on") {
+					ImageChan.getImageByTags(bot, message, "konachan", params, errorCallback);
+				} else {
 					bot.sendMessage(message, "NSFW commands are **DISABLED** in " + message.channel).catch(errorCallback);
-					return;
 				}
 			});
 		}
 
-		// we're in a PM, or the channel allows NSFW... let's get lewd
-		ImageChan.getImageByTags(bot, message, "konachan", params, errorCallback);
+		else { // we're in a PM, or the channel allows NSFW... let's get lewd
+			ImageChan.getImageByTags(bot, message, "konachan", params, errorCallback);
+		}
 	}
 }
 
@@ -430,15 +438,17 @@ Commands["yandere"] = {
 
 			Permissions.getAllowNSFW(message.channel, function(err, allow) {
 				if (err) { return errorCallback(err); } // error handle
-				if (allow === "off") {
+				if (allow === "on") {
+					ImageChan.getImageByTags(bot, message, "yandere", params, errorCallback);
+				} else {
 					bot.sendMessage(message, "NSFW commands are **DISABLED** in " + message.channel).catch(errorCallback);
-					return;
 				}
 			});
 		}
 
-		// we're in a PM, or the channel allows NSFW... let's get lewd
-		ImageChan.getImageByTags(bot, message, "yandere", params, errorCallback);
+		else { // we're in a PM, or the channel allows NSFW... let's get lewd
+			ImageChan.getImageByTags(bot, message, "yandere", params, errorCallback);
+		}
 	}
 }
 
@@ -483,18 +493,17 @@ Commands["neko"] = {
 
 			Permissions.getAllowNSFW(message.channel, function(err, allow) {
 				if (err) { return errorCallback(err); } // error handle
-				if (allow === "off") {
+				if (allow === "on") {
+					Lewdsx.getImage(bot, message, "neko", errorCallback);
+				} else {
 					bot.sendMessage(message, "NSFW commands are **DISABLED** in " + message.channel).catch(errorCallback);
-					return;
 				}
 			});
 		}
 
-		// we're in a PM, or the channel allows NSFW... let's get lewd
-		Lewdsx.getImage("neko", function(err, image) {
-			if (err) { return errorCallback(err); } // error handle
-			if (image) { bot.sendMessage(message, image).catch(errorCallback); }
-		});
+		else { // we're in a PM, or the channel allows NSFW... let's get lewd
+			Lewdsx.getImage(bot, message, "neko", errorCallback);
+		}
 	}
 }
 
@@ -509,18 +518,17 @@ Commands["kitsune"] = {
 
 			Permissions.getAllowNSFW(message.channel, function(err, allow) {
 				if (err) { return errorCallback(err); } // error handle
-				if (allow === "off") {
+				if (allow === "on") {
+					Lewdsx.getImage(bot, message, "kitsune", errorCallback);
+				} else {
 					bot.sendMessage(message, "NSFW commands are **DISABLED** in " + message.channel).catch(errorCallback);
-					return;
 				}
 			});
 		}
 
-		// we're in a PM, or the channel allows NSFW... let's get lewd
-		Lewdsx.getImage("kitsune", function(err, image) {
-			if (err) { return errorCallback(err); } // error handle
-			if (image) { bot.sendMessage(message, image).catch(errorCallback); }
-		});
+		else { // we're in a PM, or the channel allows NSFW... let's get lewd
+			Lewdsx.getImage(bot, message, "kitsune", errorCallback);
+		}
 	}
 }
 
@@ -535,18 +543,17 @@ Commands["lewd"] = {
 
 			Permissions.getAllowNSFW(message.channel, function(err, allow) {
 				if (err) { return errorCallback(err); } // error handle
-				if (allow === "off") {
+				if (allow === "on") {
+					Lewdsx.getImage(bot, message, "lewd", errorCallback);
+				} else {
 					bot.sendMessage(message, "NSFW commands are **DISABLED** in " + message.channel).catch(errorCallback);
-					return;
 				}
 			});
 		}
 
-		// we're in a PM, or the channel allows NSFW... let's get lewd
-		Lewdsx.getImage("lewd", function(err, image) {
-			if (err) { return errorCallback(err); } // error handle
-			if (image) { bot.sendMessage(message, image).catch(errorCallback); }
-		});
+		else { // we're in a PM, or the channel allows NSFW... let's get lewd
+			Lewdsx.getImage(bot, message, "lewd", errorCallback);
+		}
 	}
 }
 
@@ -561,18 +568,17 @@ Commands["qt"] = {
 
 			Permissions.getAllowNSFW(message.channel, function(err, allow) {
 				if (err) { return errorCallback(err); } // error handle
-				if (allow === "off") {
+				if (allow === "on") {
+					Lewdsx.getImage(bot, message, "qt", errorCallback);
+				} else {
 					bot.sendMessage(message, "NSFW commands are **DISABLED** in " + message.channel).catch(errorCallback);
-					return;
 				}
 			});
 		}
 
-		// we're in a PM, or the channel allows NSFW... let's get lewd
-		Lewdsx.getImage("qt", function(err, image) {
-			if (err) { return errorCallback(err); } // error handle
-			if (image) { bot.sendMessage(message, image).catch(errorCallback); }
-		});
+		else { // we're in a PM, or the channel allows NSFW... let's get lewd
+			Lewdsx.getImage(bot, message, "qt", errorCallback);
+		}
 	}
 }
 
@@ -648,32 +654,17 @@ Commands["cosplay"] = {
 
 			Permissions.getAllowNSFW(message.channel, function(err, allow) {
 				if (err) { return errorCallback(err); } // error handle
-				if (allow === "off") {
+				if (allow === "on") {
+					ImageFolder.getImage(bot, message, "cosplay", errorCallback);
+				} else {
 					bot.sendMessage(message, "NSFW commands are **DISABLED** in " + message.channel).catch(errorCallback);
-					return;
 				}
 			});
 		}
 
-		// create a list of all files (including sub-directories), then send a random file
-		NodeDir.files(__dirname + "/../images/cosplay", function(err, files) {
-
-			if (err) { return errorCallback(err); } // error handle
-			if (files) {
-
-				// remove .gitignore from files list
-				for (file in files) {
-					if (files[file].slice(-10) === ".gitignore") { files.splice(file, 1); }
-				}
-
-				// send a random file
-				if (files.length > 0) {
-					bot.sendFile(message, files[Math.floor(Math.random() * files.length)]).catch(errorCallback);
-				} else {
-					bot.sendMessage(message, "The **cosplay** folder is emtpy! ;w; (Please tell my master.)").catch(errorCallback);
-				}
-			}
-		});
+		else { // we're in a PM, or the channel allows NSFW... let's get lewd
+			ImageFolder.getImage(bot, message, "cosplay", errorCallback);
+		}
 	}
 }
 
@@ -688,32 +679,17 @@ Commands["pitur"] = {
 
 			Permissions.getAllowNSFW(message.channel, function(err, allow) {
 				if (err) { return errorCallback(err); } // error handle
-				if (allow === "off") {
+				if (allow === "on") {
+					ImageFolder.getImage(bot, message, "pitur", errorCallback);
+				} else {
 					bot.sendMessage(message, "NSFW commands are **DISABLED** in " + message.channel).catch(errorCallback);
-					return;
 				}
 			});
 		}
 
-		// create a list of all files (including sub-directories), then send a random file
-		NodeDir.files(__dirname + "/../images/pitur", function(err, files) {
-
-			if (err) { return errorCallback(err); } // error handle
-			if (files) {
-
-				// remove .gitignore from files list
-				for (file in files) {
-					if (files[file].slice(-10) === ".gitignore") { files.splice(file, 1); }
-				}
-
-				// send a random file
-				if (files.length > 0) {
-					bot.sendFile(message, files[Math.floor(Math.random() * files.length)]).catch(errorCallback);
-				} else {
-					bot.sendMessage(message, "The **pitur** folder is emtpy! ;w; (Please tell my master.)").catch(errorCallback);
-				}
-			}
-		});
+		else { // we're in a PM, or the channel allows NSFW... let's get lewd
+			ImageFolder.getImage(bot, message, "pitur", errorCallback);
+		}
 	}
 }
 
@@ -728,32 +704,17 @@ Commands["gold"] = {
 
 			Permissions.getAllowNSFW(message.channel, function(err, allow) {
 				if (err) { return errorCallback(err); } // error handle
-				if (allow === "off") {
+				if (allow === "on") {
+					ImageFolder.getImage(bot, message, "gold", errorCallback);
+				} else {
 					bot.sendMessage(message, "NSFW commands are **DISABLED** in " + message.channel).catch(errorCallback);
-					return;
 				}
 			});
 		}
 
-		// create a list of all files (including sub-directories), then send a random file
-		NodeDir.files(__dirname + "/../images/gold", function(err, files) {
-
-			if (err) { return errorCallback(err); } // error handle
-			if (files) {
-
-				// remove .gitignore from files list
-				for (file in files) {
-					if (files[file].slice(-10) === ".gitignore") { files.splice(file, 1); }
-				}
-
-				// send a random file
-				if (files.length > 0) {
-					bot.sendFile(message, files[Math.floor(Math.random() * files.length)]).catch(errorCallback);
-				} else {
-					bot.sendMessage(message, "The **gold** folder is emtpy! ;w; (Please tell my master.)").catch(errorCallback);
-				}
-			}
-		});
+		else { // we're in a PM, or the channel allows NSFW... let's get lewd
+			ImageFolder.getImage(bot, message, "gold", errorCallback);
+		}
 	}
 }
 
@@ -914,19 +875,13 @@ Commands["whois"] = {
 			return;
 		}
 
-		// build an array so all messages get sent at once
-		var msgArray = [];
-
-		// cycle mentions and add a message with the id and permissions of each user
+		// cycle mentions and send a message with the id and permissions of each user
 		message.mentions.forEach(function(user) {
 			Permissions.getUserLevel(user, function(err, level){
 				if (err) { return errorCallback(err); }
-				if (level) { msgArray.push(user + "'s id is **" + user.id + "** and their permissions level is **" + level + "**."); }
+				bot.sendMessage(message, user + "'s id is **" + user.id + "** and their permissions level is **" + level + "**.");
 			});
 		});
-
-		// send messages
-		bot.sendMessage(message, msgArray).catch(errorCallback);
 	}
 }
 
