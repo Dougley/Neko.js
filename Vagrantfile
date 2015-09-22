@@ -30,7 +30,7 @@ Vagrant.configure("2") do |config|
       "modifyvm", :id,
       "--name", "nekobot",
       "--ostype", "Ubuntu_64",
-      "--memory", 512,
+      "--memory", 1024,
       "--natdnshostresolver1", "on",
       "--natdnsproxy1", "on",
       "--cpus", 1,
