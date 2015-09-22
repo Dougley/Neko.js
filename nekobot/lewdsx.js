@@ -4,11 +4,11 @@ var Request		= require('request');
 // Get Image
 // ========================================================================
 
-exports.getImage = function(chan, callback) {
+exports.getImage = function(bot, message, chan, errorCallback) {
 
 	Request("https://lewdchan.com/" + chan + "/src/list.php", function (error, response, body) {
 
-		if (error) { return callback(error, null); } // error handle
+		if (error) { return errorCallback(error); } // error handle
 
 		if (response.statusCode == 200) {
 
@@ -23,10 +23,10 @@ exports.getImage = function(chan, callback) {
 
 			// get a random image and return it
 			var image = imgList[Math.floor(Math.random() * imgList.length)];
-			return callback(null, "https://lewdchan.com/" + chan + "/src/" + image);
+			bot.sendMessage(message, "https://lewdchan.com/" + chan + "/src/" + image).catch(errorCallback);
 
 		} else { // some other response code... #blamecron
-			return callback(["lewd.sx " + chan + " failed:", { response: response.statusCode }], null);
+			return errorCallback(["lewd.sx " + chan + " failed:", { response: response.statusCode }]);
 		}
 	});
 }
