@@ -4,7 +4,7 @@
   apt_key: url=https://deb.nodesource.com/gpgkey/nodesource.gpg.key state=present
 
 - name: Add NodeSource Repo
-  apt_repository: repo='deb https://deb.nodesource.com/node_4.x trusty main' state=present
+  apt_repository: repo='deb https://deb.nodesource.com/node_4.x vivid main' state=present
 
 - name: Install System Packages
   apt: pkg={{ item }} state=latest update_cache=yes
@@ -27,8 +27,8 @@
 - name: Install NekoBot via npm
   npm: path=/srv/nekobot
 
-- name: Run NekoBot via Forever
-  command: forever start -a -l /srv/nekobot/logs/nekobot-forever.log -e /srv/nekobot/logs/nekobot-error.log /srv/nekobot/neko.js
+- name: Add NekoBot to Services
+  template: src=nekobot.tpl dest=/lib/systemd/system/nekobot.service
 
-- name: Add NekoBot to Startup
-  cron: name="nekobot" user="vagrant" special_time=reboot job="forever start -a -l /srv/nekobot/logs/nekobot-forever.log -e /srv/nekobot/logs/nekobot-error.log /srv/nekobot/neko.js"
+- name: Enable and Start NekoBot Service
+  service: name=nekobot enabled=yes state=started

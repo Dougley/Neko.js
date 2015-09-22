@@ -18,8 +18,8 @@ Vagrant.configure("2") do |config|
 
   config.vm.hostname = "nekobot"
 
-  config.vm.box = "ubuntu/trusty64"
-  config.vm.box_url = "https://vagrantcloud.com/ubuntu/boxes/trusty64/versions/14.04/providers/virtualbox.box"
+  config.vm.box = "ubuntu/vivid64"
+  config.vm.box_url = "https://vagrantcloud.com/ubuntu/boxes/vivid64/versions/20150917.0.0/providers/virtualbox.box"
 
   config.vm.network :private_network, ip: "192.168.33.20"
   config.ssh.forward_agent = true
