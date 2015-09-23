@@ -46,7 +46,7 @@ var Logger = new Winston.Logger({
 
 function init() {
 	Logger.info("Initializing...");
-	NekoBot.joinServer(Config.server);
+//	NekoBot.joinServer(Config.server);
 }
 
 NekoBot.on("ready", function() {
