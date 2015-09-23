@@ -31,16 +31,6 @@ Commands["die"] = {
 	}
 }
 
-Commands["pet"] = {
-	name: "pet",
-	params: "[@user ...]",
-	description: "Everyone loves pets, right!?! I'll pet each *@user*. Leave emtpy (or mention me too) to pet me!",
-	authLevel: 0,
-	fn: function(bot, message, params, errorCallback) {
-		return;
-	}
-}
-
 Commands["playerpost"] = {
 	name: "playerpost",
 	params: "[postid]",
@@ -848,6 +838,41 @@ Commands["fortune"] = {
 	fn: function(bot, message, params, errorCallback) {
 		var rand = Math.floor(Math.random() * Fortunes.length);
 		bot.sendMessage(message, "*" + Fortunes[rand] + "*").catch(errorCallback);
+	}
+}
+
+Commands["pets"] =
+Commands["pet"] = {
+	name: "pet",
+	params: "[@user ...]",
+	aliases: ['pets'],
+	description: "Everyone loves being pet, right!?! Pets each *@user*. Leave emtpy (or mention me too) to pet me!",
+	authLevel: 0,
+	fn: function(bot, message, params, errorCallback) {
+
+		// build an array to store pets
+		var pets = [];
+
+		// if everyone is mentioned, skip all other mentions. if nobody is mentioned, nekobot just purrs
+		// TODO: message.everyoneMentioned is broken so for now we're using indexOf()
+		if (message.mentions.length === 0 || params.indexOf("@everyone") !== -1) {
+			if (params.indexOf("@everyone") !== -1) { pets.push(message.author + " pets @everyone "); }
+			bot.sendMessage(message, pets + "*purrs*").catch(errorCallback);
+			return;
+		}
+
+		// otherwise, cycle mentions and add each user to pets
+		var isMentioningMe = false;
+		message.mentions.forEach(function(user) {
+			if (user === bot.user) { isMentioningMe = true; }
+			pets.push(user);
+		});
+
+		// if nekobot is on the list, purr
+		if (isMentioningMe) { pets.push("*purrs*"); }
+
+		// send message
+		bot.sendMessage(message, message.author + " pets " + pets.join(" ")).catch(errorCallback);
 	}
 }
 
