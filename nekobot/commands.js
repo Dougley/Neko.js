@@ -1,5 +1,6 @@
 var Request		= require('request');
 
+var Logger		= require('./logger').Logger;
 var Permissions	= require('./permissions');
 var Help		= require('./help');
 var ImageChan	= require('./imagechan');
@@ -1052,7 +1053,11 @@ Commands["test"] = {
 		// TEST CODE HERE
 
 		// TEST FUNCTION
-		bot.sendMessage(message, "Test complete. Check console.").catch(errorCallback);
+		Logger.info("Logger Test (Info)");
+		Logger.warn("Logger Test (Warn)");
+		Logger.error("Logger Test (Error)");
+		bot.sendMessage(message, "Test complete. Check console and logs.").catch(errorCallback);
+		throw new Error('Logger Test (Exception)');
 	}
 }
 

@@ -1,44 +1,11 @@
 var Discord		= require("discord.js");
-//var Redis		= require("redis");
-var Winston		= require("winston");
 
 var Config		= require("./config.json");
+var Logger		= require('./nekobot/logger').Logger;
 var Commands	= require('./nekobot/commands').Commands;
 var Permissions	= require('./nekobot/permissions');
 
 var NekoBot = new Discord.Client();
-
-// ========================================================================
-// Logger
-// ========================================================================
-
-var Logger = new Winston.Logger({
-	colors: {
-		verbose: 'cyan',
-		debug: 'blue',
-		info: 'green',
-		warn: 'yellow',
-		error: 'red'
-	},
-	transports: [
-		new Winston.transports.File({
-			humanReadableUnhandledException: true,
-			handleExceptions: true,
-			name: 'file-logger',
-			filename: __dirname + '/logs/nekobot-winston.json',
-			level: 'info',
-			json: true
-		}),
-		new Winston.transports.Console({
-			handleExceptions: false,
-			name: 'console-logger',
-			level: 'verbose',
-			colorize: true,
-			json: false
-		})
-	],
-	exitOnError: false
-});
 
 // ========================================================================
 // Init / Ready
