@@ -173,11 +173,12 @@ Commands["ping"] = {
 	}
 }
 
+Commands["command"] =
 Commands["commands"] =
 Commands["help"] = {
 	name: "help",
 	params: "[command]",
-	aliases: ['commands'],
+	aliases: ['command','commands'],
 	description: "I can tell you about any *command*. (Leave params empty for a list of all commands.)",
 	authLevel: 0,
 	fn: function(bot, message, params, errorCallback) {

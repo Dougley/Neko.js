@@ -60,8 +60,8 @@ exports.getAllCommands = function(bot, message, errorCallback) {
 
 	msgArray.push("**Available Commands:**");
 	msgArray.push(commands);
-	msgArray.push("Type **" + Config.commands.prefix + "help [command]** for detailed information.");
-	msgArray.push("If you have any ideas for new commands, suggest them to Kusoneko or TehSeph. They might add them.");
+	msgArray.push("\nType **" + Config.commands.prefix + "help command** for detailed information.");
+	msgArray.push("If you have any suggestions for new commands or features, message to Kusoneko or TehSeph with your idea and they *might* add them in.");
 
 	// send messages
 	bot.sendMessage(message.author, msgArray).catch(errorCallback);
