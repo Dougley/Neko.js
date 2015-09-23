@@ -91,15 +91,6 @@ Commands["invite"] = {
 	}
 }
 
-Commands["waifu"] = {
-	name: "waifu",
-	description: "I'll give you a random Waifu.",
-	authLevel: 0,
-	fn: function(bot, message, params, errorCallback) {
-		return;
-	}
-}
-
 Commands["music"] = {
 	name: "music",
 	params: "[on/off] [channelid]",
@@ -456,16 +447,40 @@ Commands["quote"] = {
 			if (response.statusCode == 200) {
 
 				// parse response body as JSON
-				var quote = JSON.parse(body);
+				var quote = JSON.parse(body).quote;
 
 				// build a nicely formated string
-				var quoteString = "\"" + quote.quote.quote + "\" - " + quote.quote.author + " " + quote.quote.date;
+				var quoteString = "\"" + quote.quote + "\" - " + quote.author + " " + quote.date;
 
 				// reply with an inspirational quote :)
 				bot.sendMessage(message, quoteString).catch(errorCallback);
 
 			} else { // some other response code... #blamejulxzs
 				return errorCallback(["inspirational quote failed:", { response: response.statusCode }]);
+			}
+		});
+
+	}
+}
+
+Commands["waifu"] = {
+	name: "waifu",
+	description: "I'll give you a random Waifu.",
+	authLevel: 0,
+	fn: function(bot, message, params, errorCallback) {
+
+		// make an Http request to recieve quote
+		Request("https://julxzs.website/api/random-waifu", function (error, response, body) {
+
+			if (error) { return errorCallback(error); } // error handle
+
+			if (response.statusCode == 200) {
+
+				// reply with waifu :)
+				bot.sendMessage(message, JSON.parse(body).waifu).catch(errorCallback);
+
+			} else { // some other response code... #blamejulxzs
+				return errorCallback(["random waifu failed:", { response: response.statusCode }]);
 			}
 		});
 
