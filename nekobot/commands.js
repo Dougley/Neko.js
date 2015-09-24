@@ -154,7 +154,16 @@ Commands["replay"] = {
 Commands["request"] = {
 	name: "request",
 	params: "[filename]",
-	description: "Request a song to be added to the queue. Only one request may be made per user (a second request will overwrite the first.)",
+	description: "Request a song to be added to the queue.",
+	authLevel: 0,
+	fn: function(bot, message, params, errorCallback) {
+		return;
+	}
+}
+
+Commands["playlist"] = {
+	name: "playlist",
+	description: "I'll tell you the current playlist, aka the currently playing song and the 10 next songs I currently plan to play next, as well as their origin (Encore, Request or Playlist).",
 	authLevel: 0,
 	fn: function(bot, message, params, errorCallback) {
 		return;
