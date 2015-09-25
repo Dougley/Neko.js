@@ -434,7 +434,7 @@ Commands["yandere"] = {
 		}
 	}
 }
-
+/*
 Commands["quote"] = {
 	name: "quote",
 	description: "I'll give you a random inspirational quote.",
@@ -488,7 +488,7 @@ Commands["waifu"] = {
 
 	}
 }
-
+*/
 Commands["neko"] = {
 	name: "neko",
 	description: "I'll find a random Nekomimi from lewd.sx",
