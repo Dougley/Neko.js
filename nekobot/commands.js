@@ -890,10 +890,11 @@ Commands["pet"] = {
 
 		// otherwise, cycle mentions and add each user to pets
 		var isMentioningMe = false;
-		message.mentions.forEach(function(user) {
+		for (index in message.mentions) {
+			var user = message.mentions[index];
 			if (user === bot.user) { isMentioningMe = true; }
 			pets.push(user);
-		});
+		}
 
 		// if nekobot is on the list, purr
 		if (isMentioningMe) { pets.push("*purrs*"); }
@@ -928,12 +929,13 @@ Commands["whois"] = {
 		}
 
 		// cycle mentions and send a message with the id and permissions of each user
-		message.mentions.forEach(function(user) {
+		for (index in message.mentions) {
+			var user = message.mentions[index];
 			Permissions.getUserLevel(user, function(err, level){
 				if (err) { return errorCallback(err); }
 				bot.sendMessage(message, user + "'s id is **" + user.id + "** and their permissions level is **" + level + "**.");
 			});
-		});
+		}
 	}
 }
 
@@ -1039,11 +1041,12 @@ Commands["setperms"] = {
 		});
 
 		// cycle mentions and set the perm level of each user
-		message.mentions.forEach(function(user) {
+		for (index in message.mentions) {
+			var user = message.mentions[index];
 			Permissions.setUserLevel(user, params[0], function(err, level) {
 				if (err) { return errorCallback(err); }
 			});
-		});
+		}
 
 		// let the user know we've set the levels
 		bot.sendMessage(message, "Okay! I'll remember the new permissions levels. :)").catch(errorCallback);
