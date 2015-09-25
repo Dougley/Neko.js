@@ -22,7 +22,7 @@ exports.getCommandInfo = function(bot, message, command, errorCallback) {
 				// build an array so all messages get sent at once
 				var msgArray = [];
 
-				msgArray.push("**Command:** " + cmd.name);
+				msgArray.push("**Command:** " + cmd.name + " (**Level:** " + cmd.authLevel + ")");
 				msgArray.push("**Usage:** " + Config.commands.prefix + cmd.name + (cmd.params ? " " + cmd.params : ""));
 				if (cmd.aliases) { msgArray.push("**Aliases:** " + cmd.aliases.join(", ")); }
 				msgArray.push(cmd.description);
@@ -52,17 +52,34 @@ exports.getAllCommands = function(bot, message, errorCallback) {
 		bot.reply(message, "I'm sending you a list of commands via PM. (I don't want to spam...)").catch(errorCallback);
 	}
 
-	// create a string of all commands by name
-	var commands = (Object.keys(Commands)).join(", ");
+	// create an array to store available commands
+	var commands = [];
 
-	// build an array so all messages get sent at once
-	var msgArray = [];
+	// check the user's permissions level
+	Permissions.getUserLevel(message.author, function(err, level) {
 
-	msgArray.push("**Available Commands:**");
-	msgArray.push(commands);
-	msgArray.push("\nType **" + Config.commands.prefix + "help command** for detailed information.");
-	msgArray.push("If you have any suggestions for new commands or features, message to Kusoneko or TehSeph with your idea and they *might* add them in.");
+		if (err) { return errorCallback(err); } // error handle
 
-	// send messages
-	bot.sendMessage(message.author, msgArray).catch(errorCallback);
+		// cycle all commands and check the user has permissons
+		for (index in Commands) {
+			if (level >= Commands[index].authLevel) {
+
+				// make sure the command hasn't already been added to the list (because of aliases), then add it
+				if (commands[commands.length - 1] !== Commands[index].name) {
+					commands.push(Commands[index].name);
+				}
+			}
+		}
+
+		// build an array so all messages get sent at once
+		var msgArray = [];
+
+		msgArray.push("**Available Commands:**");
+		msgArray.push(commands.join(", "));
+		msgArray.push("\nType **" + Config.commands.prefix + "help command** for detailed information.");
+		msgArray.push("If you have any suggestions for new commands or features, message Kusoneko or TehSeph with your idea and they *might* add them in.");
+
+		// send messages
+		bot.sendMessage(message.author, msgArray).catch(errorCallback);
+	});
 }
