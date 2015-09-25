@@ -443,7 +443,7 @@ Commands["yandere"] = {
 		}
 	}
 }
-/*
+
 Commands["quote"] = {
 	name: "quote",
 	description: "I'll give you a random inspirational quote.",
@@ -451,7 +451,7 @@ Commands["quote"] = {
 	fn: function(bot, message, params, errorCallback) {
 
 		// make an Http request to recieve quote
-		Request("https://julxzs.website/api/quote", function (error, response, body) {
+		Request("https://inspiration.julxzs.website/api/quote", function (error, response, body) {
 
 			if (error) { return errorCallback(error); } // error handle
 
@@ -473,7 +473,7 @@ Commands["quote"] = {
 
 	}
 }
-
+/*
 Commands["waifu"] = {
 	name: "waifu",
 	description: "I'll give you a random Waifu.",
