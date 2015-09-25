@@ -904,6 +904,18 @@ Commands["pet"] = {
 	}
 }
 
+Commands["onodera"] =
+Commands["worstgirl"] =
+Commands["trash"] = {
+	name: "trash",
+	aliases: ['onodera', 'worstgirl'],
+	description: "I'll upload an image of 'worst girl'. (WARNING: May cause nausea!)",
+	authLevel: 0,
+	fn: function(bot, message, params, errorCallback) {
+		bot.sendFile(message, __dirname + "/../images/trash.png").catch(errorCallback);
+	}
+}
+
 // ========================================================================
 // Moderator Commands
 // ========================================================================
@@ -985,18 +997,6 @@ Commands["nsfw"] = {
 				}
 			});
 		}
-	}
-}
-
-Commands["onodera"] =
-Commands["worstgirl"] =
-Commands["trash"] = {
-	name: "trash",
-	aliases: ['onodera', 'worstgirl'],
-	description: "I'll upload an image of 'worst girl'. (WARNING: May cause nausea!)",
-	authLevel: 2,
-	fn: function(bot, message, params, errorCallback) {
-		bot.sendFile(message, __dirname + "/../images/trash.png").catch(errorCallback);
 	}
 }
 
