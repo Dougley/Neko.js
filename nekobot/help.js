@@ -32,7 +32,10 @@ exports.getCommandInfo = function(bot, message, command, errorCallback) {
 
 			// user doesn't have permission
 			} else {
-				bot.reply(message, "you don't have access to the **" + Config.commands.prefix + command + "** command.").catch(errorCallback);
+				var msgArray = [];
+				msgArray.push("you don't have access to the **" + Config.commands.prefix + command + "** command.");
+				msgArray.push("_(current permissions level: **" + level + "**, required permissions level: **" + Commands[command].authLevel + "**)_");
+				bot.reply(message, msgArray).catch(errorCallback);
 			}
 		});
 

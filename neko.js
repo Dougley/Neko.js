@@ -50,7 +50,10 @@ NekoBot.on("message", function(msg) {
 				if (level >= Commands[command].authLevel) {
 					Commands[command].fn(NekoBot, msg, params, error);
 				} else {
-					NekoBot.reply(msg, "you don't have access to the **" + Config.commands.prefix + command + "** command.").catch(error);
+					var msgArray = [];
+					msgArray.push("you don't have access to the **" + Config.commands.prefix + command + "** command.");
+					msgArray.push("_(current permissions level: **" + level + "**, required permissions level: **" + Commands[command].authLevel + "**)_");
+					NekoBot.reply(msg, msgArray).catch(error);
 				}
 			});
 
