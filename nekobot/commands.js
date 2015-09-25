@@ -636,14 +636,15 @@ Commands["avatar"] = {
 		var msgArray = [];
 
 		// cycle mentions and add a message with the avatar of each user
-		message.mentions.forEach(function(user) {
+		for (index in message.mentions) {
+			var user = message.mentions[index];
 			if(user.avatar == null){
 				msgArray.push(user.username + " has no avatar.");
 			}
 			else{
 				msgArray.push(user.username + "'s avatar is: https://discordapp.com/api/users/" + user.id + "/avatars/" + user.avatar + ".jpg");
 			}
-		});
+		}
 
 		// send messages
 		bot.sendMessage(message, msgArray).catch(errorCallback);
