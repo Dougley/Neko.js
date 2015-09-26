@@ -444,6 +444,32 @@ Commands["yandere"] = {
 	}
 }
 
+Commands["lolibooru"] = {
+	name: "lolibooru",
+	params: "[tag ...]",
+	description: "I'll find a random image from Lolibooru with the tag(s) you request.",
+	authLevel: 0,
+	fn: function(bot, message, params, errorCallback) {
+
+		// if we're not in a PM, then check NSFW flag before executing the command!
+		if (message.channel.server !== undefined) { // PMs don't have servers, they have PMChannel
+
+			Permissions.getAllowNSFW(message.channel, function(err, allow) {
+				if (err) { return errorCallback(err); } // error handle
+				if (allow === "on") {
+					ImageChan.getImageByTags(bot, message, "lolibooru", params, errorCallback);
+				} else {
+					bot.sendMessage(message, "NSFW commands are **DISABLED** in " + message.channel).catch(errorCallback);
+				}
+			});
+		}
+
+		else { // we're in a PM, or the channel allows NSFW... let's get lewd
+			ImageChan.getImageByTags(bot, message, "lolibooru", params, errorCallback);
+		}
+	}
+}
+
 Commands["quote"] = {
 	name: "quote",
 	description: "I'll give you a random inspirational quote.",

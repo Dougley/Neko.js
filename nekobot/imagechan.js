@@ -12,6 +12,7 @@ const GELBOORU	= ["http://gelbooru.com/index.php?page=dapi&s=post&q=index&limit=
 const RULE34	= ["http://rule34.xxx/index.php?page=dapi&s=post&q=index&limit=1&tags=", "&pid="];
 const KONACHAN	= ["http://konachan.com/post.xml?limit=1&tags=", "&page="];
 const YANDERE	= ["https://yande.re/post.xml?limit=1&tags=", "&page="];
+const LOLIBOORU	= ["http://lolibooru.moe/post/index.xml?limit=1&tags=", "&page="];
 
 // ========================================================================
 // Get Post Count From Tag
@@ -25,6 +26,7 @@ exports.getPostCount = function(chan, tags, callback) {
 	if (chan === "rule34")		{ chan = RULE34; }
 	if (chan === "konachan")	{ chan = KONACHAN; }
 	if (chan === "yandere")		{ chan = YANDERE; }
+	if (chan === "lolibooru")	{ chan = LOLIBOORU; }
 
 	// make an Http request to recieve Xml
 	Request(chan[0] + tags, function (error, response, body) {
@@ -57,6 +59,7 @@ exports.getRandomPost = function(chan, tags, count, callback) {
 	if (chan === "rule34")		{ chan = RULE34; }
 	if (chan === "konachan")	{ chan = KONACHAN; }
 	if (chan === "yandere")		{ chan = YANDERE; }
+	if (chan === "lolibooru")	{ chan = LOLIBOORU; }
 
 	// get a random page number between 1 and count, so we never request page 0
 	var random = Math.floor((Math.random() * (count - 1)) + 1);
@@ -110,7 +113,7 @@ exports.getImageByTags = function(bot, message, chan, params, errorCallback) {
 				if (err) { return errorCallback(err); } // error handle
 				if (imageUrl) {
 					// send a message with the image
-					bot.sendMessage(message, imageUrl).catch(errorCallback);
+					bot.sendMessage(message, imageUrl.split(" ").join("%20")).catch(errorCallback);
 					return;
 				}
 			});
