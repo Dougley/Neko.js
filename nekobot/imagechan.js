@@ -1,6 +1,8 @@
 var Request		= require('request');
 var XmlParser	= require('xml2js');
 
+var Logger		= require('./logger').Logger;
+
 // ========================================================================
 // Chan Specific Links
 // ========================================================================
