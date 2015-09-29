@@ -657,7 +657,7 @@ Commands["avatar"] = {
 	fn: function(bot, message, params, errorCallback) {
 		// @mention doesn't work in PMs, so neither can this command
 		if(message.channel.server === undefined) { // PMs don't have servers, they have PMChannel
-			bot.sendMessage(message, "I can't do that in a PM! (I'm sorry ;w;)").catch(errorCallback);
+			bot.sendMessage(message, "I can't do that in a PM! (I'm sorry ;w;\\)").catch(errorCallback);
 			return;
 		}
 
@@ -956,7 +956,7 @@ Commands["whois"] = {
 	fn: function(bot, message, params, errorCallback) {
 		// @mention doesn't work in PMs, so neither can this command
 		if(message.channel.server === undefined) { // PMs don't have servers, they have PMChannel
-			bot.sendMessage(message, "I can't do that in a PM! (I'm sorry ;w;)").catch(errorCallback);
+			bot.sendMessage(message, "I can't do that in a PM! (I'm sorry ;w;\\)").catch(errorCallback);
 			return;
 		}
 
@@ -1041,7 +1041,7 @@ Commands["setperms"] = {
 
 		// @mention doesn't work in PMs, so neither can this command
 		if (message.channel.server === undefined) { // PMs don't have servers, they have PMChannel
-			bot.sendMessage(message, "I can't do that in a PM! (I'm sorry ;w;)").catch(errorCallback);
+			bot.sendMessage(message, "I can't do that in a PM! (I'm sorry ;w;\\)").catch(errorCallback);
 			return;
 		}
 
