@@ -1,15 +1,15 @@
 {
   "private": true,
   "name": "nekobot-js",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Port of Kusoneko's Nekobot to NodeJS",
   "author": "TehSeph, Kusoneko",
   "dependencies": {
-    "discord.js": "~3.3.4",
+    "discord.js": "~3.6.0",
     "node-dir": "~0.1.10",
-    "redis": "~1.0.0",
-    "request": "~2.62.0",
-    "winston": "~1.0.1",
+    "redis": "~2.0.1",
+    "request": "~2.64.0",
+    "winston": "~1.0.2",
     "xml2js": "~0.4.12"
   },
   "scripts": {}
