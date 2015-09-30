@@ -1,7 +1,12 @@
 # Neko.js
-Port of [Nekobot](https://github.com/Kusoneko/Nekobot) (by [Kusoneko](https://github.com/Kusoneko)) to [Node](https://nodejs.org/), using [discord.js](https://github.com/hydrabolt/discord.js) (by [hydrabolt](https://github.com/hydrabolt)).
+[![Version](https://img.shields.io/badge/version-0.5.2-brightgreen.svg?style=flat-square)]()
+[![Status](https://img.shields.io/badge/status-in--dev-yellow.svg?style=flat-square)]()
+[![Node](https://img.shields.io/badge/node-4.1.1-green.svg?style=flat-square)](https://nodejs.org/)
+[![NPM](https://img.shields.io/badge/npm-3.3.4-green.svg?style=flat-square)](https://nodejs.org/)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](http://mit-license.org/)
+[![Tested](https://img.shields.io/badge/tested-Windows 7/10 | Ubuntu 14.04/15.04-lightgrey.svg?style=flat-square)]()
 
-Version: 0.5.2
+Port of [Nekobot](https://github.com/Kusoneko/Nekobot) (by [Kusoneko](https://github.com/Kusoneko)) to [Node](https://nodejs.org/), using [discord.js](https://github.com/hydrabolt/discord.js) (by [hydrabolt](https://github.com/hydrabolt)).
 
 ### Installation
 You'll need the following programs to use Neko.js:
