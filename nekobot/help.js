@@ -1,5 +1,5 @@
 var Config		= require("../config.json");
-var Permissions	= require('./permissions');
+var Permissions	= require("./permissions");
 
 // ========================================================================
 // Single Command
