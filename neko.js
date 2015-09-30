@@ -40,7 +40,7 @@ NekoBot.on("ready", function() {
 NekoBot.on("message", function(msg) {
 
 	// prevent NekoBot from gaining sentience
-	if(msg.author === NekoBot.user) { return }
+	if(msg.author === NekoBot.user) { return; }
 
 	// check for command prefix so we know it's a command
 	if(msg.content.charAt(0) === Config.commands.prefix) {
@@ -52,6 +52,10 @@ NekoBot.on("message", function(msg) {
 		var chunks = msg.content.split(" ");
 		var command = chunks[0];
 		var params = chunks.slice(1);
+
+		// ignore if idiotic punctuation spam
+		var antiIdiot = new RegExp("^[a-z0-9]+$", "i");
+		if (antiIdiot.test(command) === false) { return; }
 
 		// search for a matching command
 		if (Commands[command]) {

@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "nekobot-js",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "Port of Kusoneko's Nekobot to NodeJS",
   "author": "TehSeph, Kusoneko",
   "dependencies": {
