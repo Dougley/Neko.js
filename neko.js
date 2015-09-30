@@ -1,9 +1,10 @@
-var Discord		= require("discord.js");
+var Discord			= require("discord.js");
 
-var Config		= require("./config.json");
-var Logger		= require('./nekobot/logger').Logger;
-var Commands	= require('./nekobot/commands').Commands;
-var Permissions	= require('./nekobot/permissions');
+var Commands		= require("./nekobot/commands").Commands;
+var Config			= require("./config.json");
+var Logger			= require("./nekobot/logger").Logger;
+var Permissions		= require("./nekobot/permissions");
+var VersionChecker	= require("./nekobot/versioncheck");
 
 var NekoBot = new Discord.Client();
 
@@ -12,8 +13,20 @@ var NekoBot = new Discord.Client();
 // ========================================================================
 
 function init() {
+
 	Logger.info("Initializing...");
+
+	Logger.info("Checking for updates...");
+	VersionChecker.getStatus(function(err, status) {
+		if (err) { error(err); } // error handle
+		if (status && status !== "failed") {
+			Logger.info(status);
+		}
+	});
+
+//	Logger.info("Joining servers...");
 //	NekoBot.joinServer(Config.server);
+
 }
 
 NekoBot.on("ready", function() {

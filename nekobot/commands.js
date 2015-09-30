@@ -1,12 +1,13 @@
-var Request		= require('request');
+var Request			= require("request");
 
-var Logger		= require('./logger').Logger;
-var Permissions	= require('./permissions');
-var Help		= require('./help');
-var ImageChan	= require('./imagechan');
-var Lewdsx		= require('./lewdsx');
-var ImageFolder	= require('./imagefolder');
-var Fortunes	= require('./fortunes').Fortunes;
+var Fortunes		= require("./fortunes").Fortunes;
+var Help			= require("./help");
+var ImageChan		= require("./imagechan");
+var ImageFolder		= require("./imagefolder");
+var Lewdsx			= require("./lewdsx");
+var Logger			= require("./logger").Logger;
+var Permissions		= require("./permissions");
+var VersionChecker	= require("./versioncheck");
 
 Commands = [];
 
@@ -199,6 +200,29 @@ Commands["help"] = {
 		} else {
 			Help.getAllCommands(bot, message, errorCallback);
 		}
+	}
+}
+
+Commands["version"] = {
+	name: "version",
+	description: "I'll check for updates and tell you my version status.",
+	authLevel: 0,
+	fn: function(bot, message, params, errorCallback) {
+		// get version update status
+		VersionChecker.getStatus(function(err, status) {
+
+			if (err) { return errorCallback(err); } // error handle
+
+			// versioncheck failed
+			if (status === "failed") {
+				bot.reply(message, "I've failed to check for updates! ;w; (Please tell my master.)").catch(errorCallback);
+			}
+
+			// versioncheck passed, reply with status
+			else {
+				bot.sendMessage(message, status).catch(errorCallback);
+			}
+		});
 	}
 }
 
