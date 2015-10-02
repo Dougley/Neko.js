@@ -82,16 +82,36 @@ NekoBot.on("message", function(msg) {
 });
 
 // ========================================================================
+// New User Greeter
+// ========================================================================
+
+NekoBot.on("serverNewMember", function(user, server) {
+	NekoBot.sendMessage(server.defaultChannel, user + " has joined the server! Nyaa~").catch(error);
+});
+
+// ========================================================================
 // Error / Disconnect Handle
 // ========================================================================
 
-function error(err){
+function error(err) {
 	Logger.error(err);
 	process.exit(1);
 }
 
+NekoBot.on("error", function(err) {
+	error(err);
+});
+
 NekoBot.on("disconnected", function() {
 	error("Disconnected! :(");
+});
+
+// ========================================================================
+// Discord.js Debugger Piping
+// ========================================================================
+
+NekoBot.on("debug", function(msg) {
+	Logger.log("debug", msg);
 });
 
 // After all funcs, do Bot login! (This is the program entry point)
