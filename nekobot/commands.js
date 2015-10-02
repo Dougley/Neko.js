@@ -648,9 +648,12 @@ Commands["qt"] = {
 	}
 }
 
+Commands["location"] =
+Commands["channelinfo"] =
 Commands["whereami"] = {
 	name: "whereami",
-	description: "I'll tell you information about the channel and server you're asking me this.",
+	aliases: ['location', 'channelinfo'],
+	description: "I'll tell you information about the channel and server you're asking me this from.",
 	authLevel: 0,
 	fn: function(bot, message, params, errorCallback) {
 
@@ -661,8 +664,9 @@ Commands["whereami"] = {
 			var msgArray = [];
 
 			msgArray.push("You are currently in " + message.channel + " (id: " + message.channel.id + ")");
-			msgArray.push("on server **" + message.channel.server.name + "** (id: " + message.channel.server.id + ")");
+			msgArray.push("on server **" + message.channel.server.name + "** (id: " + message.channel.server.id + ") (region: " + message.channel.server.region + ")");
 			msgArray.push("owned by " + message.channel.server.owner + " (id: " + message.channel.server.owner.id + ")");
+			if (message.channel.topic) { msgArray.push("The current topic is: " + message.channel.topic); }
 
 			// send messages
 			bot.sendMessage(message, msgArray).catch(errorCallback);
@@ -939,15 +943,13 @@ Commands["pet"] = {
 		}
 
 		// otherwise, cycle mentions and add each user to pets
-		var isMentioningMe = false;
 		for (index in message.mentions) {
 			var user = message.mentions[index];
-			if (user === bot.user) { isMentioningMe = true; }
 			pets.push(user);
 		}
 
 		// if nekobot is on the list, purr
-		if (isMentioningMe) { pets.push("*purrs*"); }
+		if (message.isMentioned(bot.user)) { pets.push("*purrs*"); }
 
 		// send message
 		bot.sendMessage(message, message.author + " pets " + pets.join(" ")).catch(errorCallback);
