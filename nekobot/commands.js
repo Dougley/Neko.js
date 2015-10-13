@@ -15,6 +15,16 @@ Commands = [];
 // C# Bot Commands -- Suppress the "No command" message for the C# bot's unported commands
 // ========================================================================
 
+Commands["color"] = {
+    name: "color",
+    params: "[rolename] [red] [green] [blue]",
+    description: "I'll change a role's color.",
+    authLevel: 10,
+    fn: function(bot, message, params, errorCallback) {
+        return;
+    }
+}
+
 Commands["leave"] = {
 	name: "leave",
 	description: "I'll leave the server, as requested. ;w;",
