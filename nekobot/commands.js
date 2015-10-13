@@ -19,7 +19,7 @@ Commands["color"] = {
     name: "color",
     params: "[rolename] [red] [green] [blue]",
     description: "I'll change a role's color.",
-    authLevel: 10,
+    authLevel: 2,
     fn: function(bot, message, params, errorCallback) {
         return;
     }
