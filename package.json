@@ -5,11 +5,11 @@
   "description": "Port of Kusoneko's Nekobot to NodeJS",
   "author": "TehSeph, Kusoneko",
   "dependencies": {
-    "discord.js": "~3.6.3",
+    "discord.js": "~3.8.2",
     "node-dir": "~0.1.10",
-    "redis": "~2.0.1",
-    "request": "~2.64.0",
-    "winston": "~1.0.2",
+    "redis": "~2.2.3",
+    "request": "~2.65.0",
+    "winston": "~1.1.0",
     "xml2js": "~0.4.12"
   },
   "scripts": {}
