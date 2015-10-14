@@ -40,7 +40,7 @@ NekoBot.on("ready", function() {
 NekoBot.on("message", function(msg) {
 
 	// prevent NekoBot from gaining sentience
-	if(msg.author === NekoBot.user) { return; }
+	if(msg.author.equals(NekoBot.user)) { return; }
 
 	// check for command prefix so we know it's a command
 	if(msg.content.charAt(0) === Config.commands.prefix) {

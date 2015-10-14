@@ -299,6 +299,18 @@ Commands["killyourself"] = {
 	}
 }
 
+Commands["grats"] =
+Commands["congrats"] =
+Commands["congratulations"] = {
+	name: "congratulations",
+	aliases: ['grats', 'congrats'],
+	description: "Congratulate someone for whatever reason.",
+	authLevel: 0,
+	fn: function(bot, message, params, errorCallback) {
+		bot.sendMessage(message, "https://www.youtube.com/watch?v=oyFQVZ2h0V8").catch(errorCallback);
+	}
+}
+
 Commands["forward"] =
 Commands["say"] = {
 	name: "say",
@@ -975,6 +987,18 @@ Commands["trash"] = {
 	authLevel: 0,
 	fn: function(bot, message, params, errorCallback) {
 		bot.sendFile(message, __dirname + "/../images/trash.png").catch(errorCallback);
+	}
+}
+
+Commands["shia"] =
+Commands["justdoit"] =
+Commands["doit"] = {
+	name: "doit",
+	aliases: ['justdoit', 'shia'],
+	description: "DON'T LET YOUR DREAMS JUST BE DREAMS!",
+	authLevel: 0,
+	fn: function(bot, message, params, errorCallback) {
+		bot.sendFile(message, __dirname + "/../images/shia.jpg").catch(errorCallback);
 	}
 }
 
