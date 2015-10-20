@@ -384,7 +384,7 @@ Commands["safebooru"] = {
 	}
 }
 
-Commands["gelbooru"] = {
+/*Commands["gelbooru"] = {
 	name: "gelbooru",
 	params: "[tag ...]",
 	description: "I'll find a random image from Gelbooru with the tag(s) you request.",
@@ -408,7 +408,7 @@ Commands["gelbooru"] = {
 			ImageChan.getImageByTags(bot, message, "gelbooru", params, errorCallback);
 		}
 	}
-}
+}*/
 
 Commands["rule34"] = {
 	name: "rule34",

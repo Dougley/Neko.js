@@ -8,7 +8,7 @@ var Logger		= require("./logger").Logger;
 // ========================================================================
 
 const SAFEBOORU	= ["http://safebooru.org/index.php?page=dapi&s=post&q=index&limit=1&tags=", "&pid="];
-const GELBOORU	= ["http://gelbooru.com/index.php?page=dapi&s=post&q=index&limit=1&tags=", "&pid="];
+//const GELBOORU	= ["http://gelbooru.com/index.php?page=dapi&s=post&q=index&limit=1&tags=", "&pid="];
 const RULE34	= ["http://rule34.xxx/index.php?page=dapi&s=post&q=index&limit=1&tags=", "&pid="];
 const KONACHAN	= ["http://konachan.com/post.xml?limit=1&tags=", "&page="];
 const YANDERE	= ["https://yande.re/post.xml?limit=1&tags=", "&page="];
@@ -22,7 +22,7 @@ exports.getPostCount = function(chan, tags, callback) {
 
 	// get the appropriate api link
 	if (chan === "safebooru")	{ chan = SAFEBOORU; }
-	if (chan === "gelbooru")	{ chan = GELBOORU; }
+//	if (chan === "gelbooru")	{ chan = GELBOORU; }
 	if (chan === "rule34")		{ chan = RULE34; }
 	if (chan === "konachan")	{ chan = KONACHAN; }
 	if (chan === "yandere")		{ chan = YANDERE; }
@@ -55,7 +55,7 @@ exports.getRandomPost = function(chan, tags, count, callback) {
 
 	// get the appropriate api link
 	if (chan === "safebooru")	{ chan = SAFEBOORU; }
-	if (chan === "gelbooru")	{ chan = GELBOORU; }
+//	if (chan === "gelbooru")	{ chan = GELBOORU; }
 	if (chan === "rule34")		{ chan = RULE34; }
 	if (chan === "konachan")	{ chan = KONACHAN; }
 	if (chan === "yandere")		{ chan = YANDERE; }
