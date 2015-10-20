@@ -20,6 +20,7 @@ Commands["color"] = {
     params: "[rolename] [red] [green] [blue]",
     description: "I'll change a role's color.",
     authLevel: 2,
+    nsfw: false,
     fn: function(bot, message, params, errorCallback) {
         return;
     }
@@ -29,6 +30,7 @@ Commands["leave"] = {
 	name: "leave",
 	description: "I'll leave the server, as requested. ;w;",
 	authLevel: 2,
+    nsfw: false,
 	fn: function(bot, message, params, errorCallback) {
 		return;
 	}
@@ -38,6 +40,7 @@ Commands["die"] = {
 	name: "die",
 	description: "I'll leave all servers and stop my program. ;w;'",
 	authLevel: 3,
+    nsfw: false,
 	fn: function(bot, message, params, errorCallback) {
 		return;
 	}
@@ -48,6 +51,7 @@ Commands["playerpost"] = {
 	params: "[postid]",
 	description: "I'll tell you the contents of the post with the given *postid*.",
 	authLevel: 0,
+    nsfw: false,
 	fn: function(bot, message, params, errorCallback) {
 		return;
 	}
@@ -58,6 +62,7 @@ Commands["playercomment"] = {
 	params: "[postid] [commentid]",
 	description: "I'll tell you the contents of the comment with the given *postid* and *commentid*.'",
 	authLevel: 0,
+    nsfw: false,
 	fn: function(bot, message, params, errorCallback) {
 		return;
 	}
@@ -68,6 +73,7 @@ Commands["playerbio"] = {
 	params: "[username]",
 	description: "I'll tell you the short bio of the player with the given *username*.'",
 	authLevel: 0,
+    nsfw: false,
 	fn: function(bot, message, params, errorCallback) {
 		return;
 	}
@@ -78,6 +84,7 @@ Commands["playerlongbio"] = {
 	params: "[username]",
 	description: "I'll tell you the long bio of the player with the given *username*.'",
 	authLevel: 0,
+    nsfw: false,
 	fn: function(bot, message, params, errorCallback) {
 		return;
 	}
@@ -88,6 +95,7 @@ Commands["playeravatar"] = {
 	params: "[username]",
 	description: "I'll link the avatar of the player with the given *username*.'",
 	authLevel: 0,
+    nsfw: false,
 	fn: function(bot, message, params, errorCallback) {
 		return;
 	}
@@ -98,6 +106,7 @@ Commands["invite"] = {
 	params: "[invitecode]",
 	description: "Invites me to join a server via *invitecode*! (links not supported yet)",
 	authLevel: 0,
+    nsfw: false,
 	fn: function(bot, message, params, errorCallback) {
 		return;
 	}
@@ -108,6 +117,7 @@ Commands["music"] = {
 	params: "[on/off] [channelid]",
 	description: "Enables/Disables music streaming in the voice channel with the given *channelid*.",
 	authLevel: 3,
+    nsfw: false,
 	fn: function(bot, message, params, errorCallback) {
 		return;
 	}
@@ -118,6 +128,7 @@ Commands["cid"] = {
 	params: "[channelname]",
 	description: "I'll tell you the ID of the channel with the given *channelname*.",
 	authLevel: 0,
+    nsfw: false,
 	fn: function(bot, message, params, errorCallback) {
 		return;
 	}
@@ -127,6 +138,7 @@ Commands["skip"] = {
 	name: "skip",
 	description: "Vote to skip the current song. Skipping requires > 50% of the users in the channel to vote.",
 	authLevel: 0,
+    nsfw: false,
 	fn: function(bot, message, params, errorCallback) {
 		return;
 	}
@@ -136,6 +148,7 @@ Commands["forceskip"] = {
 	name: "forceskip",
 	description: "Moderator level skip for the current song. Forces skip, reguardless of votes.",
 	authLevel: 1,
+    nsfw: false,
 	fn: function(bot, message, params, errorCallback) {
 		return;
 	}
@@ -145,6 +158,7 @@ Commands["song"] = {
 	name: "song",
 	description: "I'll read you the ID3 tags of the current song. If I can't find them, I'll tell you the filename instead.",
 	authLevel: 0,
+    nsfw: false,
 	fn: function(bot, message, params, errorCallback) {
 		return;
 	}
@@ -157,6 +171,7 @@ Commands["replay"] = {
 	aliases: ['encore', 'ankouru'],
 	description: "Vote to replay the current song. Replay requires > 50% of the users in the channel to vote.",
 	authLevel: 0,
+    nsfw: false,
 	fn: function(bot, message, params, errorCallback) {
 		return;
 	}
@@ -167,6 +182,7 @@ Commands["request"] = {
 	params: "[filename]",
 	description: "Request a song to be added to the queue.",
 	authLevel: 0,
+    nsfw: false,
 	fn: function(bot, message, params, errorCallback) {
 		return;
 	}
@@ -176,6 +192,7 @@ Commands["playlist"] = {
 	name: "playlist",
 	description: "I'll tell you the current playlist, aka the currently playing song and the 10 next songs I currently plan to play next, as well as their origin (Encore, Request or Playlist).",
 	authLevel: 0,
+    nsfw: false,
 	fn: function(bot, message, params, errorCallback) {
 		return;
 	}
@@ -189,6 +206,7 @@ Commands["ping"] = {
 	name: "ping",
 	description: "I'll say 'Pong!'",
 	authLevel: 0,
+    nsfw: false,
 	fn: function(bot, message, params, errorCallback) {
 		bot.reply(message, "Pong!").catch(errorCallback);
 	}
@@ -202,6 +220,7 @@ Commands["help"] = {
 	aliases: ['command','commands'],
 	description: "I can tell you about any *command*. (Leave params empty for a list of all commands.)",
 	authLevel: 0,
+    nsfw: false,
 	fn: function(bot, message, params, errorCallback) {
 		// check for a param and only send info for that command
 		if (params[0]) {
@@ -217,6 +236,7 @@ Commands["version"] = {
 	name: "version",
 	description: "I'll check for updates and tell you my version status.",
 	authLevel: 0,
+    nsfw: false,
 	fn: function(bot, message, params, errorCallback) {
 		// get version update status
 		VersionChecker.getStatus(function(err, status) {
@@ -240,6 +260,7 @@ Commands["nya"] = {
 	name: "nya",
 	description: "I'll say 'Nyaa~'",
 	authLevel: 0,
+    nsfw: false,
 	fn: function(bot, message, params, errorCallback) {
 		bot.sendMessage(message, "Nyaa~").catch(errorCallback);
 	}
@@ -249,6 +270,7 @@ Commands["poi"] = {
 	name: "poi",
 	description: "I'll say 'Poi!'",
 	authLevel: 0,
+    nsfw: false,
 	fn: function(bot, message, params, errorCallback) {
 		bot.sendMessage(message, "Poi!").catch(errorCallback);
 	}
@@ -263,6 +285,7 @@ Commands["aicrai"] = {
 	aliases: ['icri', 'sadhorn', 'aicraievritaim', 'aicraievritiem'],
 	description: "When sad things happen...",
 	authLevel: 0,
+    nsfw: false,
 	fn: function(bot, message, params, errorCallback) {
 		bot.sendMessage(message, "https://www.youtube.com/watch?v=0JAn8eShOo8").catch(errorCallback);
 	}
@@ -274,6 +297,7 @@ Commands["notnow"] = {
 	aliases: ['rinpls'],
 	description: "How to Rekt: Rin 101",
 	authLevel: 0,
+    nsfw: false,
 	fn: function(bot, message, params, errorCallback) {
 		bot.sendMessage(message, "https://www.youtube.com/watch?v=2BZUzJfKFwM").catch(errorCallback);
 	}
@@ -283,6 +307,7 @@ Commands["uninstall"] = {
 	name: "uninstall",
 	description: "A great advice in any situation.",
 	authLevel: 0,
+    nsfw: false,
 	fn: function(bot, message, params, errorCallback) {
 		bot.sendMessage(message, "https://www.youtube.com/watch?v=iNCXiMt1bR4").catch(errorCallback);
 	}
@@ -294,6 +319,7 @@ Commands["killyourself"] = {
 	aliases: ['kys'],
 	description: "Another good advice.",
 	authLevel: 0,
+    nsfw: false,
 	fn: function(bot, message, params, errorCallback) {
 		bot.sendMessage(message, "https://www.youtube.com/watch?v=2dbR2JZmlWo").catch(errorCallback);
 	}
@@ -306,6 +332,7 @@ Commands["congratulations"] = {
 	aliases: ['grats', 'congrats'],
 	description: "Congratulate someone for whatever reason.",
 	authLevel: 0,
+    nsfw: false,
 	fn: function(bot, message, params, errorCallback) {
 		bot.sendMessage(message, "https://www.youtube.com/watch?v=oyFQVZ2h0V8").catch(errorCallback);
 	}
@@ -318,6 +345,7 @@ Commands["say"] = {
 	aliases: ['forward'],
 	description: "I'll repeat what you said.",
 	authLevel: 0,
+    nsfw: false,
 	fn: function(bot, message, params, errorCallback) {
 		bot.sendMessage(message, params.join(" ")).catch(errorCallback);
 	}
@@ -328,6 +356,7 @@ Commands["reverse"] = {
 	params: "[text ...]",
 	description: "I'll repeat what you said, in reverse!",
 	authLevel: 0,
+    nsfw: false,
 	fn: function(bot, message, params, errorCallback) {
 
 		// build a RegEx for mentions and channels
@@ -363,24 +392,9 @@ Commands["safebooru"] = {
 	params: "[tag ...]",
 	description: "I'll find a random image from Safebooru with the tag(s) you request.",
 	authLevel: 0,
+    nsfw: true,
 	fn: function(bot, message, params, errorCallback) {
-
-		// if we're not in a PM, then check NSFW flag before executing the command!
-		if (!message.isPrivate) {
-
-			Permissions.getAllowNSFW(message.channel, function(err, allow) {
-				if (err) { return errorCallback(err); } // error handle
-				if (allow === "on") {
-					ImageChan.getImageByTags(bot, message, "safebooru", params, errorCallback);
-				} else {
-					bot.sendMessage(message, "NSFW commands are **DISABLED** in " + message.channel).catch(errorCallback);
-				}
-			});
-		}
-
-		else { // we're in a PM, or the channel allows NSFW... let's get lewd
-			ImageChan.getImageByTags(bot, message, "safebooru", params, errorCallback);
-		}
+		ImageChan.getImageByTags(bot, message, "safebooru", params, errorCallback);
 	}
 }
 
@@ -389,24 +403,9 @@ Commands["safebooru"] = {
 	params: "[tag ...]",
 	description: "I'll find a random image from Gelbooru with the tag(s) you request.",
 	authLevel: 0,
+    nsfw: true,
 	fn: function(bot, message, params, errorCallback) {
-
-		// if we're not in a PM, then check NSFW flag before executing the command!
-		if (!message.isPrivate) {
-
-			Permissions.getAllowNSFW(message.channel, function(err, allow) {
-				if (err) { return errorCallback(err); } // error handle
-				if (allow === "on") {
-					ImageChan.getImageByTags(bot, message, "gelbooru", params, errorCallback);
-				} else {
-					bot.sendMessage(message, "NSFW commands are **DISABLED** in " + message.channel).catch(errorCallback);
-				}
-			});
-		}
-
-		else { // we're in a PM, or the channel allows NSFW... let's get lewd
-			ImageChan.getImageByTags(bot, message, "gelbooru", params, errorCallback);
-		}
+		ImageChan.getImageByTags(bot, message, "gelbooru", params, errorCallback);
 	}
 }*/
 
@@ -415,24 +414,9 @@ Commands["rule34"] = {
 	params: "[tag ...]",
 	description: "I'll find a random image from Rule34 with the tag(s) you request.",
 	authLevel: 0,
+    nsfw: true,
 	fn: function(bot, message, params, errorCallback) {
-
-		// if we're not in a PM, then check NSFW flag before executing the command!
-		if (!message.isPrivate) {
-
-			Permissions.getAllowNSFW(message.channel, function(err, allow) {
-				if (err) { return errorCallback(err); } // error handle
-				if (allow === "on") {
-					ImageChan.getImageByTags(bot, message, "rule34", params, errorCallback);
-				} else {
-					bot.sendMessage(message, "NSFW commands are **DISABLED** in " + message.channel).catch(errorCallback);
-				}
-			});
-		}
-
-		else { // we're in a PM, or the channel allows NSFW... let's get lewd
-			ImageChan.getImageByTags(bot, message, "rule34", params, errorCallback);
-		}
+		ImageChan.getImageByTags(bot, message, "rule34", params, errorCallback);
 	}
 }
 
@@ -443,24 +427,9 @@ Commands["kona"] = {
 	aliases: ['konachan'],
 	description: "I'll find a random image from Konachan with the tag(s) you request.",
 	authLevel: 0,
+    nsfw: true,
 	fn: function(bot, message, params, errorCallback) {
-
-		// if we're not in a PM, then check NSFW flag before executing the command!
-		if (!message.isPrivate) {
-
-			Permissions.getAllowNSFW(message.channel, function(err, allow) {
-				if (err) { return errorCallback(err); } // error handle
-				if (allow === "on") {
-					ImageChan.getImageByTags(bot, message, "konachan", params, errorCallback);
-				} else {
-					bot.sendMessage(message, "NSFW commands are **DISABLED** in " + message.channel).catch(errorCallback);
-				}
-			});
-		}
-
-		else { // we're in a PM, or the channel allows NSFW... let's get lewd
-			ImageChan.getImageByTags(bot, message, "konachan", params, errorCallback);
-		}
+		ImageChan.getImageByTags(bot, message, "konachan", params, errorCallback);
 	}
 }
 
@@ -469,24 +438,9 @@ Commands["yandere"] = {
 	params: "[tag ...]",
 	description: "I'll find a random image from Yandere with the tag(s) you request.",
 	authLevel: 0,
+    nsfw: true,
 	fn: function(bot, message, params, errorCallback) {
-
-		// if we're not in a PM, then check NSFW flag before executing the command!
-		if (!message.isPrivate) {
-
-			Permissions.getAllowNSFW(message.channel, function(err, allow) {
-				if (err) { return errorCallback(err); } // error handle
-				if (allow === "on") {
-					ImageChan.getImageByTags(bot, message, "yandere", params, errorCallback);
-				} else {
-					bot.sendMessage(message, "NSFW commands are **DISABLED** in " + message.channel).catch(errorCallback);
-				}
-			});
-		}
-
-		else { // we're in a PM, or the channel allows NSFW... let's get lewd
-			ImageChan.getImageByTags(bot, message, "yandere", params, errorCallback);
-		}
+		ImageChan.getImageByTags(bot, message, "yandere", params, errorCallback);
 	}
 }
 
@@ -495,24 +449,9 @@ Commands["lolibooru"] = {
 	params: "[tag ...]",
 	description: "I'll find a random image from Lolibooru with the tag(s) you request.",
 	authLevel: 0,
+    nsfw: true,
 	fn: function(bot, message, params, errorCallback) {
-
-		// if we're not in a PM, then check NSFW flag before executing the command!
-		if (!message.isPrivate) {
-
-			Permissions.getAllowNSFW(message.channel, function(err, allow) {
-				if (err) { return errorCallback(err); } // error handle
-				if (allow === "on") {
-					ImageChan.getImageByTags(bot, message, "lolibooru", params, errorCallback);
-				} else {
-					bot.sendMessage(message, "NSFW commands are **DISABLED** in " + message.channel).catch(errorCallback);
-				}
-			});
-		}
-
-		else { // we're in a PM, or the channel allows NSFW... let's get lewd
-			ImageChan.getImageByTags(bot, message, "lolibooru", params, errorCallback);
-		}
+		ImageChan.getImageByTags(bot, message, "lolibooru", params, errorCallback);
 	}
 }
 
@@ -520,6 +459,7 @@ Commands["quote"] = {
 	name: "quote",
 	description: "I'll give you a random inspirational quote.",
 	authLevel: 0,
+    nsfw: false,
 	fn: function(bot, message, params, errorCallback) {
 
 		// make an Http request to recieve quote
@@ -550,6 +490,7 @@ Commands["waifu"] = {
 	name: "waifu",
 	description: "I'll give you a random Waifu.",
 	authLevel: 0,
+    nsfw: false,
 	fn: function(bot, message, params, errorCallback) {
 
 		// make an Http request to recieve quote
@@ -574,24 +515,9 @@ Commands["neko"] = {
 	name: "neko",
 	description: "I'll find a random Nekomimi from lewd.sx",
 	authLevel: 0,
+    nsfw: true,
 	fn: function(bot, message, params, errorCallback) {
-
-		// if we're not in a PM, then check NSFW flag before executing the command!
-		if (!message.isPrivate) {
-
-			Permissions.getAllowNSFW(message.channel, function(err, allow) {
-				if (err) { return errorCallback(err); } // error handle
-				if (allow === "on") {
-					Lewdsx.getImage(bot, message, "neko", errorCallback);
-				} else {
-					bot.sendMessage(message, "NSFW commands are **DISABLED** in " + message.channel).catch(errorCallback);
-				}
-			});
-		}
-
-		else { // we're in a PM, or the channel allows NSFW... let's get lewd
-			Lewdsx.getImage(bot, message, "neko", errorCallback);
-		}
+		Lewdsx.getImage(bot, message, "neko", errorCallback);
 	}
 }
 
@@ -599,24 +525,9 @@ Commands["kitsune"] = {
 	name: "kitsune",
 	description: "I'll find a random Kitsunemimi from lewd.sx",
 	authLevel: 0,
+    nsfw: true,
 	fn: function(bot, message, params, errorCallback) {
-
-		// if we're not in a PM, then check NSFW flag before executing the command!
-		if (!message.isPrivate) {
-
-			Permissions.getAllowNSFW(message.channel, function(err, allow) {
-				if (err) { return errorCallback(err); } // error handle
-				if (allow === "on") {
-					Lewdsx.getImage(bot, message, "kitsune", errorCallback);
-				} else {
-					bot.sendMessage(message, "NSFW commands are **DISABLED** in " + message.channel).catch(errorCallback);
-				}
-			});
-		}
-
-		else { // we're in a PM, or the channel allows NSFW... let's get lewd
-			Lewdsx.getImage(bot, message, "kitsune", errorCallback);
-		}
+		Lewdsx.getImage(bot, message, "kitsune", errorCallback);
 	}
 }
 
@@ -624,24 +535,9 @@ Commands["lewd"] = {
 	name: "lewd",
 	description: "I'll find a random Lewd image from lewd.sx",
 	authLevel: 0,
+    nsfw: true,
 	fn: function(bot, message, params, errorCallback) {
-
-		// if we're not in a PM, then check NSFW flag before executing the command!
-		if (!message.isPrivate) {
-
-			Permissions.getAllowNSFW(message.channel, function(err, allow) {
-				if (err) { return errorCallback(err); } // error handle
-				if (allow === "on") {
-					Lewdsx.getImage(bot, message, "lewd", errorCallback);
-				} else {
-					bot.sendMessage(message, "NSFW commands are **DISABLED** in " + message.channel).catch(errorCallback);
-				}
-			});
-		}
-
-		else { // we're in a PM, or the channel allows NSFW... let's get lewd
-			Lewdsx.getImage(bot, message, "lewd", errorCallback);
-		}
+		Lewdsx.getImage(bot, message, "lewd", errorCallback);
 	}
 }
 
@@ -649,24 +545,9 @@ Commands["qt"] = {
 	name: "qt",
 	description: "I'll find a random 2Dqt from lewd.sx",
 	authLevel: 0,
+    nsfw: true,
 	fn: function(bot, message, params, errorCallback) {
-
-		// if we're not in a PM, then check NSFW flag before executing the command!
-		if (!message.isPrivate) {
-
-			Permissions.getAllowNSFW(message.channel, function(err, allow) {
-				if (err) { return errorCallback(err); } // error handle
-				if (allow === "on") {
-					Lewdsx.getImage(bot, message, "qt", errorCallback);
-				} else {
-					bot.sendMessage(message, "NSFW commands are **DISABLED** in " + message.channel).catch(errorCallback);
-				}
-			});
-		}
-
-		else { // we're in a PM, or the channel allows NSFW... let's get lewd
-			Lewdsx.getImage(bot, message, "qt", errorCallback);
-		}
+		Lewdsx.getImage(bot, message, "qt", errorCallback);
 	}
 }
 
@@ -677,6 +558,7 @@ Commands["whereami"] = {
 	aliases: ['location', 'channelinfo'],
 	description: "I'll tell you information about the channel and server you're asking me this from.",
 	authLevel: 0,
+    nsfw: false,
 	fn: function(bot, message, params, errorCallback) {
 
 		// if we're not in a PM, return some info about the channel
@@ -704,6 +586,7 @@ Commands["avatar"] = {
 	params: "[@user ...]",
 	description: "I'll give you a link to the avatar of each *@user*, so you can see a larger version of the images.",
 	authLevel: 0,
+    nsfw: false,
 	fn: function(bot, message, params, errorCallback) {
 		// @mention doesn't work in PMs, so neither can this command
 		if (message.isPrivate) {
@@ -740,24 +623,9 @@ Commands["cosplay"] = {
 	name: "cosplay",
 	description: "I'll upload a random Cosplay, provided by Salvy.",
 	authLevel: 0,
+    nsfw: true,
 	fn: function(bot, message, params, errorCallback) {
-
-		// if we're not in a PM, then check NSFW flag before executing the command!
-		if (!message.isPrivate) {
-
-			Permissions.getAllowNSFW(message.channel, function(err, allow) {
-				if (err) { return errorCallback(err); } // error handle
-				if (allow === "on") {
-					ImageFolder.getImage(bot, message, "cosplay", errorCallback);
-				} else {
-					bot.sendMessage(message, "NSFW commands are **DISABLED** in " + message.channel).catch(errorCallback);
-				}
-			});
-		}
-
-		else { // we're in a PM, or the channel allows NSFW... let's get lewd
-			ImageFolder.getImage(bot, message, "cosplay", errorCallback);
-		}
+		ImageFolder.getImage(bot, message, "cosplay", errorCallback);
 	}
 }
 
@@ -765,24 +633,9 @@ Commands["pitur"] = {
 	name: "pitur",
 	description: "I'll upload a random Lewd, provided by Pitur.",
 	authLevel: 0,
+    nsfw: true,
 	fn: function(bot, message, params, errorCallback) {
-
-		// if we're not in a PM, then check NSFW flag before executing the command!
-		if (!message.isPrivate) {
-
-			Permissions.getAllowNSFW(message.channel, function(err, allow) {
-				if (err) { return errorCallback(err); } // error handle
-				if (allow === "on") {
-					ImageFolder.getImage(bot, message, "pitur", errorCallback);
-				} else {
-					bot.sendMessage(message, "NSFW commands are **DISABLED** in " + message.channel).catch(errorCallback);
-				}
-			});
-		}
-
-		else { // we're in a PM, or the channel allows NSFW... let's get lewd
-			ImageFolder.getImage(bot, message, "pitur", errorCallback);
-		}
+		ImageFolder.getImage(bot, message, "pitur", errorCallback);
 	}
 }
 
@@ -790,24 +643,9 @@ Commands["gold"] = {
 	name: "gold",
 	description: "I'll upload a random Boat, provided by Au-chan.",
 	authLevel: 0,
+    nsfw: true,
 	fn: function(bot, message, params, errorCallback) {
-
-		// if we're not in a PM, then check NSFW flag before executing the command!
-		if (!message.isPrivate) {
-
-			Permissions.getAllowNSFW(message.channel, function(err, allow) {
-				if (err) { return errorCallback(err); } // error handle
-				if (allow === "on") {
-					ImageFolder.getImage(bot, message, "gold", errorCallback);
-				} else {
-					bot.sendMessage(message, "NSFW commands are **DISABLED** in " + message.channel).catch(errorCallback);
-				}
-			});
-		}
-
-		else { // we're in a PM, or the channel allows NSFW... let's get lewd
-			ImageFolder.getImage(bot, message, "gold", errorCallback);
-		}
+		ImageFolder.getImage(bot, message, "gold", errorCallback);
 	}
 }
 
@@ -816,6 +654,7 @@ Commands["rand"] = {
 	params: "[min] [max]",
 	description: "I'll give you a random number between *min* and *max*. Both params are optional. If only one number is given, it is the *max*. (defaults: 0-100)",
 	authLevel: 0,
+    nsfw: false,
 	fn: function(bot, message, params, errorCallback) {
 		// default min and max
 		var min = 0;
@@ -864,6 +703,7 @@ Commands["roll"] = {
 	params: "[dice] [sides] [times]",
 	description: "I'll roll a few sided dice for a given number of times. All params are optional. (defaults: 1 *dice*, 6 *sides*, 1 *times*)",
 	authLevel: 0,
+    nsfw: false,
 	fn: function(bot, message, params, errorCallback) {
 		// default dice, sides, and times
 		var dice	= 1;
@@ -910,6 +750,7 @@ Commands["lotto"] = {
 	name: "lotto",
 	description: "I'll give you a set of 6 lucky numbers!",
 	authLevel: 0,
+    nsfw: false,
 	fn: function(bot, message, params, errorCallback) {
 		// create an array to store lucky numbers
 		var lotto = [];
@@ -938,6 +779,7 @@ Commands["fortune"] = {
 	name: "fortune",
 	description: "Wise words, from wise neko.",
 	authLevel: 0,
+    nsfw: false,
 	fn: function(bot, message, params, errorCallback) {
 		var rand = Math.floor(Math.random() * Fortunes.length);
 		bot.sendMessage(message, "*" + Fortunes[rand] + "*").catch(errorCallback);
@@ -951,6 +793,7 @@ Commands["pet"] = {
 	aliases: ['pets'],
 	description: "Everyone loves being pet, right!?! Pets each *@user*. Leave emtpy (or mention me too) to pet me!",
 	authLevel: 0,
+    nsfw: false,
 	fn: function(bot, message, params, errorCallback) {
 
 		// build an array to store pets
@@ -985,6 +828,7 @@ Commands["trash"] = {
 	aliases: ['onodera', 'worstgirl'],
 	description: "I'll upload an image of 'worst girl'. (WARNING: May cause nausea!)",
 	authLevel: 0,
+    nsfw: false,
 	fn: function(bot, message, params, errorCallback) {
 		bot.sendFile(message, __dirname + "/../images/trash.png").catch(errorCallback);
 	}
@@ -997,6 +841,7 @@ Commands["doit"] = {
 	aliases: ['justdoit', 'shia'],
 	description: "DON'T LET YOUR DREAMS JUST BE DREAMS!",
 	authLevel: 0,
+    nsfw: false,
 	fn: function(bot, message, params, errorCallback) {
 		bot.sendFile(message, __dirname + "/../images/shia.jpg").catch(errorCallback);
 	}
@@ -1013,6 +858,7 @@ Commands["whois"] = {
 	aliases: ['getinfo'],
 	description: "I'll tell you information about each *@user*.",
 	authLevel: 1,
+    nsfw: false,
 	fn: function(bot, message, params, errorCallback) {
 		// @mention doesn't work in PMs, so neither can this command
 		if (message.isPrivate) {
@@ -1048,6 +894,7 @@ Commands["nsfw"] = {
 	aliases: ['canlewd'],
 	description: "I'll set the NSFW flag for the channel this command was issued in. (Leave params empty for status.)",
 	authLevel: 2,
+    nsfw: false,
 	fn: function(bot, message, params, errorCallback) {
 
 		// PMs are always NSFW enabled
@@ -1097,6 +944,7 @@ Commands["setperms"] = {
 	aliases: ['setauth'],
 	description: "I'll set the permissions level of each *@user* to *level*.",
 	authLevel: 3,
+    nsfw: false,
 	fn: function(bot, message, params, errorCallback) {
 
 		// @mention doesn't work in PMs, so neither can this command
@@ -1147,6 +995,7 @@ Commands["test"] = {
 	name: "test",
 	description: "Test Command",
 	authLevel: 10,
+    nsfw: false,
 	fn: function(bot, message, params, errorCallback) {
 
 		// TEST CODE HERE

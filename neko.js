@@ -65,7 +65,26 @@ NekoBot.on("message", function(msg) {
 
 				if (err) { error(err); } // error handle
 				if (level >= Commands[command].authLevel) {
-					Commands[command].fn(NekoBot, msg, params, error);
+
+					// check for sfw or pm channel
+					if (!Commands[command].nsfw || msg.isPrivate) {
+
+						// sfw command or pm, just execute the command
+						Commands[command].fn(NekoBot, msg, params, error);
+
+					// nsfw command, check if allowed
+					} else {
+						Permissions.getAllowNSFW(msg.channel, function(err, allow) {
+							if (err) { return error(err); } // error handle
+							if (allow === "on") {
+								Commands[command].fn(NekoBot, msg, params, error);
+							} else {
+								NekoBot.sendMessage(msg, "NSFW commands are **DISABLED** in " + msg.channel).catch(error);
+							}
+						});
+					}
+
+				// user doesn't have permissions
 				} else {
 					var msgArray = [];
 					msgArray.push("you don't have access to the **" + Config.commands.prefix + command + "** command.");
