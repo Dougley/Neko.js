@@ -1006,7 +1006,7 @@ Commands["test"] = {
 		Logger.warn("Logger Test (Warn)");
 		Logger.error("Logger Test (Error)");
 		bot.sendMessage(message, "Test complete. Check console and logs.").catch(errorCallback);
-		throw new Error('Logger Test (Exception)');
+		//throw new Error('Logger Test (Exception)');
 	}
 }
 
