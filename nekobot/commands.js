@@ -605,12 +605,13 @@ Commands["avatar"] = {
 
 		// cycle mentions and add a message with the avatar of each user
 		for (index in message.mentions) {
+
 			var user = message.mentions[index];
-			if(user.avatar == null){
+
+			if(user.avatarURL === null){
 				msgArray.push(user.username + " has no avatar.");
-			}
-			else{
-				msgArray.push(user.username + "'s avatar is: https://discordapp.com/api/users/" + user.id + "/avatars/" + user.avatar + ".jpg");
+			} else {
+				msgArray.push(user.username + "'s avatar is: " + user.avatarURL);
 			}
 		}
 
