@@ -485,8 +485,8 @@ Commands["quote"] = {
 
 	}
 }
-/*
-Commands["waifu"] = {
+
+/*Commands["waifu"] = {
 	name: "waifu",
 	description: "I'll give you a random Waifu.",
 	authLevel: 0,
@@ -509,8 +509,8 @@ Commands["waifu"] = {
 		});
 
 	}
-}
-*/
+}*/
+
 Commands["neko"] = {
 	name: "neko",
 	description: "I'll find a random Nekomimi from lewd.sx",

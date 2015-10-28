@@ -83,7 +83,7 @@ exports.getStatus = function(callback) {
 		// check for revison updates
 		if (parseInt(version[2]) < parseInt(latest[2])) {
 			var behind = (parseInt(latest[2]) - parseInt(version[2]));
-			return callback(null, "Bot is " + behind + " revision versions behind. (current: " + version.join(".") + ", latest: " + latest.join(".") + ")");
+			return callback(null, "Bot is " + behind + " patch versions behind. (current: " + version.join(".") + ", latest: " + latest.join(".") + ")");
 		}
 
 		// up to date :)
