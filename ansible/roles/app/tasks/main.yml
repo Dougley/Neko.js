@@ -21,6 +21,7 @@
 - name: Install Global NPM Modules
   npm: name={{ item }} global=yes state=latest
   with_items:
+    - npm
     - node-gyp
     - forever
 
