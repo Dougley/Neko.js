@@ -29,7 +29,7 @@ function init() {
 
 }
 
-NekoBot.on("ready", function() {
+NekoBot.once("ready", function() {
 	Logger.info("Ready!");
 });
 
@@ -126,11 +126,19 @@ NekoBot.on("disconnected", function() {
 });
 
 // ========================================================================
-// Discord.js Debugger Piping
+// Discord.js Debug Piping
 // ========================================================================
 
 NekoBot.on("debug", function(msg) {
 	Logger.log("debug", msg);
+});
+
+NekoBot.on("unknown", function(data) {
+	Logger.log("debug", data);
+});
+
+NekoBot.on("raw", function(data) {
+	Logger.log("debug", data);
 });
 
 // After all funcs, do Bot login! (This is the program entry point)
