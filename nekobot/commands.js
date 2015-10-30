@@ -1,5 +1,6 @@
 var Request			= require("request");
 
+var EightBall		= require("./fortunes").EightBall;
 var Fortunes		= require("./fortunes").Fortunes;
 var Help			= require("./help");
 var ImageChan		= require("./imagechan");
@@ -845,6 +846,36 @@ Commands["doit"] = {
     nsfw: false,
 	fn: function(bot, message, params, errorCallback) {
 		bot.sendFile(message, __dirname + "/../images/shia.jpg").catch(errorCallback);
+	}
+}
+
+Commands["dontbully"] =
+Commands["dunbulli"] =
+Commands["bully"] =
+Commands["bulli"] = {
+	name: "bulli",
+	aliases: ['bully', 'dunbulli', 'dontbully'],
+	description: "DON'T BULLY!",
+	authLevel: 0,
+	nsfw: false,
+	fn: function(bot, message, params, errorCallback) {
+		bot.sendFile(message, __dirname + "/../images/bulli.jpg").catch(errorCallback);
+	}
+}
+
+Commands["8ball"] = {
+	name: "8ball",
+	params: "[question]",
+	description: "The magic eightball can answer any question!",
+	authLevel: 0,
+    nsfw: false,
+	fn: function(bot, message, params, errorCallback) {
+		if (params.length === 0 || params.pop().slice(-1) !== "?") {
+			bot.reply(message, "you must ask a proper question.").catch(errorCallback);
+		} else {
+			var rand = Math.floor(Math.random() * EightBall.length);
+			bot.sendMessage(message, "*" + EightBall[rand] + "*").catch(errorCallback);
+		}
 	}
 }
 
