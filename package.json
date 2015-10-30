@@ -15,7 +15,7 @@
   "license": "MIT",
   "main": "./neko.js",
   "dependencies": {
-    "discord.js": "~3.10.2",
+    "discord.js": "~4.1.1",
     "node-dir": "^0.1.10",
     "redis": "^2.2.5",
     "request": "^2.65.0",
