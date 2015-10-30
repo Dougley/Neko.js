@@ -3,7 +3,17 @@
   "name": "nekobot-js",
   "version": "0.6.7",
   "description": "Port of Kusoneko's Nekobot to NodeJS",
-  "author": "TehSeph, Kusoneko",
+  "author": "Seph D. Warwick <tehseph@player.me> (https://player.me/tehseph)",
+  "contributers": ["TehSeph", "Kusoneko"],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TehSeph/Neko.js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/TehSeph/Neko.js/issues"
+  },
+  "license": "MIT",
+  "main": "./neko.js",
   "dependencies": {
     "discord.js": "~3.10.2",
     "node-dir": "^0.1.10",
@@ -12,5 +22,7 @@
     "winston": "^1.1.1",
     "xml2js": "^0.4.13"
   },
-  "scripts": {}
+  "scripts": {
+    "start" : "node neko.js"
+  }
 }
