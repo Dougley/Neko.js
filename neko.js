@@ -24,13 +24,18 @@ function init() {
 		}
 	});
 
-//	Logger.info("Joining servers...");
-//	NekoBot.joinServer(Config.server);
-
 }
 
 NekoBot.once("ready", function() {
-	Logger.info("Ready!");
+
+	Logger.info("Joining servers...");
+	for (index in Config.invites) {
+		NekoBot.joinServer(Config.invites[index], function(err, server) {
+			if (err) { Logger.warn("Failed to join server (" + err + ")"); }
+			if (server) { Logger.info("Joined server: " + server.name); }
+		});
+	}
+
 });
 
 // ========================================================================

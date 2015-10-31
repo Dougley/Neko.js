@@ -1,5 +1,5 @@
 # Neko.js
-[![Version](https://img.shields.io/badge/version-0.6.7-brightgreen.svg?style=flat-square)]()
+[![Version](https://img.shields.io/badge/version-0.6.8-brightgreen.svg?style=flat-square)]()
 [![Status](https://img.shields.io/badge/status-in--dev-yellow.svg?style=flat-square)]()
 [![Node](https://img.shields.io/badge/node-4.2.1-green.svg?style=flat-square)](https://nodejs.org/)
 [![NPM](https://img.shields.io/badge/npm-3.3.9-green.svg?style=flat-square)](https://nodejs.org/)
@@ -16,7 +16,7 @@ You'll need the following programs to use Neko.js:
 Installing the bot is simple. Open terminal/cmd in the Neko.js folder and `npm install` to install.
 
 ### Configuration
-You'll find a `config.example` file in the Neko.js root. Edit the file with your own setting and rename the file to `config.json`. Most of the config values are self-explanatory. The only value worth making a note of is the `server` value, which is the string of characters found at the end of an invite link.
+You'll find a `config.example` file in the Neko.js root. Edit the file with your own setting and rename the file to `config.json`. Most of the config values are self-explanatory.
 
 For example, the `server` value for https://discord.gg/0Lv5NLFEoz3P07Aq would be `0Lv5NLFEoz3P07Aq`
 

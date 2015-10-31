@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "nekobot-js",
-  "version": "0.6.7",
+  "version": "0.6.8",
   "description": "Port of Kusoneko's Nekobot to NodeJS",
   "author": "Seph D. Warwick <tehseph@player.me> (https://player.me/tehseph)",
   "contributers": ["TehSeph", "Kusoneko"],

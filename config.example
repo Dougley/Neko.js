@@ -1,13 +1,15 @@
 {
 	"email" : "bot@email.com",
 	"password" : "password",
-	"server" : "InviteCode",
 	"commands" : {
 		"prefix" : "!",
-		"masterUser" : "MasterUserID"
+		"masterUser" : "MasterUUID"
 	},
 	"redis" : {
 		"host" : "localhost",
 		"port" : 6379
-	}
+	},
+	"invites" : [
+		"https://discord.gg/0Lv5NLFEoz3P07Aq"
+	]
 }
