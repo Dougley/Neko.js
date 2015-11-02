@@ -10,6 +10,8 @@ var Logger			= require("./logger").Logger;
 var Permissions		= require("./permissions");
 var VersionChecker	= require("./versioncheck");
 
+var Config			= require("../config.json");
+
 Commands = [];
 
 // ========================================================================
@@ -21,26 +23,6 @@ Commands["color"] = {
 	params: "[rolename] [red] [green] [blue]",
 	description: "I'll change a role's color.",
 	authLevel: 2,
-	nsfw: false,
-	fn: function(bot, message, params, errorCallback) {
-		return;
-	}
-}
-
-Commands["leave"] = {
-	name: "leave",
-	description: "I'll leave the server, as requested. ;w;",
-	authLevel: 2,
-	nsfw: false,
-	fn: function(bot, message, params, errorCallback) {
-		return;
-	}
-}
-
-Commands["die"] = {
-	name: "die",
-	description: "I'll leave all servers and stop my program. ;w;'",
-	authLevel: 3,
 	nsfw: false,
 	fn: function(bot, message, params, errorCallback) {
 		return;
@@ -95,17 +77,6 @@ Commands["playeravatar"] = {
 	name: "playeravatar",
 	params: "[username]",
 	description: "I'll link the avatar of the player with the given *username*.'",
-	authLevel: 0,
-	nsfw: false,
-	fn: function(bot, message, params, errorCallback) {
-		return;
-	}
-}
-
-Commands["invite"] = {
-	name: "invite",
-	params: "[invitecode]",
-	description: "Invites me to join a server via *invitecode*! (links not supported yet)",
 	authLevel: 0,
 	nsfw: false,
 	fn: function(bot, message, params, errorCallback) {
@@ -879,6 +850,68 @@ Commands["8ball"] = {
 	}
 }
 
+Commands["join"] =
+Commands["invite"] = {
+	name: "invite",
+	params: "[code/link]",
+	aliases: ['join'],
+	description: "Invites me to join a server via invite code or link!",
+	authLevel: 0,
+	nsfw: false,
+	fn: function(bot, message, params, errorCallback) {
+
+		// check if invite is valid
+		var invite = bot.resolveInvite(params[0]);
+		if (params.length < 1 || invite.length !== 16) {
+			bot.reply(message, "invites must be either a 16 character invite code or an invite link.").catch(errorCallback);
+			return;
+		}
+
+		// store current server list for comparison later
+		var oldServers = [];
+		for (index in bot.servers) {
+			oldServers[index] = bot.servers[index];
+		}
+
+		// join server
+		bot.joinServer(params[0], function(err, server) {
+
+			// unique error handle for invalid invites
+			if (err) {
+				bot.reply(message, "something went wrong with that invite. I'm sorry ;w;").catch(errorCallback);
+				return;
+			}
+
+			if (server) {
+
+				// check if we were already a member of the server
+				if (oldServers.indexOf(server) !== -1) {
+					bot.reply(message, "I'm already in **" + server.name + "**").catch(errorCallback);
+					return;
+				}
+
+				// TODO: setup permissions to be per-server and give server owners admin only on their server
+				Permissions.setUserLevel(server.owner, 2, function(err, level) {
+					if (err) { return errorCallback(err); } // error handle
+				});
+
+				// build an array so all messages get sent at once
+				var msgArray = [];
+
+				msgArray.push("Nyaa! I'm **" + bot.user.username + "** and I was invited to this server by " + message.author + ".");
+				msgArray.push("I have automatically detected " + server.owner + " as the server owner, and have given them administrative permissions over me.");
+				msgArray.push("If you don't want me here, you may use **" + Config.commands.prefix + "leave** to ask me to leave.");
+
+				// send messages
+				bot.sendMessage(server.defaultChannel, msgArray).catch(errorCallback);
+
+				// inform user of successful join
+				bot.reply(message, "I've successfully joined **" + server.name + "**").catch(errorCallback);
+			}
+		});
+	}
+}
+
 // ========================================================================
 // Moderator Commands
 // ========================================================================
@@ -965,6 +998,24 @@ Commands["nsfw"] = {
 	}
 }
 
+Commands["leave"] = {
+	name: "leave",
+	description: "I'll leave the server, as requested. ;w;",
+	authLevel: 2,
+	nsfw: false,
+	fn: function(bot, message, params, errorCallback) {
+
+		// uhh... you can't leave a PM, lol
+		if (message.isPrivate) {
+			bot.sendMessage(message, "You can never get rid of me! >:3").catch(errorCallback);
+			return;
+		}
+
+		bot.sendMessage(message, "Goodbye. ;w;").catch(errorCallback);
+		bot.leaveServer(message);
+	}
+}
+
 // ========================================================================
 // Owner Commands
 // ========================================================================
@@ -1016,6 +1067,34 @@ Commands["setperms"] = {
 
 		// let the user know we've set the levels
 		bot.sendMessage(message, "Okay! I'll remember the new permissions levels. :)").catch(errorCallback);
+	}
+}
+
+Commands["leaveall"] = {
+	name: "leaveall",
+	description: "Ask me to leave all servers. (I will rejoin servers in my config file on restart.)",
+	authLevel: 2,
+	nsfw: false,
+	fn: function(bot, message, params, errorCallback) {
+		bot.sendMessage(message, "Leaving all servers. Goodbye. ;w;").catch(errorCallback);
+		for (index in bot.servers) {
+			bot.leaveServer(bot.servers[index]);
+		}
+	}
+}
+
+Commands["logout"] =
+Commands["shutdown"] =
+Commands["restart"] =
+Commands["die"] = {
+	name: "die",
+	aliases: ['logout', 'shutdown', 'restart'],
+	description: "Ask me to logout/restart.",
+	authLevel: 3,
+	nsfw: false,
+	fn: function(bot, message, params, errorCallback) {
+		bot.sendMessage(message, "Logging out...").catch(errorCallback);
+		bot.logout();
 	}
 }
 
