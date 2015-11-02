@@ -18,8 +18,6 @@ Installing the bot is simple. Open terminal/cmd in the Neko.js folder and `npm i
 ### Configuration
 You'll find a `config.example` file in the Neko.js root. Edit the file with your own setting and rename the file to `config.json`. Most of the config values are self-explanatory.
 
-For example, the `server` value for https://discord.gg/0Lv5NLFEoz3P07Aq would be `0Lv5NLFEoz3P07Aq`
-
 ### Usage
 Using the bot is just as simple as the installation. Make sure your Redis server is running ([Redis Quick Start](http://redis.io/topics/quickstart)), then open terminal/cmd in the Neko.js folder and `node neko.js`.
 
