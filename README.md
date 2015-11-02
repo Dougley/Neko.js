@@ -2,7 +2,7 @@
 [![Version](https://img.shields.io/badge/version-0.7.0-brightgreen.svg?style=flat-square)]()
 [![Status](https://img.shields.io/badge/status-in--dev-yellow.svg?style=flat-square)]()
 [![Node](https://img.shields.io/badge/node-4.2.1-green.svg?style=flat-square)](https://nodejs.org/)
-[![NPM](https://img.shields.io/badge/npm-3.3.9-green.svg?style=flat-square)](https://nodejs.org/)
+[![NPM](https://img.shields.io/badge/npm-3.3.10-green.svg?style=flat-square)](https://nodejs.org/)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](http://mit-license.org/)
 [![Tested](https://img.shields.io/badge/tested-Windows 7/10 | Ubuntu 14.04/15.04-lightgrey.svg?style=flat-square)]()
 
