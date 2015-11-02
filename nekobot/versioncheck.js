@@ -11,7 +11,7 @@ var version = require("../package.json").version.split(".");
 exports.getCurrentVersion	= function() { return version.join("."); }
 exports.getCurrentMajor		= function() { return version[0]; }
 exports.getCurrentMinor		= function() { return version[1]; }
-exports.getCurrentRevision	= function() { return version[2]; }
+exports.getCurrentPatch		= function() { return version[2]; }
 
 exports.getLatestVersion = function(callback) {
 
@@ -46,7 +46,7 @@ exports.getLatestMinor = function(callback) {
 	});
 }
 
-exports.getLatestRevision = function(callback) {
+exports.getLatestPatch = function(callback) {
 	this.getLatest(function(err, latest) {
 		if (err) { return callback(err, null); } // error handle
 		return callback(null, parseInt(latest.split(".")[2]));
@@ -68,22 +68,30 @@ exports.getStatus = function(callback) {
 		// split result into an array
 		latest = latest.split(".");
 
+		// create variables for differences
+		var majorDiff = parseInt(latest[0]) - parseInt(version[0]);
+		var minorDiff = parseInt(latest[1]) - parseInt(version[1]);
+		var patchDiff = parseInt(latest[2]) - parseInt(version[2]);
+
 		// check for major updates
-		if (parseInt(version[0]) < parseInt(latest[0])) {
-			var behind = (parseInt(latest[0]) - parseInt(version[0]));
-			return callback(null, "Bot is " + behind + " major versions behind. (current: " + version.join(".") + ", latest: " + latest.join(".") + ")");
+		if (majorDiff < 0) {
+			return callback(null, "Bot is " + Math.abs(majorDiff) + " major versions ahead! (current: " + version.join(".") + ", latest: " + latest.join(".") + ")");
+		} else if (majorDiff > 0) {
+			return callback(null, "Bot is " + Math.abs(majorDiff) + " major versions behind. (current: " + version.join(".") + ", latest: " + latest.join(".") + ")");
 		}
 
 		// check for minor updates
-		if (parseInt(version[1]) < parseInt(latest[1])) {
-			var behind = (parseInt(latest[1]) - parseInt(version[1]));
-			return callback(null, "Bot is " + behind + " minor versions behind. (current: " + version.join(".") + ", latest: " + latest.join(".") + ")");
+		if (minorDiff < 0) {
+			return callback(null, "Bot is " + Math.abs(minorDiff) + " minor versions ahead! (current: " + version.join(".") + ", latest: " + latest.join(".") + ")");
+		} else if (minorDiff > 0) {
+			return callback(null, "Bot is " + Math.abs(minorDiff) + " minor versions behind. (current: " + version.join(".") + ", latest: " + latest.join(".") + ")");
 		}
 
-		// check for revison updates
-		if (parseInt(version[2]) < parseInt(latest[2])) {
-			var behind = (parseInt(latest[2]) - parseInt(version[2]));
-			return callback(null, "Bot is " + behind + " patch versions behind. (current: " + version.join(".") + ", latest: " + latest.join(".") + ")");
+		// check for patch updates
+		if (patchDiff < 0) {
+			return callback(null, "Bot is " + Math.abs(patchDiff) + " patch versions ahead! (current: " + version.join(".") + ", latest: " + latest.join(".") + ")");
+		} else if (patchDiff > 0) {
+			return callback(null, "Bot is " + Math.abs(patchDiff) + " patch versions behind. (current: " + version.join(".") + ", latest: " + latest.join(".") + ")");
 		}
 
 		// up to date :)

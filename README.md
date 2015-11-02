@@ -1,5 +1,5 @@
 # Neko.js
-[![Version](https://img.shields.io/badge/version-0.6.8-brightgreen.svg?style=flat-square)]()
+[![Version](https://img.shields.io/badge/version-0.6.9-brightgreen.svg?style=flat-square)]()
 [![Status](https://img.shields.io/badge/status-in--dev-yellow.svg?style=flat-square)]()
 [![Node](https://img.shields.io/badge/node-4.2.1-green.svg?style=flat-square)](https://nodejs.org/)
 [![NPM](https://img.shields.io/badge/npm-3.3.9-green.svg?style=flat-square)](https://nodejs.org/)
