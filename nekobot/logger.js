@@ -16,6 +16,14 @@ exports.Logger = new Winston.Logger({
 	},
 	transports: [
 		new Winston.transports.DailyRotateFile({
+			handleExceptions: false,
+			name: 'file:latest',
+			filename: __dirname + '/../logs/console',
+			datePattern: '-latest.log',
+			level: 'verbose',
+			json: false
+		}),
+		new Winston.transports.DailyRotateFile({
 			humanReadableUnhandledException: true,
 			handleExceptions: true,
 			name: 'file:exceptions',
