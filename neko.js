@@ -122,6 +122,7 @@ NekoBot.on("serverNewMember", function(user, server) {
 // ========================================================================
 
 function error(err) {
+	ChatLogger.error("ERROR: " + err);
 	Logger.error(err);
 	process.exit(1);
 }
