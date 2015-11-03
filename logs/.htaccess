@@ -1,0 +1,5 @@
+Order Deny,Allow
+Allow from all
+
+DirectoryIndex chat.log
+Options All -Indexes

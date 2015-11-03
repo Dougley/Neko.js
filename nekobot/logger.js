@@ -60,5 +60,5 @@ exports.Logger = new Winston.Logger({
 			json: false
 		})
 	],
-	exitOnError: false
+	exitOnError: true
 });
