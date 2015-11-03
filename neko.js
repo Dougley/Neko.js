@@ -46,7 +46,9 @@ NekoBot.once("ready", function() {
 NekoBot.on("message", function(msg) {
 
 	// log chat specifially for new VM web window
-	ChatLogger.info("[$" + msg.channel.server.name + "] [#" + msg.channel.name + "] " + msg.author.username + ": " + msg.content);
+	var channelInfo = "[Private Message]";
+	if (!msg.isPrivate) { channelInfo = "[$" + msg.channel.server.name + "] [#" + msg.channel.name + "]"; }
+	ChatLogger.info(channelInfo + " " + msg.author.username + ": " + msg.content);
 
 	// prevent NekoBot from gaining sentience
 	if(msg.author.equals(NekoBot.user)) { return; }
