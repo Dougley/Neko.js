@@ -6,6 +6,19 @@ var Winston		= require("winston");
 
 Winston.emitErrs = true;
 
+exports.ChatLogger = new Winston.Logger({
+	transports: [
+		new Winston.transports.File({
+			handleExceptions: false,
+			name: 'file:chat',
+			filename: __dirname + '/../logs/chat.log',
+			formatter: function(args) { return args.message; },
+			level: 'info',
+			json: false
+		}),
+	]
+});
+
 exports.Logger = new Winston.Logger({
 	colors: {
 		verbose: 'cyan',
@@ -15,14 +28,6 @@ exports.Logger = new Winston.Logger({
 		error: 'red'
 	},
 	transports: [
-		new Winston.transports.DailyRotateFile({
-			handleExceptions: false,
-			name: 'file:latest',
-			filename: __dirname + '/../logs/console',
-			datePattern: '-latest.log',
-			level: 'verbose',
-			json: false
-		}),
 		new Winston.transports.DailyRotateFile({
 			humanReadableUnhandledException: true,
 			handleExceptions: true,

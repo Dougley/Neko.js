@@ -2,6 +2,7 @@ var Discord			= require("discord.js");
 
 var Commands		= require("./nekobot/commands").Commands;
 var Config			= require("./config.json");
+var ChatLogger		= require("./nekobot/logger").ChatLogger;
 var Logger			= require("./nekobot/logger").Logger;
 var Permissions		= require("./nekobot/permissions");
 var VersionChecker	= require("./nekobot/versioncheck");
@@ -43,6 +44,9 @@ NekoBot.once("ready", function() {
 // ========================================================================
 
 NekoBot.on("message", function(msg) {
+
+	// log chat specifially for new VM web window
+	ChatLogger.info("[$" + msg.channel.server.name + "] [#" + msg.channel.name + "] " + msg.author.username + ": " + msg.content);
 
 	// prevent NekoBot from gaining sentience
 	if(msg.author.equals(NekoBot.user)) { return; }
