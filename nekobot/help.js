@@ -51,7 +51,7 @@ exports.getCommandInfo = function(bot, message, command, errorCallback) {
 
 exports.getAllCommands = function(bot, message, errorCallback) {
 
-	if (typeof message.channel.server !== "undefined") { // PMs don't have servers, they have PMChannel
+	if (!message.isPrivate) {
 		bot.reply(message, "I'm sending you a list of commands via PM. (I don't want to spam...)").catch(errorCallback);
 	}
 
