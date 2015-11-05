@@ -942,7 +942,7 @@ Commands["whois"] = {
 			var user = message.mentions[index];
 			Permissions.getUserLevel(user, function(err, level){
 				if (err) { return errorCallback(err); }
-				bot.sendMessage(message, user + "'s id is **" + user.id + "** and their permissions level is **" + level + "**.");
+				bot.sendMessage(message, user + "'s id is **" + user.id + "** and their permissions level is **" + level + "**.").catch(errorCallback);
 			});
 		}
 	}
@@ -1012,7 +1012,7 @@ Commands["leave"] = {
 		}
 
 		bot.sendMessage(message, "Goodbye. ;w;").catch(errorCallback);
-		bot.leaveServer(message);
+		bot.leaveServer(message).catch(errorCallback);
 	}
 }
 
@@ -1078,7 +1078,7 @@ Commands["leaveall"] = {
 	fn: function(bot, message, params, errorCallback) {
 		bot.sendMessage(message, "Leaving all servers. Goodbye. ;w;").catch(errorCallback);
 		for (index in bot.servers) {
-			bot.leaveServer(bot.servers[index]);
+			bot.leaveServer(bot.servers[index]).catch(errorCallback);
 		}
 	}
 }
@@ -1094,7 +1094,7 @@ Commands["die"] = {
 	nsfw: false,
 	fn: function(bot, message, params, errorCallback) {
 		bot.sendMessage(message, "Logging out...").catch(errorCallback);
-		bot.logout();
+		bot.logout().catch(errorCallback);
 	}
 }
 
