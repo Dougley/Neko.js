@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Update NPM
+sudo npm update -g npm
+
 # Install Nekobot
 cd /var/www/public
 sudo npm install --no-optional --no-bin-links

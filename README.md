@@ -1,10 +1,10 @@
 # Neko.js
 [![Version](https://img.shields.io/badge/version-0.8.2-brightgreen.svg?style=flat-square)]()
 [![Status](https://img.shields.io/badge/status-in--dev-yellow.svg?style=flat-square)]()
-[![Node](https://img.shields.io/badge/node-4.2.1-green.svg?style=flat-square)](https://nodejs.org/)
-[![NPM](https://img.shields.io/badge/npm-3.3.10-green.svg?style=flat-square)](https://nodejs.org/)
+[![Node](https://img.shields.io/badge/node-5.0.0-green.svg?style=flat-square)](https://nodejs.org/)
+[![NPM](https://img.shields.io/badge/npm-3.4.0-green.svg?style=flat-square)](https://nodejs.org/)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](http://mit-license.org/)
-[![Tested](https://img.shields.io/badge/tested-Windows 7/10 | Ubuntu 14.04/15.04-lightgrey.svg?style=flat-square)]()
+[![Tested](https://img.shields.io/badge/tested-Windows 7/10 | Ubuntu 14.04.3-lightgrey.svg?style=flat-square)]()
 
 Port of [Nekobot](https://github.com/Kusoneko/Nekobot) (by [Kusoneko](https://github.com/Kusoneko)) to [Node](https://nodejs.org/), using [discord.js](https://github.com/hydrabolt/discord.js) (by [hydrabolt](https://github.com/hydrabolt)).
 
