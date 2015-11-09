@@ -1,11 +1,13 @@
 var Discord			= require("discord.js");
 
 var Commands		= require("./nekobot/commands").Commands;
-var Config			= require("./config.json");
 var ChatLogger		= require("./nekobot/logger").ChatLogger;
 var Logger			= require("./nekobot/logger").Logger;
 var Permissions		= require("./nekobot/permissions");
 var VersionChecker	= require("./nekobot/versioncheck");
+
+var Config = require("./config.json");
+var Games = require("./games.json"); // via Unpackr (Nov 09, 2015)
 
 var NekoBot = new Discord.Client();
 
@@ -117,6 +119,20 @@ NekoBot.on("message", function(msg) {
 
 NekoBot.on("serverNewMember", function(user, server) {
 	NekoBot.sendMessage(server.defaultChannel, user + " has joined the server! Nyaa~").catch(error);
+});
+
+// ========================================================================
+// Game Detection
+// ========================================================================
+
+NekoBot.on("presence", function(data) {
+	if (data.gameId !== null) {
+		for (index in Games) {
+			if (Games[index].id === data.gameId) {
+				NekoBot.sendMessage(data.server.defaultChannel, "**" + data.user.username + "** has started playing **" + Games[index].name + "**").catch(error);
+			}
+		}
+	}
 });
 
 // ========================================================================
