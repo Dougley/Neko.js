@@ -16,7 +16,7 @@ You'll need the following programs to use Neko.js:
 Installing the bot is simple. Open terminal/cmd in the Neko.js folder and `npm install` to install.
 
 ### Configuration
-You'll find a `config.example` file in the Neko.js root. Edit the file with your own settings and rename the file to `config.json`. Hopefully most of the config values are self-explanatory, but we will try to document them in the future.
+You'll find a `config.example` file in the Neko.js root. Edit the file with your own settings and rename the file to `config.json`. Hopefully most of the config values are self-explanatory, but we plan to document them in the future.
 
 ### Usage
 Using the bot is just as simple as the installation. Make sure your [Redis](http://redis.io/) server is running ([Redis Guide](http://redis.io/topics/quickstart)), then open terminal/cmd in the Neko.js folder and `node neko.js`.
@@ -28,8 +28,8 @@ The VM comes with a provisioner script that automatically takes care of installi
 
 Additionally, [ScotchBox](https://github.com/scotch-io/scotch-box) comes with a webserver ([Apache](https://httpd.apache.org/)) which we have taken advatage of to provide a local control panel for viewing chat logs and easily starting/stopping the bot without the need to SSH into the VM. You can find this control panel by visting http://192.168.33.20/ in your web browser on the same machine hosting the VM.
 
-### Want to add functions or help contribute?
-We'll gladly let you do our work for us! If you have skills in javascript and want to add your own features or bugfixes to Neko.js you may absolutely feel free to send us a pull request. Likewise, if you don't exactly have the skills to add your own functions you may leave us a request by submitting a new [issue](https://github.com/TehSeph/Neko.js/issues) with the `suggestion` tag. :)
+### Want to add features or help contribute?
+We'll gladly let you do our work for us! If you have skills in javascript and want to add your own features or bugfixes to Neko.js you may absolutely feel free to send us a pull request. Likewise, if you don't exactly have the skills to add your own features you may leave us a request by submitting a new [issue](https://github.com/TehSeph/Neko.js/issues) on github with the `suggestion` tag or PM the idea to [TehSeph](https://github.com/TehSeph) or [Kusoneko](https://github.com/Kusoneko) on [Discord](https://discordapp.com/). :)
 
 ### License
 The MIT License (MIT)
