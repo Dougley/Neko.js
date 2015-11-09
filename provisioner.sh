@@ -1,29 +1,15 @@
 #!/usr/bin/env bash
 
-# Update Repositories
-sudo apt-get update
-
-# Add Node v4.x Repo & Install/Update Node
-curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
-sudo apt-get install -y nodejs
-
-# Install/Update npm
-cd /usr/local/lib/node_modules
-sudo npm install npm@latest
-
 # Install Nekobot
 cd /var/www/public
 sudo npm install --no-optional --no-bin-links
 
 # Create Nekobot Service
 sudo echo "
-description 'Nekobot'
+description 'Nekobot Service'
 author 'TehSeph'
 
-#start on runlevel [2345]
-#start on vagrant-mounted
 start on (local-filesystems and net-device-up IFACE=eth0)
-#stop on runlevel [06]
 stop on shutdown
 
 pre-start script
@@ -33,8 +19,7 @@ end script
 respawn
 respawn limit unlimited
 
-#exec start-stop-daemon --start --make-pidfile --pidfile /var/run/nekobot.pid --exec /usr/bin/node -- /var/www/public/neko.js
-exec sudo -u www-data NODE_PATH=/usr/local/lib/node_modules /usr/bin/node /var/www/public/neko.js
+exec sudo -u www-data NODE_PATH=/usr/local/lib/node_modules /usr/local/bin/node /var/www/public/neko.js
 " >> /etc/init/nekobot.conf
 
 # Start Nekobot Service
