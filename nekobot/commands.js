@@ -908,6 +908,16 @@ Commands["invite"] = {
 	}
 }
 
+Commands["status"] = {
+	name: "status",
+	description: "I'll tell you how many servers, channels, and users I can see.",
+	authLevel: 0,
+	nsfw: false,
+	fn: function(bot, message, params, errorCallback) {
+		bot.sendMessage(message, "I'm connected to " + bot.servers.length + " servers, " + bot.channels.length + " channels, and " + bot.users.length + " users.");
+	}
+}
+
 // ========================================================================
 // Moderator Commands
 // ========================================================================
