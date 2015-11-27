@@ -115,7 +115,7 @@
 				"gw2.app"
 			],
 			"win32": [
-				"gw2.exe",
+				"Gw2.exe",
 				"Gw2-64.exe"
 			]
 		},
@@ -1984,7 +1984,8 @@
 	{
 		"executables": {
 			"win32": [
-				"PPSSPPWindows.exe"
+				"PPSSPPWindows.exe",
+				"PPSSPPWindows64.exe"
 			]
 		},
 		"id": 345,
@@ -2047,8 +2048,7 @@
 	{
 		"executables": {
 			"win32": [
-				"pso2.exe",
-				"psobb.exe"
+				"pso2.exe"
 			]
 		},
 		"id": 355,
@@ -2409,7 +2409,8 @@
 	{
 		"executables": {
 			"win32": [
-				"HexPatch.exe"
+				"HexPatch.exe",
+				"Hex.exe"
 			]
 		},
 		"id": 394,
@@ -2510,11 +2511,12 @@
 	{
 		"executables": {
 			"win32": [
-				"KanColleViewer.exe"
+				"KanColleViewer.exe",
+				"ElectronicObserver.exe"
 			]
 		},
 		"id": 405,
-		"name": "KanColle "
+		"name": "Kantai Collection"
 	},
 	{
 		"executables": {
@@ -2976,7 +2978,8 @@
 	{
 		"executables": {
 			"win32": [
-				"SaintsRowTheThird_DX11.exe"
+				"SaintsRowTheThird_DX11.exe",
+				"SaintsRowTheThird.exe"
 			]
 		},
 		"id": 456,
@@ -3858,7 +3861,8 @@
 		"executables": {
 			"win32": [
 				"Overwatch.exe",
-				"GameClientApp.exe"
+				"GameClientApp.exe",
+				"Overwatch Launcher.exe"
 			]
 		},
 		"id": 552,
@@ -4821,11 +4825,7 @@
 		"name": "Phantasy Star Online"
 	},
 	{
-		"executables": {
-			"win32": [
-				"nw.exe"
-			]
-		},
+		"executables": {},
 		"id": 656,
 		"name": "Our Darker Purpose"
 	},
@@ -4845,7 +4845,7 @@
 			]
 		},
 		"id": 658,
-		"name": "Unreal Tournament "
+		"name": "Unreal Tournament 4"
 	},
 	{
 		"executables": {
@@ -4904,15 +4904,6 @@
 	{
 		"executables": {
 			"win32": [
-				"Solitaire.exe"
-			]
-		},
-		"id": 665,
-		"name": "Solitaire"
-	},
-	{
-		"executables": {
-			"win32": [
 				"DragonFinSoup.exe"
 			]
 		},
@@ -4963,5 +4954,734 @@
 		},
 		"id": 671,
 		"name": "Hyperdimension Neptunia Re;Birth3"
+	},
+	{
+		"executables": {
+			"win32": [
+				"HatinTimeGame.exe"
+			]
+		},
+		"id": 672,
+		"name": "A Hat in Time"
+	},
+	{
+		"executables": {
+			"win32": [
+				"AxiomVerge.exe"
+			]
+		},
+		"id": 673,
+		"name": "Axiom Verge"
+	},
+	{
+		"executables": {
+			"win32": [
+				"CoJGunslinger.exe"
+			]
+		},
+		"id": 674,
+		"name": "Call of Juarez: Gunslinger"
+	},
+	{
+		"executables": {
+			"darwin": [
+				"CardHunter.app"
+			],
+			"win32": [
+				"CardHunter.exe"
+			]
+		},
+		"id": 675,
+		"name": "Card Hunter"
+	},
+	{
+		"executables": {
+			"darwin": [
+				"CargoCommander.app"
+			],
+			"win32": [
+				"CargoCommander.exe"
+			]
+		},
+		"id": 676,
+		"name": "Cargo Commander"
+	},
+	{
+		"executables": {
+			"win32": [
+				"DDO.exe"
+			]
+		},
+		"id": 677,
+		"name": "Dragon's Dogma Online"
+	},
+	{
+		"executables": {
+			"win32": [
+				"falloutw.exe"
+			]
+		},
+		"id": 678,
+		"name": "Fallout"
+	},
+	{
+		"executables": {
+			"win32": [
+				"FALLOUT2.EXE",
+				"Fallout2HR.exe"
+			]
+		},
+		"id": 679,
+		"name": "Fallout 2"
+	},
+	{
+		"executables": {
+			"win32": [
+				"Fallout4.exe"
+			]
+		},
+		"id": 680,
+		"name": "Fallout 4"
+	},
+	{
+		"executables": {
+			"win32": [
+				"FarCry4.exe"
+			]
+		},
+		"id": 681,
+		"name": "Far Cry 4"
+	},
+	{
+		"executables": {
+			"win32": [
+				"OpenITG-PC.exe"
+			]
+		},
+		"id": 682,
+		"name": "In The Groove 2"
+	},
+	{
+		"executables": {
+			"win32": [
+				"L2.bin"
+			]
+		},
+		"id": 683,
+		"name": "Lineage II"
+	},
+	{
+		"executables": {
+			"win32": [
+				"LordsOfTheFallen.exe"
+			]
+		},
+		"id": 684,
+		"name": "Lords of the Fallen"
+	},
+	{
+		"executables": {
+			"win32": [
+				"LR2.exe"
+			]
+		},
+		"id": 685,
+		"name": "Lunatic Rave 2"
+	},
+	{
+		"executables": {
+			"win32": [
+				"MBA.exe"
+			]
+		},
+		"id": 686,
+		"name": "Magical Battle Arena"
+	},
+	{
+		"executables": {
+			"win32": [
+				"MBAN_M.exe",
+				"MBAN_F.exe"
+			]
+		},
+		"id": 687,
+		"name": "Magical Battle Arena NEXT"
+	},
+	{
+		"executables": {
+			"win32": [
+				"ManiaPlanet.exe"
+			]
+		},
+		"id": 688,
+		"name": "ManiaPlanet"
+	},
+	{
+		"executables": {
+			"win32": [
+				"mhf.exe"
+			]
+		},
+		"id": 689,
+		"name": "Monster Hunter Frontier"
+	},
+	{
+		"executables": {
+			"win32": [
+				"6kinoko.exe"
+			]
+		},
+		"id": 690,
+		"name": "New Super Marisa Land"
+	},
+	{
+		"executables": {
+			"win32": [
+				"Nosgoth.exe"
+			]
+		},
+		"id": 691,
+		"name": "Nosgoth"
+	},
+	{
+		"executables": {
+			"win32": [
+				"Poi.exe"
+			]
+		},
+		"id": 692,
+		"name": "Poi"
+	},
+	{
+		"executables": {
+			"win32": [
+				"RogueSystemSim.exe"
+			]
+		},
+		"id": 693,
+		"name": "Rogue System"
+	},
+	{
+		"executables": {
+			"darwin": [
+				"SinaRun.app"
+			],
+			"win32": [
+				"SinaRun.exe"
+			]
+		},
+		"id": 694,
+		"name": "SinaRun"
+	},
+	{
+		"executables": {
+			"win32": [
+				"SkullGirls.exe"
+			]
+		},
+		"id": 695,
+		"name": "Skullgirls"
+	},
+	{
+		"executables": {
+			"win32": [
+				"Soma.exe"
+			]
+		},
+		"id": 696,
+		"name": "SOMA"
+	},
+	{
+		"executables": {
+			"win32": [
+				"sonic2app.exe"
+			]
+		},
+		"id": 697,
+		"name": "Sonic Adventure 2"
+	},
+	{
+		"executables": {
+			"win32": [
+				"SonicGenerations.exe"
+			]
+		},
+		"id": 698,
+		"name": "Sonic Generations"
+	},
+	{
+		"executables": {
+			"win32": [
+				"SpaceChem.exe"
+			]
+		},
+		"id": 699,
+		"name": "SpaceChem"
+	},
+	{
+		"executables": {
+			"win32": [
+				"SSFexe.exe"
+			]
+		},
+		"id": 700,
+		"name": "Super Smash Flash 1"
+	},
+	{
+		"executables": {
+			"win32": [
+				"System Shock2.exe",
+				"shock2.exe"
+			]
+		},
+		"id": 701,
+		"name": "System Shock 2"
+	},
+	{
+		"executables": {
+			"win32": [
+				"Blacklist_launcher.exe"
+			]
+		},
+		"id": 702,
+		"name": "Tom Clancy's Splinter Cell: Blacklist"
+	},
+	{
+		"executables": {
+			"win32": [
+				"gn_enbu.exe"
+			]
+		},
+		"id": 703,
+		"name": "Touhou Puppet Dance Performance"
+	},
+	{
+		"executables": {
+			"win32": [
+				"TSA.exe"
+			]
+		},
+		"id": 704,
+		"name": "Touhou Sky Arena"
+	},
+	{
+		"executables": {
+			"win32": [
+				"Verdun.exe"
+			]
+		},
+		"id": 705,
+		"name": "Verdun"
+	},
+	{
+		"executables": {
+			"darwin": [
+				"wz2100.app"
+			],
+			"win32": [
+				"wz2100.exe"
+			]
+		},
+		"id": 706,
+		"name": "Warzone 2100"
+	},
+	{
+		"executables": {
+			"win32": [
+				"WowT-64.exe"
+			]
+		},
+		"id": 707,
+		"name": "World of Warcraft PTR"
+	},
+	{
+		"executables": {
+			"win32": [
+				"Chronicon.exe"
+			]
+		},
+		"id": 708,
+		"name": "Chronicon"
+	},
+	{
+		"executables": {
+			"win32": [
+				"MagicDuels.exe"
+			]
+		},
+		"id": 709,
+		"name": "Magic Duels"
+	},
+	{
+		"executables": {
+			"win32": [
+				"BorderlandsPreSequel.exe"
+			]
+		},
+		"id": 710,
+		"name": "Borderlands: the Pre-Sequel"
+	},
+	{
+		"executables": {
+			"win32": [
+				"AoD.exe"
+			]
+		},
+		"id": 711,
+		"name": "The Age of Decadence"
+	},
+	{
+		"executables": {
+			"win32": [
+				"Doom.exe"
+			]
+		},
+		"id": 712,
+		"name": "Doom 3"
+	},
+	{
+		"executables": {
+			"win32": [
+				"Dead Space.exe"
+			]
+		},
+		"id": 713,
+		"name": "Dead Space"
+	},
+	{
+		"executables": {
+			"win32": [
+				"AvP3.exe"
+			]
+		},
+		"id": 714,
+		"name": "Alien Vs Predator"
+	},
+	{
+		"executables": {
+			"win32": [
+				"BlackOps3.exe"
+			]
+		},
+		"id": 715,
+		"name": "Call of Duty: Black Ops III"
+	},
+	{
+		"executables": {
+			"win32": [
+				"halo_online.exe"
+			]
+		},
+		"id": 716,
+		"name": "Halo Online"
+	},
+	{
+		"executables": {
+			"win32": [
+				"Krosmaster Arena.exe"
+			]
+		},
+		"id": 717,
+		"name": "Krosmaster Arena"
+	},
+	{
+		"executables": {
+			"win32": [
+				"MapleRoyals.exe"
+			]
+		},
+		"id": 718,
+		"name": "MapleRoyals"
+	},
+	{
+		"executables": {
+			"win32": [
+				"clragexe.exe"
+			]
+		},
+		"id": 719,
+		"name": "Ragnarok Online Classic"
+	},
+	{
+		"executables": {
+			"win32": [
+				"RememberingHowWeMet.exe"
+			]
+		},
+		"id": 720,
+		"name": "A Kiss For The Petals - Remembering How We Met"
+	},
+	{
+		"executables": {
+			"win32": [
+				"Command.exe"
+			]
+		},
+		"id": 721,
+		"name": "Command: Modern Air/Naval Operations "
+	},
+	{
+		"executables": {
+			"win32": [
+				"CM Black Sea.exe"
+			]
+		},
+		"id": 722,
+		"name": "Combat Mission: Black Sea"
+	},
+	{
+		"executables": {
+			"win32": [
+				"CM Shock Force.exe"
+			]
+		},
+		"id": 723,
+		"name": "Combat Mission: Shock Force"
+	},
+	{
+		"executables": {
+			"win32": [
+				"KingOfFighters2002UM.exe"
+			]
+		},
+		"id": 724,
+		"name": "The King Of Fighters 2002 Unlimited Match"
+	},
+	{
+		"executables": {
+			"win32": [
+				"NFSC.exe"
+			]
+		},
+		"id": 725,
+		"name": "Need for Speed: Carbon"
+	},
+	{
+		"executables": {
+			"win32": [
+				"th075.exe",
+				"th075e.exe"
+			]
+		},
+		"id": 726,
+		"name": "Touhou 7.5: Immaterial and Missing Power"
+	},
+	{
+		"executables": {
+			"win32": [
+				"Demul.exe"
+			]
+		},
+		"id": 727,
+		"name": "Demul"
+	},
+	{
+		"executables": {
+			"win32": [
+				"DeSmuMe_0.9.11_x86.exe",
+				"DeSmuME_0.9.11_x64.exe"
+			]
+		},
+		"id": 728,
+		"name": "DeSmuME"
+	},
+	{
+		"executables": {
+			"win32": [
+				"Fusion.exe"
+			]
+		},
+		"id": 729,
+		"name": "Kega Fusion"
+	},
+	{
+		"executables": {
+			"win32": [
+				"nullDC_Win32_Release-NoTrace.exe"
+			]
+		},
+		"id": 730,
+		"name": "nullDC"
+	},
+	{
+		"executables": {
+			"win32": [
+				"pcsx2-r5875.exe"
+			]
+		},
+		"id": 731,
+		"name": "PCSX2"
+	},
+	{
+		"executables": {
+			"win32": [
+				"Project64.exe"
+			]
+		},
+		"id": 732,
+		"name": "Project64"
+	},
+	{
+		"executables": {
+			"win32": [
+				"Snes9X.exe"
+			]
+		},
+		"id": 733,
+		"name": "Snes9x"
+	},
+	{
+		"executables": {
+			"win32": [
+				"VisualBoyAdvance.exe"
+			]
+		},
+		"id": 734,
+		"name": "VisualBoyAdvance"
+	},
+	{
+		"executables": {
+			"win32": [
+				"zsnesw.exe"
+			]
+		},
+		"id": 735,
+		"name": "ZSNES"
+	},
+	{
+		"executables": {
+			"win32": [
+				"Uplink.exe"
+			]
+		},
+		"id": 736,
+		"name": "Uplink"
+	},
+	{
+		"executables": {
+			"win32": [
+				"RIK.exe"
+			]
+		},
+		"id": 737,
+		"name": "ProjectRIK"
+	},
+	{
+		"executables": {
+			"win32": [
+				"warsow_x64.exe",
+				"warsow_x86.exe"
+			]
+		},
+		"id": 738,
+		"name": "Warsow"
+	},
+	{
+		"executables": {
+			"win32": [
+				"cactus.exe"
+			]
+		},
+		"id": 739,
+		"name": "Assault Android Cactus"
+	},
+	{
+		"executables": {
+			"win32": [
+				"PlantsVsZombies.exe"
+			]
+		},
+		"id": 740,
+		"name": "Plants vs. Zombies"
+	},
+	{
+		"executables": {
+			"win32": [
+				"HeavyWeapon.exe"
+			]
+		},
+		"id": 741,
+		"name": "Heavy Weapon"
+	},
+	{
+		"executables": {
+			"win32": [
+				"BejBlitz.exe"
+			]
+		},
+		"id": 742,
+		"name": "Bejeweled Blitz"
+	},
+	{
+		"executables": {
+			"win32": [
+				"slw.exe"
+			]
+		},
+		"id": 743,
+		"name": "Sonic Lost World"
+	},
+	{
+		"executables": {
+			"win32": [
+				"age.exe"
+			]
+		},
+		"id": 744,
+		"name": "Kamidori Alchemy Meister"
+	},
+	{
+		"executables": {
+			"win32": [
+				"psobb.exe"
+			]
+		},
+		"id": 745,
+		"name": "Phantasy Star Online Blue Burst"
+	},
+	{
+		"executables": {
+			"win32": [
+				"Evoland2.exe"
+			]
+		},
+		"id": 746,
+		"name": "Evoland 2"
+	},
+	{
+		"executables": {
+			"win32": [
+				"FFV_Game.exe"
+			]
+		},
+		"id": 747,
+		"name": "Final Fantasy V"
+	},
+	{
+		"executables": {
+			"win32": [
+				"TITAN.exe"
+			]
+		},
+		"id": 748,
+		"name": "Titan Souls"
+	},
+	{
+		"executables": {
+			"win32": [
+				"FTP.exe"
+			]
+		},
+		"id": 749,
+		"name": "Free To Play"
+	},
+	{
+		"executables": {
+			"win32": [
+				"Hero_Siege.exe"
+			]
+		},
+		"id": 750,
+		"name": "Hero Siege"
 	}
 ]

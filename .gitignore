@@ -19,5 +19,8 @@ config.json
 # Music Folder
 /music
 
-# Reference Folder
+# References
 /_
+dump.json
+emojis.json
+emoji-shortcuts.json
