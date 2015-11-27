@@ -857,7 +857,7 @@ Commands["invite"] = {
 	fn: function(bot, message, params, errorCallback) {
 
 		// check if invite is valid
-		var invite = bot.resolveInvite(params[0]);
+		var invite = bot.internal.resolver.resolveInviteID(params[0]);
 		if (params.length < 1 || invite.length !== 16) {
 			bot.reply(message, "invites must be either a 16 character invite code or an invite link.").catch(errorCallback);
 			return;
