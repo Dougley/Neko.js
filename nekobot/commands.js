@@ -341,13 +341,13 @@ Commands["reverse"] = {
 
 				// grab username and convert param into a string
 				var userId = mentionRegEx.exec(params[i])[1];
-				params[i] = "@" + (bot.getUser("id", userId)).username;
+				params[i] = "@" + bot.users.get("id", userId).username;
 			}
 			if (params[i].match(channelRegEx)) {
 
 				// grab channel name and convert param into a string
 				var channelId = channelRegEx.exec(params[i])[1];
-				params[i] = "#" + (bot.getChannel("id", channelId)).name;
+				params[i] = "#" + bot.channels.get("id", channelId).name;
 			}
 		}
 
@@ -534,7 +534,7 @@ Commands["whereami"] = {
 	fn: function(bot, message, params, errorCallback) {
 
 		// if we're not in a PM, return some info about the channel
-		if (!message.isPrivate) {
+		if (message.channel.server) {
 
 			// build an array so all messages get sent at once
 			var msgArray = [];
@@ -561,7 +561,7 @@ Commands["avatar"] = {
 	nsfw: false,
 	fn: function(bot, message, params, errorCallback) {
 		// @mention doesn't work in PMs, so neither can this command
-		if (message.isPrivate) {
+		if (!message.channel.server) {
 			bot.sendMessage(message, "I can't do that in a PM! (I'm sorry ;w;\\)").catch(errorCallback);
 			return;
 		}
@@ -576,16 +576,13 @@ Commands["avatar"] = {
 		var msgArray = [];
 
 		// cycle mentions and add a message with the avatar of each user
-		for (index in message.mentions) {
-
-			var user = message.mentions[index];
-
-			if(user.avatarURL === null){
+		message.mentions.map(function(user) {
+			if(user.avatarURL === null) {
 				msgArray.push(user.username + " has no avatar.");
 			} else {
 				msgArray.push(user.username + "'s avatar is: " + user.avatarURL);
 			}
-		}
+		});
 
 		// send messages
 		bot.sendMessage(message, msgArray).catch(errorCallback);
@@ -781,10 +778,9 @@ Commands["pet"] = {
 		}
 
 		// otherwise, cycle mentions and add each user to pets
-		for (index in message.mentions) {
-			var user = message.mentions[index];
+		message.mentions.map(function(user) {
 			pets.push(user);
-		}
+		});
 
 		// if nekobot is on the list, purr
 		if (message.isMentioned(bot.user)) { pets.push("*purrs*"); }
@@ -926,7 +922,7 @@ Commands["whois"] = {
 	nsfw: false,
 	fn: function(bot, message, params, errorCallback) {
 		// @mention doesn't work in PMs, so neither can this command
-		if (message.isPrivate) {
+		if (!message.channel.server) {
 			bot.sendMessage(message, "I can't do that in a PM! (I'm sorry ;w;\\)").catch(errorCallback);
 			return;
 		}
@@ -938,13 +934,14 @@ Commands["whois"] = {
 		}
 
 		// cycle mentions and send a message with the id and permissions of each user
-		for (index in message.mentions) {
-			var user = message.mentions[index];
-			Permissions.getUserLevel(user, function(err, level){
-				if (err) { return errorCallback(err); }
+		message.mentions.map(function(user) {
+
+			Permissions.getUserLevel(user, function(err, level) {
+				if (err) { return errorCallback(err); } // error handle
 				bot.sendMessage(message, user + "'s id is **" + user.id + "** and their permissions level is **" + level + "**.").catch(errorCallback);
 			});
-		}
+
+		});
 	}
 }
 
@@ -963,7 +960,7 @@ Commands["nsfw"] = {
 	fn: function(bot, message, params, errorCallback) {
 
 		// PMs are always NSFW enabled
-		if (message.isPrivate) {
+		if (!message.channel.server) {
 			bot.sendMessage(message, "I can't do that in a PM! (l-lewd)").catch(errorCallback);
 			return;
 		}
@@ -1006,13 +1003,17 @@ Commands["leave"] = {
 	fn: function(bot, message, params, errorCallback) {
 
 		// uhh... you can't leave a PM, lol
-		if (message.isPrivate) {
+		if (!message.channel.server) {
 			bot.sendMessage(message, "You can never get rid of me! >:3").catch(errorCallback);
 			return;
 		}
 
-		bot.sendMessage(message, "Goodbye. ;w;").catch(errorCallback);
-		bot.leaveServer(message).catch(errorCallback);
+		bot.sendMessage(message, "Goodbye. ;w;").then(function() {
+			bot.servers.map(function(server) {
+				if (message.channel.server === server) bot.leaveServer(server).catch(errorCallback);
+			});
+		}).catch(errorCallback);
+
 	}
 }
 
@@ -1031,7 +1032,7 @@ Commands["setperms"] = {
 	fn: function(bot, message, params, errorCallback) {
 
 		// @mention doesn't work in PMs, so neither can this command
-		if (message.isPrivate) {
+		if (!message.channel.server) {
 			bot.sendMessage(message, "I can't do that in a PM! (I'm sorry ;w;\\)").catch(errorCallback);
 			return;
 		}
@@ -1058,12 +1059,11 @@ Commands["setperms"] = {
 		});
 
 		// cycle mentions and set the perm level of each user
-		for (index in message.mentions) {
-			var user = message.mentions[index];
+		message.mentions.map(function(user) {
 			Permissions.setUserLevel(user, params[0], function(err, level) {
 				if (err) { return errorCallback(err); }
 			});
-		}
+		});
 
 		// let the user know we've set the levels
 		bot.sendMessage(message, "Okay! I'll remember the new permissions levels. :)").catch(errorCallback);
@@ -1076,10 +1076,11 @@ Commands["leaveall"] = {
 	authLevel: 2,
 	nsfw: false,
 	fn: function(bot, message, params, errorCallback) {
-		bot.sendMessage(message, "Leaving all servers. Goodbye. ;w;").catch(errorCallback);
-		for (index in bot.servers) {
-			bot.leaveServer(bot.servers[index]).catch(errorCallback);
-		}
+		bot.sendMessage(message, "Leaving all servers. Goodbye. ;w;").then(function() {
+			bot.servers.map(function(server) {
+				bot.leaveServer(server).catch(errorCallback);
+			});
+		}).catch(errorCallback);
 	}
 }
 

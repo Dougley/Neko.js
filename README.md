@@ -1,8 +1,8 @@
 # Neko.js
-[![Version](https://img.shields.io/badge/version-0.8.3-brightgreen.svg?style=flat-square)]()
+[![Version](https://img.shields.io/badge/version-0.8.5-brightgreen.svg?style=flat-square)]()
 [![Status](https://img.shields.io/badge/status-in--dev-yellow.svg?style=flat-square)]()
-[![Node](https://img.shields.io/badge/node-5.0.0-green.svg?style=flat-square)](https://nodejs.org/)
-[![NPM](https://img.shields.io/badge/npm-3.4.0-green.svg?style=flat-square)](https://www.npmjs.com/)
+[![Node](https://img.shields.io/badge/node-5.1.0-green.svg?style=flat-square)](https://nodejs.org/)
+[![NPM](https://img.shields.io/badge/npm-3.5.0-green.svg?style=flat-square)](https://www.npmjs.com/)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](http://mit-license.org/)
 [![Tested](https://img.shields.io/badge/tested-Windows 7/10 | Ubuntu 14.04.3-lightgrey.svg?style=flat-square)]()
 

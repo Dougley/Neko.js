@@ -51,7 +51,7 @@ NekoBot.on("message", function(msg) {
 
 	// log chat specifially for new VM web window
 	var channelInfo = "[Private Message]";
-	if (!msg.isPrivate) { channelInfo = "[$" + msg.channel.server.name + "] [#" + msg.channel.name + "]"; }
+	if (msg.channel.server) { channelInfo = "[$" + msg.channel.server.name + "] [#" + msg.channel.name + "]"; }
 	ChatLogger.info(channelInfo + " " + msg.author.username + ": " + msg.content);
 
 	// prevent NekoBot from gaining sentience
@@ -82,7 +82,7 @@ NekoBot.on("message", function(msg) {
 				if (level >= Commands[command].authLevel) {
 
 					// check for sfw or pm channel
-					if (!Commands[command].nsfw || msg.isPrivate) {
+					if (!Commands[command].nsfw || !msg.channel.server) {
 
 						// sfw command or pm, just execute the command
 						Commands[command].fn(NekoBot, msg, params, error);
