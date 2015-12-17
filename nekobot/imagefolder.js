@@ -24,4 +24,4 @@ exports.getImage = function(bot, message, folder, errorCallback) {
 			}
 		}
 	});
-}
+};

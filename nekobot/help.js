@@ -43,7 +43,7 @@ exports.getCommandInfo = function(bot, message, command, errorCallback) {
 	} else {
 		bot.reply(message, "there is no **" + Config.commands.prefix + command + "** command.").catch(errorCallback);
 	}
-}
+};
 
 // ========================================================================
 // List All Commands
@@ -85,4 +85,4 @@ exports.getAllCommands = function(bot, message, errorCallback) {
 		// send messages
 		bot.sendMessage(message.author, msgArray).catch(errorCallback);
 	});
-}
+};

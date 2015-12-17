@@ -45,7 +45,7 @@ exports.getPostCount = function(chan, tags, callback) {
 			return callback(null, 0);
 		}
 	});
-}
+};
 
 // ========================================================================
 // Get Random Post / Image
@@ -81,7 +81,7 @@ exports.getRandomPost = function(chan, tags, count, callback) {
 			return callback(wtf, null);
 		}
 	});
-}
+};
 
 // ========================================================================
 // Get Image By Tag(s)
@@ -91,9 +91,10 @@ exports.getImageByTags = function(bot, message, chan, params, errorCallback) {
 
 	// function nesting hack
 	var that = this;
-
+	// define a var to circumvent confusing use of exclamation marks
+	var step = params.length > 0;
 	// make sure at least one tag is provided
-	if (!(params.length > 0)) {
+	if (!step) {
 		bot.reply(message, "I need at least one tag to lookup!").catch(errorCallback);
 		return;
 	}
@@ -135,4 +136,4 @@ exports.getImageByTags = function(bot, message, chan, params, errorCallback) {
 			bot.sendMessage(message, msgArray).catch(errorCallback);
 		}
 	});
-}
+};

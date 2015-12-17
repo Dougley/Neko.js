@@ -22,7 +22,7 @@ exports.getUserLevel = function(user, callback) {
 			callback(null, 0); // return 0 if no reply without error
 		}
 	});
-}
+};
 
 exports.setUserLevel = function(user, level, callback) {
 
@@ -35,7 +35,7 @@ exports.setUserLevel = function(user, level, callback) {
 			return callback(null, 0); // return 0 if fail without error
 		}
 	});
-}
+};
 
 // ========================================================================
 // Nsfw Permissions
@@ -53,7 +53,7 @@ exports.getAllowNSFW = function(channel, callback) {
 			callback(null, "off"); // return "off" if no reply without error
 		}
 	});
-}
+};
 
 exports.setAllowNSFW = function(channel, allow, callback) {
 
@@ -66,4 +66,4 @@ exports.setAllowNSFW = function(channel, allow, callback) {
 			return callback(null, null); // return null if fail without error
 		}
 	});
-}
+};

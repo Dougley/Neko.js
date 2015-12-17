@@ -18,7 +18,7 @@ Commands = [];
 // C# Bot Commands -- Suppress the "No command" message for the C# bot's unported commands
 // ========================================================================
 
-Commands["color"] = {
+Commands.color = {
 	name: "color",
 	params: "[rolename] [red] [green] [blue]",
 	description: "I'll change a role's color.",
@@ -27,9 +27,9 @@ Commands["color"] = {
 	fn: function(bot, message, params, errorCallback) {
 		return;
 	}
-}
+};
 
-Commands["playerpost"] = {
+Commands.playerpost = {
 	name: "playerpost",
 	params: "[postid]",
 	description: "I'll tell you the contents of the post with the given *postid*.",
@@ -38,9 +38,9 @@ Commands["playerpost"] = {
 	fn: function(bot, message, params, errorCallback) {
 		return;
 	}
-}
+};
 
-Commands["playercomment"] = {
+Commands.playercomment = {
 	name: "playercomment",
 	params: "[postid] [commentid]",
 	description: "I'll tell you the contents of the comment with the given *postid* and *commentid*.'",
@@ -49,9 +49,9 @@ Commands["playercomment"] = {
 	fn: function(bot, message, params, errorCallback) {
 		return;
 	}
-}
+};
 
-Commands["playerbio"] = {
+Commands.playerbio = {
 	name: "playerbio",
 	params: "[username]",
 	description: "I'll tell you the short bio of the player with the given *username*.'",
@@ -60,9 +60,9 @@ Commands["playerbio"] = {
 	fn: function(bot, message, params, errorCallback) {
 		return;
 	}
-}
+};
 
-Commands["playerlongbio"] = {
+Commands.playerlongbio = {
 	name: "playerlongbio",
 	params: "[username]",
 	description: "I'll tell you the long bio of the player with the given *username*.'",
@@ -71,9 +71,9 @@ Commands["playerlongbio"] = {
 	fn: function(bot, message, params, errorCallback) {
 		return;
 	}
-}
+};
 
-Commands["playeravatar"] = {
+Commands.playeravatar = {
 	name: "playeravatar",
 	params: "[username]",
 	description: "I'll link the avatar of the player with the given *username*.'",
@@ -82,9 +82,9 @@ Commands["playeravatar"] = {
 	fn: function(bot, message, params, errorCallback) {
 		return;
 	}
-}
+};
 
-Commands["music"] = {
+Commands.music = {
 	name: "music",
 	params: "[on/off] [channelid]",
 	description: "Enables/Disables music streaming in the voice channel with the given *channelid*.",
@@ -93,9 +93,9 @@ Commands["music"] = {
 	fn: function(bot, message, params, errorCallback) {
 		return;
 	}
-}
+};
 
-Commands["cid"] = {
+Commands.cid = {
 	name: "cid",
 	params: "[channelname]",
 	description: "I'll tell you the ID of the channel with the given *channelname*.",
@@ -104,9 +104,9 @@ Commands["cid"] = {
 	fn: function(bot, message, params, errorCallback) {
 		return;
 	}
-}
+};
 
-Commands["skip"] = {
+Commands.skip = {
 	name: "skip",
 	description: "Vote to skip the current song. Skipping requires > 50% of the users in the channel to vote.",
 	authLevel: 0,
@@ -114,9 +114,9 @@ Commands["skip"] = {
 	fn: function(bot, message, params, errorCallback) {
 		return;
 	}
-}
+};
 
-Commands["forceskip"] = {
+Commands.forceskip = {
 	name: "forceskip",
 	description: "Moderator level skip for the current song. Forces skip, reguardless of votes.",
 	authLevel: 1,
@@ -124,9 +124,9 @@ Commands["forceskip"] = {
 	fn: function(bot, message, params, errorCallback) {
 		return;
 	}
-}
+};
 
-Commands["song"] = {
+Commands.song = {
 	name: "song",
 	description: "I'll read you the ID3 tags of the current song. If I can't find them, I'll tell you the filename instead.",
 	authLevel: 0,
@@ -134,11 +134,11 @@ Commands["song"] = {
 	fn: function(bot, message, params, errorCallback) {
 		return;
 	}
-}
+};
 
-Commands["encore"] =
-Commands["ankouru"] =
-Commands["replay"] = {
+Commands.encore =
+Commands.ankoru =
+Commands.replay = {
 	name: "replay",
 	aliases: ['encore', 'ankouru'],
 	description: "Vote to replay the current song. Replay requires > 50% of the users in the channel to vote.",
@@ -147,9 +147,9 @@ Commands["replay"] = {
 	fn: function(bot, message, params, errorCallback) {
 		return;
 	}
-}
+};
 
-Commands["request"] = {
+Commands.request = {
 	name: "request",
 	params: "[filename]",
 	description: "Request a song to be added to the queue.",
@@ -158,9 +158,9 @@ Commands["request"] = {
 	fn: function(bot, message, params, errorCallback) {
 		return;
 	}
-}
+};
 
-Commands["playlist"] = {
+Commands.playlist = {
 	name: "playlist",
 	description: "I'll tell you the current playlist, aka the currently playing song and the 10 next songs I currently plan to play next, as well as their origin (Encore, Request or Playlist).",
 	authLevel: 0,
@@ -168,13 +168,13 @@ Commands["playlist"] = {
 	fn: function(bot, message, params, errorCallback) {
 		return;
 	}
-}
+};
 
 // ========================================================================
 // User Commands
 // ========================================================================
 
-Commands["ping"] = {
+Commands.ping = {
 	name: "ping",
 	description: "I'll say 'Pong!'",
 	authLevel: 0,
@@ -182,11 +182,11 @@ Commands["ping"] = {
 	fn: function(bot, message, params, errorCallback) {
 		bot.reply(message, "Pong!").catch(errorCallback);
 	}
-}
+};
 
-Commands["command"] =
-Commands["commands"] =
-Commands["help"] = {
+Commands.command =
+Commands.commands =
+Commands.help = {
 	name: "help",
 	params: "[command]",
 	aliases: ['command','commands'],
@@ -202,9 +202,9 @@ Commands["help"] = {
 			Help.getAllCommands(bot, message, errorCallback);
 		}
 	}
-}
+};
 
-Commands["version"] = {
+Commands.version = {
 	name: "version",
 	description: "I'll check for updates and tell you my version status.",
 	authLevel: 0,
@@ -226,9 +226,9 @@ Commands["version"] = {
 			}
 		});
 	}
-}
+};
 
-Commands["nya"] = {
+Commands.nya = {
 	name: "nya",
 	description: "I'll say 'Nyaa~'",
 	authLevel: 0,
@@ -236,9 +236,9 @@ Commands["nya"] = {
 	fn: function(bot, message, params, errorCallback) {
 		bot.sendMessage(message, "Nyaa~").catch(errorCallback);
 	}
-}
+};
 
-Commands["poi"] = {
+Commands.poi = {
 	name: "poi",
 	description: "I'll say 'Poi!'",
 	authLevel: 0,
@@ -246,13 +246,13 @@ Commands["poi"] = {
 	fn: function(bot, message, params, errorCallback) {
 		bot.sendMessage(message, "Poi!").catch(errorCallback);
 	}
-}
+};
 
-Commands["icri"] =
-Commands["sadhorn"] =
-Commands["aicraievritaim"] =
-Commands["aicraievritiem"] =
-Commands["aicrai"] = {
+Commands.icri =
+Commands.sadhorm =
+Commands.aicraievritaim =
+Commands.aicraievritiem =
+Commands.aicrai = {
 	name: "aicrai",
 	aliases: ['icri', 'sadhorn', 'aicraievritaim', 'aicraievritiem'],
 	description: "When sad things happen...",
@@ -261,10 +261,10 @@ Commands["aicrai"] = {
 	fn: function(bot, message, params, errorCallback) {
 		bot.sendMessage(message, "https://www.youtube.com/watch?v=0JAn8eShOo8").catch(errorCallback);
 	}
-}
+};
 
-Commands["rinpls"] =
-Commands["notnow"] = {
+Commands.rinpls =
+Commands.notnow = {
 	name: "notnow",
 	aliases: ['rinpls'],
 	description: "How to Rekt: Rin 101",
@@ -273,9 +273,9 @@ Commands["notnow"] = {
 	fn: function(bot, message, params, errorCallback) {
 		bot.sendMessage(message, "https://www.youtube.com/watch?v=2BZUzJfKFwM").catch(errorCallback);
 	}
-}
+};
 
-Commands["uninstall"] = {
+Commands.uninstall = {
 	name: "uninstall",
 	description: "A great advice in any situation.",
 	authLevel: 0,
@@ -283,10 +283,10 @@ Commands["uninstall"] = {
 	fn: function(bot, message, params, errorCallback) {
 		bot.sendMessage(message, "https://www.youtube.com/watch?v=iNCXiMt1bR4").catch(errorCallback);
 	}
-}
+};
 
-Commands["kys"] =
-Commands["killyourself"] = {
+Commands.kys =
+Commands.killyourself = {
 	name: "killyourself",
 	aliases: ['kys'],
 	description: "Another good advice.",
@@ -295,11 +295,11 @@ Commands["killyourself"] = {
 	fn: function(bot, message, params, errorCallback) {
 		bot.sendMessage(message, "https://www.youtube.com/watch?v=2dbR2JZmlWo").catch(errorCallback);
 	}
-}
+};
 
-Commands["grats"] =
-Commands["congrats"] =
-Commands["congratulations"] = {
+Commands.grats =
+Commands.congrats =
+Commands.congratulations = {
 	name: "congratulations",
 	aliases: ['grats', 'congrats'],
 	description: "Congratulate someone for whatever reason.",
@@ -308,10 +308,10 @@ Commands["congratulations"] = {
 	fn: function(bot, message, params, errorCallback) {
 		bot.sendMessage(message, "https://www.youtube.com/watch?v=oyFQVZ2h0V8").catch(errorCallback);
 	}
-}
+};
 
-Commands["forward"] =
-Commands["say"] = {
+Commands.forward =
+Commands.say = {
 	name: "say",
 	params: "[text ...]",
 	aliases: ['forward'],
@@ -321,9 +321,9 @@ Commands["say"] = {
 	fn: function(bot, message, params, errorCallback) {
 		bot.sendMessage(message, params.join(" ")).catch(errorCallback);
 	}
-}
+};
 
-Commands["reverse"] = {
+Commands.reverse = {
 	name: "reverse",
 	params: "[text ...]",
 	description: "I'll repeat what you said, in reverse!",
@@ -357,9 +357,9 @@ Commands["reverse"] = {
 		// reverse it and send it.
 		bot.sendMessage(message, params.split("").reverse().join("")).catch(errorCallback);
 	}
-}
+};
 
-Commands["safebooru"] = {
+Commands.safebooru = {
 	name: "safebooru",
 	params: "[tag ...]",
 	description: "I'll find a random image from Safebooru with the tag(s) you request.",
@@ -368,9 +368,9 @@ Commands["safebooru"] = {
 	fn: function(bot, message, params, errorCallback) {
 		ImageChan.getImageByTags(bot, message, "safebooru", params, errorCallback);
 	}
-}
+};
 
-/*Commands["gelbooru"] = {
+/*Commands.gelbooru = {
 	name: "gelbooru",
 	params: "[tag ...]",
 	description: "I'll find a random image from Gelbooru with the tag(s) you request.",
@@ -381,7 +381,7 @@ Commands["safebooru"] = {
 	}
 }*/
 
-Commands["rule34"] = {
+Commands.rule34 = {
 	name: "rule34",
 	params: "[tag ...]",
 	description: "I'll find a random image from Rule34 with the tag(s) you request.",
@@ -390,10 +390,10 @@ Commands["rule34"] = {
 	fn: function(bot, message, params, errorCallback) {
 		ImageChan.getImageByTags(bot, message, "rule34", params, errorCallback);
 	}
-}
+};
 
-Commands["konachan"] =
-Commands["kona"] = {
+Commands.konachan =
+Commands.kona = {
 	name: "kona",
 	params: "[tag ...]",
 	aliases: ['konachan'],
@@ -403,9 +403,9 @@ Commands["kona"] = {
 	fn: function(bot, message, params, errorCallback) {
 		ImageChan.getImageByTags(bot, message, "konachan", params, errorCallback);
 	}
-}
+};
 
-Commands["yandere"] = {
+Commands.yandere = {
 	name: "yandere",
 	params: "[tag ...]",
 	description: "I'll find a random image from Yandere with the tag(s) you request.",
@@ -414,9 +414,9 @@ Commands["yandere"] = {
 	fn: function(bot, message, params, errorCallback) {
 		ImageChan.getImageByTags(bot, message, "yandere", params, errorCallback);
 	}
-}
+};
 
-Commands["lolibooru"] = {
+Commands.lolibooru = {
 	name: "lolibooru",
 	params: "[tag ...]",
 	description: "I'll find a random image from Lolibooru with the tag(s) you request.",
@@ -425,9 +425,9 @@ Commands["lolibooru"] = {
 	fn: function(bot, message, params, errorCallback) {
 		ImageChan.getImageByTags(bot, message, "lolibooru", params, errorCallback);
 	}
-}
+};
 
-Commands["quote"] = {
+Commands.quote = {
 	name: "quote",
 	description: "I'll give you a random inspirational quote.",
 	authLevel: 0,
@@ -456,9 +456,9 @@ Commands["quote"] = {
 		});
 
 	}
-}
+};
 
-/*Commands["waifu"] = {
+/*Commands.waifu = {
 	name: "waifu",
 	description: "I'll give you a random Waifu.",
 	authLevel: 0,
@@ -483,7 +483,7 @@ Commands["quote"] = {
 	}
 }*/
 
-Commands["neko"] = {
+Commands.neko = {
 	name: "neko",
 	description: "I'll find a random Nekomimi from lewd.sx",
 	authLevel: 0,
@@ -491,9 +491,9 @@ Commands["neko"] = {
 	fn: function(bot, message, params, errorCallback) {
 		Lewdsx.getImage(bot, message, "neko", errorCallback);
 	}
-}
+};
 
-Commands["kitsune"] = {
+Commands.kitsune = {
 	name: "kitsune",
 	description: "I'll find a random Kitsunemimi from lewd.sx",
 	authLevel: 0,
@@ -501,9 +501,9 @@ Commands["kitsune"] = {
 	fn: function(bot, message, params, errorCallback) {
 		Lewdsx.getImage(bot, message, "kitsune", errorCallback);
 	}
-}
+};
 
-Commands["lewd"] = {
+Commands.lewd = {
 	name: "lewd",
 	description: "I'll find a random Lewd image from lewd.sx",
 	authLevel: 0,
@@ -511,9 +511,9 @@ Commands["lewd"] = {
 	fn: function(bot, message, params, errorCallback) {
 		Lewdsx.getImage(bot, message, "lewd", errorCallback);
 	}
-}
+};
 
-Commands["qt"] = {
+Commands.qt = {
 	name: "qt",
 	description: "I'll find a random 2Dqt from lewd.sx",
 	authLevel: 0,
@@ -521,11 +521,11 @@ Commands["qt"] = {
 	fn: function(bot, message, params, errorCallback) {
 		Lewdsx.getImage(bot, message, "qt", errorCallback);
 	}
-}
+};
 
-Commands["location"] =
-Commands["channelinfo"] =
-Commands["whereami"] = {
+Commands.location =
+Commands.channelinfo =
+Commands.whereami = {
 	name: "whereami",
 	aliases: ['location', 'channelinfo'],
 	description: "I'll tell you information about the channel and server you're asking me this from.",
@@ -551,9 +551,9 @@ Commands["whereami"] = {
 			bot.sendMessage(message, "You're in a private message with me, baka.").catch(errorCallback);
 		}
 	}
-}
+};
 
-Commands["avatar"] = {
+Commands.avatar = {
 	name: "avatar",
 	params: "[@user ...]",
 	description: "I'll give you a link to the avatar of each *@user*, so you can see a larger version of the images.",
@@ -587,9 +587,9 @@ Commands["avatar"] = {
 		// send messages
 		bot.sendMessage(message, msgArray).catch(errorCallback);
 	}
-}
+};
 
-Commands["cosplay"] = {
+Commands.cosplay = {
 	name: "cosplay",
 	description: "I'll upload a random Cosplay, provided by Salvy.",
 	authLevel: 0,
@@ -597,9 +597,9 @@ Commands["cosplay"] = {
 	fn: function(bot, message, params, errorCallback) {
 		ImageFolder.getImage(bot, message, "cosplay", errorCallback);
 	}
-}
+};
 
-Commands["pitur"] = {
+Commands.pitur = {
 	name: "pitur",
 	description: "I'll upload a random Lewd, provided by Pitur.",
 	authLevel: 0,
@@ -607,9 +607,9 @@ Commands["pitur"] = {
 	fn: function(bot, message, params, errorCallback) {
 		ImageFolder.getImage(bot, message, "pitur", errorCallback);
 	}
-}
+};
 
-Commands["gold"] = {
+Commands.gold = {
 	name: "gold",
 	description: "I'll upload a random Boat, provided by Au-chan.",
 	authLevel: 0,
@@ -617,9 +617,9 @@ Commands["gold"] = {
 	fn: function(bot, message, params, errorCallback) {
 		ImageFolder.getImage(bot, message, "gold", errorCallback);
 	}
-}
+};
 
-Commands["rand"] = {
+Commands.rand = {
 	name: "rand",
 	params: "[min] [max]",
 	description: "I'll give you a random number between *min* and *max*. Both params are optional. If only one number is given, it is the *max*. (defaults: 0-100)",
@@ -666,9 +666,9 @@ Commands["rand"] = {
 		// give the user their random number
 		bot.reply(message, "your number is **" + rand + "**").catch(errorCallback);
 	}
-}
+};
 
-Commands["roll"] = {
+Commands.roll = {
 	name: "roll",
 	params: "[dice] [sides] [times]",
 	description: "I'll roll a few sided dice for a given number of times. All params are optional. (defaults: 1 *dice*, 6 *sides*, 1 *times*)",
@@ -714,9 +714,9 @@ Commands["roll"] = {
 		// tell'em
 		bot.reply(message, "you rolled " + dice + " different " + sides + "-sided dice " + times + " times... Result: **" + roll + "**").catch(errorCallback);
 	}
-}
+};
 
-Commands["lotto"] = {
+Commands.lotto = {
 	name: "lotto",
 	description: "I'll give you a set of 6 lucky numbers!",
 	authLevel: 0,
@@ -743,9 +743,9 @@ Commands["lotto"] = {
 		// give the user their lucky numbers
 		bot.reply(message, "your lucky numbers are **" + lotto.join("**, **") + "**").catch(errorCallback);
 	}
-}
+};
 
-Commands["fortune"] = {
+Commands.fortune = {
 	name: "fortune",
 	description: "Wise words, from wise neko.",
 	authLevel: 0,
@@ -754,10 +754,10 @@ Commands["fortune"] = {
 		var rand = Math.floor(Math.random() * Fortunes.length);
 		bot.sendMessage(message, "*" + Fortunes[rand] + "*").catch(errorCallback);
 	}
-}
+};
 
-Commands["pets"] =
-Commands["pet"] = {
+Commands.pets =
+Commands.pet = {
 	name: "pet",
 	params: "[@user ...]",
 	aliases: ['pets'],
@@ -788,11 +788,11 @@ Commands["pet"] = {
 		// send message
 		bot.sendMessage(message, message.author + " pets " + pets.join(" ")).catch(errorCallback);
 	}
-}
+};
 
-Commands["onodera"] =
-Commands["worstgirl"] =
-Commands["trash"] = {
+Commands.onodera =
+Commands.worstgirl =
+Commands.trash = {
 	name: "trash",
 	aliases: ['onodera', 'worstgirl'],
 	description: "I'll upload an image of 'worst girl'. (WARNING: May cause nausea!)",
@@ -801,11 +801,11 @@ Commands["trash"] = {
 	fn: function(bot, message, params, errorCallback) {
 		bot.sendFile(message, __dirname + "/../images/trash.png").catch(errorCallback);
 	}
-}
+};
 
-Commands["shia"] =
-Commands["justdoit"] =
-Commands["doit"] = {
+Commands.shia =
+Commands.justdoit =
+Commands.doit = {
 	name: "doit",
 	aliases: ['justdoit', 'shia'],
 	description: "DON'T LET YOUR DREAMS JUST BE DREAMS!",
@@ -814,12 +814,12 @@ Commands["doit"] = {
 	fn: function(bot, message, params, errorCallback) {
 		bot.sendFile(message, __dirname + "/../images/shia.jpg").catch(errorCallback);
 	}
-}
+};
 
-Commands["dontbully"] =
-Commands["dunbulli"] =
-Commands["bully"] =
-Commands["bulli"] = {
+Commands.dontbully =
+Commands.dunbulli =
+Commands.bully =
+Commands.bulli = {
 	name: "bulli",
 	aliases: ['bully', 'dunbulli', 'dontbully'],
 	description: "DON'T BULLY!",
@@ -828,7 +828,7 @@ Commands["bulli"] = {
 	fn: function(bot, message, params, errorCallback) {
 		bot.sendFile(message, __dirname + "/../images/bulli.jpg").catch(errorCallback);
 	}
-}
+};
 
 Commands["8ball"] = {
 	name: "8ball",
@@ -844,10 +844,10 @@ Commands["8ball"] = {
 			bot.sendMessage(message, "*" + EightBall[rand] + "*").catch(errorCallback);
 		}
 	}
-}
+};
 
-Commands["join"] =
-Commands["invite"] = {
+Commands.join =
+Commands.invite = {
 	name: "invite",
 	params: "[code/link]",
 	aliases: ['join'],
@@ -906,9 +906,9 @@ Commands["invite"] = {
 			}
 		});
 	}
-}
+};
 
-Commands["status"] = {
+Commands.status = {
 	name: "status",
 	description: "I'll tell you how many servers, channels, and users I can see.",
 	authLevel: 0,
@@ -916,14 +916,14 @@ Commands["status"] = {
 	fn: function(bot, message, params, errorCallback) {
 		bot.sendMessage(message, "I'm connected to " + bot.servers.length + " servers, " + bot.channels.length + " channels, and " + bot.users.length + " users.");
 	}
-}
+};
 
 // ========================================================================
 // Moderator Commands
 // ========================================================================
 
-Commands["getinfo"] =
-Commands["whois"] = {
+Commands.getinfo =
+Commands.whois = {
 	name: "whois",
 	params: "[@user ...]",
 	aliases: ['getinfo'],
@@ -953,14 +953,14 @@ Commands["whois"] = {
 
 		});
 	}
-}
+};
 
 // ========================================================================
 // Admin Commands
 // ========================================================================
 
-Commands["canlewd"] =
-Commands["nsfw"] = {
+Commands.canlewd =
+Commands.nsfw = {
 	name: "nsfw",
 	params: "[on/off]",
 	aliases: ['canlewd'],
@@ -1003,9 +1003,9 @@ Commands["nsfw"] = {
 			});
 		}
 	}
-}
+};
 
-Commands["leave"] = {
+Commands.leave = {
 	name: "leave",
 	description: "I'll leave the server, as requested. ;w;",
 	authLevel: 2,
@@ -1025,14 +1025,14 @@ Commands["leave"] = {
 		}).catch(errorCallback);
 
 	}
-}
+};
 
 // ========================================================================
 // Owner Commands
 // ========================================================================
 
-Commands["setauth"] =
-Commands["setperms"] = {
+Commands.setauth =
+Commands.setperms = {
 	name: "setperms",
 	params: "[level] [@user ...]",
 	aliases: ['setauth'],
@@ -1078,9 +1078,9 @@ Commands["setperms"] = {
 		// let the user know we've set the levels
 		bot.sendMessage(message, "Okay! I'll remember the new permissions levels. :)").catch(errorCallback);
 	}
-}
+};
 
-Commands["leaveall"] = {
+Commands.leaveall = {
 	name: "leaveall",
 	description: "Ask me to leave all servers. (I will rejoin servers in my config file on restart.)",
 	authLevel: 2,
@@ -1092,12 +1092,12 @@ Commands["leaveall"] = {
 			});
 		}).catch(errorCallback);
 	}
-}
+};
 
-Commands["logout"] =
-Commands["shutdown"] =
-Commands["restart"] =
-Commands["die"] = {
+Commands.logout =
+Commands.shutdown =
+Commands.restart =
+Commands.die = {
 	name: "die",
 	aliases: ['logout', 'shutdown', 'restart'],
 	description: "Ask me to logout/restart.",
@@ -1107,13 +1107,13 @@ Commands["die"] = {
 		bot.sendMessage(message, "Logging out...").catch(errorCallback);
 		bot.logout().catch(errorCallback);
 	}
-}
+};
 
 // ========================================================================
 // Testing Command (Master only. Does nothing... mostly)
 // ========================================================================
 
-Commands["test"] = {
+Commands.test = {
 	name: "test",
 	description: "Test Command",
 	authLevel: 10,
@@ -1129,7 +1129,7 @@ Commands["test"] = {
 		bot.sendMessage(message, "Test complete. Check console and logs.").catch(errorCallback);
 		throw new Error('Logger Test (Exception)');
 	}
-}
+};
 
 // Export Commands[command]
 exports.Commands = Commands;

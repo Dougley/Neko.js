@@ -8,10 +8,10 @@ var Logger		= require("./logger").Logger;
 
 var version = require("../package.json").version.split(".");
 
-exports.getCurrentVersion	= function() { return version.join("."); }
-exports.getCurrentMajor		= function() { return version[0]; }
-exports.getCurrentMinor		= function() { return version[1]; }
-exports.getCurrentPatch		= function() { return version[2]; }
+exports.getCurrentVersion	= function() { return version.join("."); };
+exports.getCurrentMajor		= function() { return version[0]; };
+exports.getCurrentMinor		= function() { return version[1]; };
+exports.getCurrentPatch		= function() { return version[2]; };
 
 exports.getLatestVersion = function(callback) {
 
@@ -30,28 +30,28 @@ exports.getLatestVersion = function(callback) {
 			return callback(null, "failed");
 		}
 	});
-}
+};
 
 exports.getLatestMajor = function(callback) {
 	this.getLatest(function(err, latest) {
 		if (err) { return callback(err, null); } // error handle
 		return callback(null, parseInt(latest.split(".")[0]));
 	});
-}
+};
 
 exports.getLatestMinor = function(callback) {
 	this.getLatest(function(err, latest) {
 		if (err) { return callback(err, null); } // error handle
 		return callback(null, parseInt(latest.split(".")[1]));
 	});
-}
+};
 
 exports.getLatestPatch = function(callback) {
 	this.getLatest(function(err, latest) {
 		if (err) { return callback(err, null); } // error handle
 		return callback(null, parseInt(latest.split(".")[2]));
 	});
-}
+};
 
 // ========================================================================
 // Version Checking
@@ -97,4 +97,4 @@ exports.getStatus = function(callback) {
 		// up to date :)
 		return callback(null, "Bot is fully up to date. (version: " + version.join(".") + ")");
 	});
-}
+};

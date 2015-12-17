@@ -29,4 +29,4 @@ exports.getImage = function(bot, message, chan, errorCallback) {
 			return errorCallback(["lewd.sx " + chan + " failed:", { response: response.statusCode }]);
 		}
 	});
-}
+};
