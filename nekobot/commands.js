@@ -137,7 +137,7 @@ Commands.song = {
 };
 
 Commands.encore =
-Commands.ankoru =
+Commands.ankouru =
 Commands.replay = {
 	name: "replay",
 	aliases: ['encore', 'ankouru'],
@@ -249,7 +249,7 @@ Commands.poi = {
 };
 
 Commands.icri =
-Commands.sadhorm =
+Commands.sadhorn =
 Commands.aicraievritaim =
 Commands.aicraievritiem =
 Commands.aicrai = {
